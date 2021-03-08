@@ -8,11 +8,65 @@ var teams = [
     [4, "NEW"]
 ];
 
+var unitSales = [
+    {
+        products: "SALSA CHIPOTLE ROASTED MEDIUM",
+        units: "50"
+    },
+    {
+        products: "SALSA CLASSIC ROJA MEDIUM",
+        units: "134"
+    },
+    {
+        products: "SALSA CLASSIC VERDE MEDIUM",
+        sales: "132"
+    },
+    {
+        products: "SALSA GARLIC TOMATO MILD",
+        units: "53"
+    },
+    {
+        products: "SAUCE 3 PEPPER TOMATILLO",
+        units: "26"
+    },
+    {
+        products: "SAUCE CHILI PEQUIN PEPPER",
+        units: "9"
+    },
+    {
+        products: "SAUCE HOT ORIGINAL",
+        units: "32"
+    },
+    {
+        products: "SAUCE PEPPER AVOCADO LIME",
+        units: "26"
+    },
+    {
+        products: "SAUCE PEPPER ROASTED TOMATILLO",
+        units: "28"
+    },
+    {
+        products: "SAUCE PEPPER SMOKEY CHIPOTLE",
+        units: "31"
+    },
+    {
+        products: "SAUCE RED PEPPER CHIPOTLE",
+        units: "28"
+    },
+    {
+        products: "SAUCE SRIRACHA THAI",
+        units: "25"
+    }
+];
+
+var sales = [[[0, 145],[1, 80]]];
+var product = [[0, "salsa"], [1, "sauce"]];
+
 window.onload = function () {
     Flotr.draw(
-        document.getElementById("chart"), wins2, {
-            title: "Premier League Wins (2011-2012)",
-            colors: ["#89AFD2", "#1D1D1D", "#DF021D", "#0E204B", "#E67840"],
+        document.getElementById("chart"), sales, {
+            title: "Sales Data Test",
+            colors: ["#89AFD2"],
             bars: {
                 show: true,
                 barWidth: 0.5,
@@ -25,7 +79,7 @@ window.onload = function () {
                 tickDecimals: 0
             },
             xaxis: {
-                ticks: teams
+                ticks: product
             },
             grid: {
                 horizontalLines: false,
