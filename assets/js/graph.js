@@ -87,3 +87,9 @@ window.onload = function () {
             }
     })
 };
+
+console.log(sales[0][0][0]);
+console.log(sales[0][0][1]);
+console.log(sales[0][1][1]);
+console.log(product[0][1]);
+console.log(product[1][1]);
