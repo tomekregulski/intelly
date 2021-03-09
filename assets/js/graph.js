@@ -62,11 +62,11 @@ var unitSales = [
 var productNest = [];
 var salesNest = [];
 
-createSales();
+// createSales();
 
 function createSales() {
     var salesTest = [];
-    console.log('hello');
+    // console.log('hello');
     for (var i = 0; i < unitSales.length; i++) {
         // console.log(unitSales[i].units);
         var units = unitSales[i].units;
@@ -74,14 +74,14 @@ function createSales() {
     }
     // console.log(salesTest);
     salesNest.push(salesTest);
-    console.log(salesNest);
+    // console.log(salesNest);
 
     for (var i = 0; i < unitSales.length; i++) {
         // console.log(unitSales[i].products);
         var products = unitSales[i].products;
         productNest.push([i, products]);
     }
-    console.log(productNest);
+    // console.log(productNest);
     createGraph();
 };
 
@@ -113,9 +113,9 @@ function createGraph() {
             }
     })
 };
-console.log(sales);
-console.log(salesNest[0][0][0]);
-console.log(salesNest[0][0][1]);
+// console.log(sales);
+// console.log(salesNest[0][0][0]);
+// console.log(salesNest[0][0][1]);
 // console.log(salesNest[0][1][1]);
-console.log(productNest[0][1]);
-console.log(productNest[1][1]);
+// console.log(productNest[0][1]);
+// console.log(productNest[1][1]);
