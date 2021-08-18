@@ -1,13 +1,74 @@
-body {
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
+html,
+body {
+  font-size: 16px;
+}
+
+/* body {
+  background-image: url('./images/taylor_up_close.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100%;
+  line-height: 1;
+} */
+
+header {
+  text-align: center;
+  margin-top: 100px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.7rem;
+}
+
+p {
+  font-size: 0.9rem;
+}
+
+input,
+select,
+option,
+optgroup,
+textarea,
+button,
+pre,
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-size: 100%;
+  font-family: inherit;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+@media screen and (min-width: 1000px) {
+  body,
+  html {
+    font-size: 16px;
+  }
+  h1 {
+    font-size: 3.2rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.2rem;
+  }
 }

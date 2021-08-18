@@ -1,12 +1,15 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-
-// eslint-disable-next-line import/no-anonymous-default-export
 export default {
   nav: {
     display: 'flex',
     flexDirection: 'column',
     marginTop: '1rem',
+    borderBottom: '1px solid rgb(45, 179, 244)',
     marginBottom: '.5rem',
+  },
+  logo: {
+    width: '10rem',
+    margin: '1rem 0 1rem 2rem',
   },
   navLinks: {
     display: 'flex',
@@ -25,7 +28,7 @@ export default {
   //   },
   navLinkItem: {
     marginRight: '.5rem',
-    marginLeft: '.5rem',
+    // marginLeft: '.5rem',
     marginBottom: '.5rem',
     transition: 'all .5s',
     textDecoration: 'none',
@@ -40,15 +43,16 @@ export default {
   },
   '@media screen and (min-width: 360px)': {},
   '@media screen and (min-width: 411px)': {},
-  '@media screen and (min-width: 768px)': {},
-  '@media screen and (min-width: 1366px)': {
+  '@media screen and (min-width: 768px)': {
     nav: {
       flexDirection: 'row',
       justifyContent: 'space-between',
-      alignItems: 'baseline',
-      marginLeft: '2rem',
+      alignItems: 'center',
+      // marginLeft: '2rem',
       marginBottom: '1rem',
     },
+  },
+  '@media screen and (min-width: 1366px)': {
     navLinks: {
       display: 'flex',
       flexDirection: 'row',
@@ -57,7 +61,7 @@ export default {
     },
     navLinkItem: {
       marginBottom: '0',
-      marginRight: '2rem',
+      marginRight: '4rem',
     },
   },
   '@media screen and (min-width: 1920px)': {},

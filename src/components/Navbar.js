@@ -9,30 +9,12 @@ function Navbar(props) {
   return (
     <nav className={classes.nav}>
       <div>
-        <img src={image} alt='Intelly' />
-        {/* <ul className={classes.titleTags}>
-          <li>performer</li>
-          <li>composer</li>
-          <li>educator</li>
-        </ul> */}
+        <img className={classes.logo} src={image} alt='Intelly' />
       </div>
       <div className={classes.navLinks}>
-        <div className={classes.firstNavLinks}>
-          <Link className={classes.navLinkItem} to='/bio'>
-            Bio
-          </Link>
-          <Link className={classes.navLinkItem} to='/the-deep-roots'>
-            The Deep Roots
-          </Link>
-        </div>
-        <div className={classes.secondNavLinks}>
-          <Link className={classes.navLinkItem} to='/works'>
-            Works
-          </Link>
-          <Link className={classes.navLinkItem} to='/contact'>
-            Contact
-          </Link>
-        </div>
+        <Link className={classes.navLinkItem} to='/contact'>
+          Contact
+        </Link>
       </div>
     </nav>
   );
