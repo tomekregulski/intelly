@@ -1,34 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // import { Button } from '@material-ui/core';
 import { withStyles } from '@material-ui/styles';
 import styles from '../styles/DashboardStyles';
+import practiceData from '../data/data';
+import Test from './Test';
+import BarChart from '../charts/BarChart';
+import './dashboard.css';
 
 function Dashboard(props) {
-  const { classes } = props;
+  const [data, setData] = useState([]);
+  const [classic, setClassic] = useState([]);
+  const [basil, setBasil] = useState([]);
+  const [garlic, setGarlic] = useState([]);
+
+  useEffect(() => {
+    setData(practiceData);
+    if (!data.length) {
+      practiceData.map((item) =>
+        setClassic((classic) => [
+          ...classic,
+          { store: item.name, sales: item.classic },
+        ])
+      );
+      practiceData.map((item) =>
+        setBasil((basil) => [...basil, { store: item.name, sales: item.basil }])
+      );
+      practiceData.map((item) =>
+        setGarlic((garlic) => [
+          ...garlic,
+          { store: item.name, sales: item.garlic },
+        ])
+      );
+    }
+  }, []);
+
   return (
-    <div className={classes.homeBackground}>
-      <main className={classes.main}>
-        <div className={classes.callToAction}>
-          {/* <p className={classes.ctaText}>
-            Hard Tellin' and Songs From the Bitterroot
-          </p>
-          <p className={classes.ctaText}>
-            are available for purchase on Band Camp!
-          </p>
-          <Button
-            className={classes.ctaBtn}
-            href='https://taylorackley.bandcamp.com/album/hard-tellin'
-            target='_blank'
-            rel='noreferrer'
-            variant='contained'
-            color='primary'
-          >
-            Find Them Here!
-          </Button> */}
+    <div>
+      <main>
+        <div className='chartContainer'>
+          {classic.length ? <BarChart data={classic} datakey='sales' /> : null}
+          {basil.length ? <BarChart data={basil} datakey='sales' /> : null}
+          {garlic.length ? <BarChart data={garlic} datakey='sales' /> : null}
         </div>
       </main>
     </div>
   );
 }
 
-export default withStyles(styles)(Dashboard);
+export default Dashboard;
