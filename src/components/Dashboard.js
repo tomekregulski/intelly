@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // import { Button } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
-import styles from '../styles/DashboardStyles';
+// import { withStyles } from '@material-ui/styles';
+// import styles from '../styles/DashboardStyles';
 import practiceData from '../data/data';
-import Test from './Test';
 import BarChart from '../charts/BarChart';
 import './dashboard.css';
 
@@ -12,6 +11,8 @@ function Dashboard(props) {
   const [classic, setClassic] = useState([]);
   const [basil, setBasil] = useState([]);
   const [garlic, setGarlic] = useState([]);
+  const [totalSales, setTotalSales] = useState(0);
+  const [avgSales, setAvgSales] = useState(0);
 
   useEffect(() => {
     setData(practiceData);
@@ -32,7 +33,31 @@ function Dashboard(props) {
         ])
       );
     }
+    // calcSales();
   }, []);
+
+  const calcSales = () => {
+    console.log(' hello sales');
+  };
+
+  useEffect(() => {
+    if (data.length) {
+      let total = 0;
+      data.map(
+        (item) => (total = totalSales + item.garlic + item.classic + item.basil)
+      );
+      setTotalSales(total);
+    }
+  }, [data, setData]);
+
+  useEffect(() => {
+    if (data.length) {
+      console.log(totalSales);
+      console.log(data.length);
+      console.log(totalSales / data.length);
+      setAvgSales(totalSales / data.length);
+    }
+  }, [totalSales, setTotalSales]);
 
   return (
     <div>

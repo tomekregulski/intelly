@@ -7,6 +7,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  Label,
   Legend,
   ResponsiveContainer,
 } from 'recharts';
@@ -29,11 +30,18 @@ class BarRechartComponent extends React.Component {
           }}
         >
           <CartesianGrid strokeDasharray='3 3' />
-          <XAxis dataKey={this.props.data.store} />
-          <YAxis />
+          <XAxis
+            dataKey='store'
+            angle={45}
+            dx={35}
+            dy={40}
+            minTickGap={-200}
+            axisLine={false}
+          />
+          <YAxis dataKey='sales' />
           <Tooltip />
           <Legend />
-          <Bar dataKey={this.props.datakey} fill='#82ca9d' />
+          <Bar dataKey='sales' fill='#82ca9d' />
         </BarChart>
       </ResponsiveContainer>
     );
