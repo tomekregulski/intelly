@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Dashboard from './components/Dashboard';
-import Navbar from './components/Navbar';
-import Contact from './components/Contact';
+import Dashboard from './pages/Dashboard/Dashboard';
+import Navbar from './components/Navbar/Navbar';
+import Contact from './pages/Contact/Contact';
 
 function App() {
   return (

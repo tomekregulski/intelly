@@ -2,19 +2,19 @@ import React from 'react';
 import {
   BarChart,
   Bar,
-  Cell,
+  // Cell,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Label,
+  // Label,
   Legend,
   ResponsiveContainer,
 } from 'recharts';
 class BarRechartComponent extends React.Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
+  // componentDidMount() {
+  //   console.log(this.props);
+  // }
   render() {
     return (
       <ResponsiveContainer width={365} height={300}>

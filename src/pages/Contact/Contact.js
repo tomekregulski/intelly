@@ -3,7 +3,7 @@ import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { useForm } from 'react-hook-form';
 import { init, sendForm } from 'emailjs-com';
-import styles from '../styles/ContactStyles';
+import styles from '../../styles/ContactStyles';
 
 init(process.env.REACT_APP_EMAILJS_ID);
 

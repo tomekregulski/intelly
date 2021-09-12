@@ -1,8 +1,8 @@
 import React from 'react';
 import { withStyles } from '@material-ui/styles';
-import styles from '../styles/NavStyles';
+import styles from '../../styles/NavStyles';
 import { Link } from 'react-router-dom';
-import image from '../images/intelly_logo.png';
+import image from '../../images/intelly_logo.png';
 
 function Navbar(props) {
   const { classes } = props;
