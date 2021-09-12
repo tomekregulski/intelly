@@ -38,7 +38,7 @@ const TotalSalesWeeklyStores = () => {
       }
       setData(weeklySalesByStore);
     }
-  }, []);
+  }, [storeData]);
 
   return (
     <TableContainer className='tableContainer' component={Paper}>

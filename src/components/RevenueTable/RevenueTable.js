@@ -17,7 +17,7 @@ function RevenueTable() {
     if (productData) {
       setData(productData);
     }
-  }, []);
+  }, [productData]);
 
   return (
     <TableContainer className='tableContainer' component={Paper}>

@@ -1,10 +1,14 @@
-// import axios from 'axios';
+import axios from 'axios';
 import testData from '../data/data';
 
-import { productData, storeData } from '../dataProcessing/dataProcessing';
+// import { productData, storeData } from '../dataProcessing/dataProcessing';
 
 export const apiResponse = testData;
 
-export const dataByProduct = productData(testData);
+export const api = axios.create({
+  baseURL: 'https://api.covid19api.com',
+});
 
-export const dataByStore = storeData(testData);
+// export const dataByProduct = productData(testData);
+
+// export const dataByStore = storeData(testData);
