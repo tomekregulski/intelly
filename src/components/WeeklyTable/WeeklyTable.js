@@ -13,11 +13,9 @@ function WeeklyTable() {
   const [data, setData] = useState([]);
   const { productData } = useAPI();
 
-  console.log(productData);
-
   useEffect(() => {
     setData(productData);
-  }, []);
+  }, [productData]);
 
   return (
     <TableContainer className='tableContainer' component={Paper}>
@@ -35,46 +33,48 @@ function WeeklyTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.length &&
-            data.map((item) => (
-              <TableRow key={item.name}>
-                <TableCell component='th' scope='row'>
-                  {item.name}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.salesWeek).toFixed(1)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(
-                    ((item.salesWeek - item.salesWeek2) / item.salesWeek2) * 100
-                  ).toFixed(1)}
-                  %
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.salesWeek2).toFixed(1)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(
-                    ((item.salesWeek2 - item.salesWeek3) / item.salesWeek3) *
-                      100
-                  ).toFixed(1)}
-                  %
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.salesWeek3).toFixed(1)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(
-                    ((item.salesWeek3 - item.salesWeek4) / item.salesWeek4) *
-                      100
-                  ).toFixed(1)}
-                  %
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.salesWeek4).toFixed(1)}
-                </TableCell>
-              </TableRow>
-            ))}
+          {data.length
+            ? data.map((item) => (
+                <TableRow key={item.name}>
+                  <TableCell component='th' scope='row'>
+                    {item.name}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.salesWeek).toFixed(1)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(
+                      ((item.salesWeek - item.salesWeek2) / item.salesWeek2) *
+                        100
+                    ).toFixed(1)}
+                    %
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.salesWeek2).toFixed(1)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(
+                      ((item.salesWeek2 - item.salesWeek3) / item.salesWeek3) *
+                        100
+                    ).toFixed(1)}
+                    %
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.salesWeek3).toFixed(1)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(
+                      ((item.salesWeek3 - item.salesWeek4) / item.salesWeek4) *
+                        100
+                    ).toFixed(1)}
+                    %
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.salesWeek4).toFixed(1)}
+                  </TableCell>
+                </TableRow>
+              ))
+            : null}
         </TableBody>
       </Table>
     </TableContainer>

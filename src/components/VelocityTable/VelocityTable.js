@@ -15,7 +15,7 @@ function VelocityTable() {
 
   useEffect(() => {
     setData(productData);
-  }, []);
+  }, [productData]);
 
   return (
     <TableContainer className='tableContainer' component={Paper}>
