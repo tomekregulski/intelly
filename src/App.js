@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Navbar from './components/Navbar/Navbar';
 import Contact from './pages/Contact/Contact';
+import { APIContextProvider } from './context/apiContext';
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
       <Navbar />
       <div>
         <Switch>
-          <Route exact path='/' component={Dashboard} />
+          <APIContextProvider>
+            <Route exact path='/' component={Dashboard} />
+          </APIContextProvider>
           <Route exact path='/contact' component={Contact} />
         </Switch>
       </div>

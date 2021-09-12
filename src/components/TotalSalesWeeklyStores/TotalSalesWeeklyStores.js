@@ -7,16 +7,37 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useAPI } from '../../context/apiContext';
-import './weeklyTable.css';
 
-function WeeklyTable() {
+const TotalSalesWeeklyStores = () => {
   const [data, setData] = useState([]);
-  const { productData } = useAPI();
-
-  console.log(productData);
+  const { storeData } = useAPI();
 
   useEffect(() => {
-    setData(productData);
+    if (storeData) {
+      const weeklySalesByStore = [];
+
+      for (let i = 0; i < storeData.length; i++) {
+        let week1 = 0;
+        let week2 = 0;
+        let week3 = 0;
+        let week4 = 0;
+        let storeName = storeData[i].name;
+        for (const sku in storeData[i].sales) {
+          week1 = week1 + storeData[i].sales[sku].week1;
+          week2 = week2 + storeData[i].sales[sku].week2;
+          week3 = week3 + storeData[i].sales[sku].week3;
+          week4 = week4 + storeData[i].sales[sku].week4;
+        }
+        let obj = {};
+        obj['name'] = storeName;
+        obj['week1'] = week1;
+        obj['week2'] = week2;
+        obj['week3'] = week3;
+        obj['week4'] = week4;
+        weeklySalesByStore.push(obj);
+      }
+      setData(weeklySalesByStore);
+    }
   }, []);
 
   return (
@@ -24,7 +45,7 @@ function WeeklyTable() {
       <Table aria-label='simple table'>
         <TableHead>
           <TableRow>
-            <TableCell>Product</TableCell>
+            <TableCell>Store</TableCell>
             <TableCell align='left'>Last Week</TableCell>
             <TableCell align='left'>% Change</TableCell>
             <TableCell align='left'>Week 2</TableCell>
@@ -42,36 +63,34 @@ function WeeklyTable() {
                   {item.name}
                 </TableCell>
                 <TableCell align='left'>
-                  {parseFloat(item.salesWeek).toFixed(1)}
+                  {parseFloat(item.week1).toFixed(1)}
                 </TableCell>
                 <TableCell align='left'>
                   {parseFloat(
-                    ((item.salesWeek - item.salesWeek2) / item.salesWeek2) * 100
+                    ((item.week1 - item.week2) / item.week2) * 100
                   ).toFixed(1)}
                   %
                 </TableCell>
                 <TableCell align='left'>
-                  {parseFloat(item.salesWeek2).toFixed(1)}
+                  {parseFloat(item.week2).toFixed(1)}
                 </TableCell>
                 <TableCell align='left'>
                   {parseFloat(
-                    ((item.salesWeek2 - item.salesWeek3) / item.salesWeek3) *
-                      100
+                    ((item.week2 - item.week3) / item.week3) * 100
                   ).toFixed(1)}
                   %
                 </TableCell>
                 <TableCell align='left'>
-                  {parseFloat(item.salesWeek3).toFixed(1)}
+                  {parseFloat(item.week3).toFixed(1)}
                 </TableCell>
                 <TableCell align='left'>
                   {parseFloat(
-                    ((item.salesWeek3 - item.salesWeek4) / item.salesWeek4) *
-                      100
+                    ((item.week3 - item.week4) / item.week4) * 100
                   ).toFixed(1)}
                   %
                 </TableCell>
                 <TableCell align='left'>
-                  {parseFloat(item.salesWeek4).toFixed(1)}
+                  {parseFloat(item.week4).toFixed(1)}
                 </TableCell>
               </TableRow>
             ))}
@@ -79,6 +98,6 @@ function WeeklyTable() {
       </Table>
     </TableContainer>
   );
-}
+};
 
-export default WeeklyTable;
+export default TotalSalesWeeklyStores;
