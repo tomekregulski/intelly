@@ -18,8 +18,11 @@ export function APIContextProvider({ children }) {
     console.log(REACT_APP_DATA_API_URL);
     async function fetchData() {
       const apiResponse = await axios.get(
-        REACT_APP_DATA_API_URL + 'api/whole-foods'
+        `https://intelly-server.herokuapp.com/api/whole-foods`
       );
+      // const apiResponse = await axios.get(
+      //   REACT_APP_DATA_API_URL + 'api/whole-foods'
+      // );
       setBaseData(apiResponse.data);
     }
     fetchData();
