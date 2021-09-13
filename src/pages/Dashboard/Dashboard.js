@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
-import { Button } from '@material-ui/core';
-import { withStyles } from '@material-ui/styles';
+import React from 'react';
+// import { Button } from '@material-ui/core';
+// import { withStyles } from '@material-ui/styles';
 // import styles from '../styles/DashboardStyles';
-// import BarChart from '../../components/BarChart/BarChart';
 import VelocityTable from '../../components/VelocityTable/VelocityTable';
 import RevenueTable from '../../components/RevenueTable/RevenueTable';
 import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
@@ -16,7 +15,6 @@ import Select from '@material-ui/core/Select';
 import TotalSalesStores from '../../components/TotalSalesStores/TotalSalesStores';
 import TotalSalesWeeklyStores from '../../components/TotalSalesWeeklyStores/TotalSalesWeeklyStores';
 import TotalSalesStoresByProduct from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProduct';
-import TestChart from '../../components/TestChart/TestChart';
 
 import { useAPI } from '../../context/apiContext';
 
@@ -30,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Dashboard(props) {
+function Dashboard() {
   const { setRegion } = useAPI();
   const classes = useStyles();
 
@@ -48,10 +46,11 @@ function Dashboard(props) {
           {garlic.length ? <BarChart data={garlic} datakey='sales' /> : null} */}
       </div>
       <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-label'>Region</InputLabel>
+        <InputLabel id='demo-simple-select-label'>All Regions</InputLabel>
         <Select
           labelId='demo-simple-select-label'
           id='demo-simple-select'
+          value={''}
           onChange={handleChange}
         >
           <MenuItem value={'all regions'}>All Regions</MenuItem>
@@ -67,7 +66,6 @@ function Dashboard(props) {
         <TotalSalesWeeklyStores />
         <TotalSalesStores />
         <TotalSalesStoresByProduct />
-        <TestChart />
       </div>
     </main>
   );

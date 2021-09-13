@@ -12,6 +12,7 @@
     "axios": "^0.21.4",
     "emailjs-com": "^3.2.0",
     "react": "^17.0.2",
+    "react-chartjs-2": "^3.0.4",
     "react-dom": "^17.0.2",
     "react-hook-form": "^6.15.8",
     "react-icons": "^4.2.0",
