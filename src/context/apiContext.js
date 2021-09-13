@@ -1,40 +1,52 @@
 import React, { useContext, useState, useEffect, createContext } from 'react';
-import { apiResponse } from '../api/api';
+// import { apiResponse } from '../api/api';
 import {
   fetchProductData,
   fetchStoreData,
 } from '../dataProcessing/dataProcessing';
-// import axios from 'axios';
+import axios from 'axios';
 
 const APIContext = createContext();
 
 export function APIContextProvider({ children }) {
   // const { region } = useContext(RegionContext);
   // for more complex state you might set up useReducer for Redux-like state updates
+  const [baseData, setBaseData] = useState([]);
   const [storeData, setStoreData] = useState([]);
   const [productData, setProductData] = useState([]);
   const [region, setRegion] = useState('all regions');
+  const { REACT_APP_DATA_API_URL } = process.env;
 
-  // useEffect is a lifecycle method for function components, run once after mount
   useEffect(() => {
-    // the callback to useEffect can't be async, but you can declare async within
-    function fetchData() {
-      // use the await keyword to grab the resolved promise value
-      // remember: await can only be used within async functions!
-      const products = fetchProductData(apiResponse, region);
-      const stores = fetchStoreData(apiResponse, region);
-      // await axios.get(`https://jsonplaceholder.typicode.com/users`);
-      // update local state with the retrieved data
-      if (stores.length) {
-        setStoreData(stores);
-      }
-      if (products.length) {
-        setProductData(products);
-      }
+    console.log(REACT_APP_DATA_API_URL);
+    async function fetchData() {
+      // const apiResponse = await axios.get(
+      //   `https://intelly-server.herokuapp.com/api/whole-foods`
+      // );
+      const apiResponse = await axios.get(
+        REACT_APP_DATA_API_URL + 'api/whole-foods'
+      );
+      setBaseData(apiResponse.data);
     }
-    // fetchData will only run once after mount as the deps array is empty
     fetchData();
-  }, [region, setRegion]);
+  }, []);
+
+  useEffect(() => {
+    let stores = [];
+    let products = [];
+
+    if (baseData.length) {
+      products = fetchProductData(baseData, region);
+      stores = fetchStoreData(baseData, region);
+    }
+
+    if (stores.length) {
+      setStoreData(stores);
+    }
+    if (products.length) {
+      setProductData(products);
+    }
+  }, [region, setRegion, baseData, setBaseData]);
 
   return (
     <APIContext.Provider
