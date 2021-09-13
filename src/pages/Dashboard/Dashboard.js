@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Dashboard() {
-  const { setRegion, region } = useAPI();
+  const { setRegion, region, regions } = useAPI();
   const classes = useStyles();
 
   const handleChange = (event) => {
@@ -48,6 +48,12 @@ function Dashboard() {
           onChange={handleChange}
         >
           <MenuItem value={'all regions'}>All Regions</MenuItem>
+          {/* {regions.length &&
+            regions.map((reg, index) => (
+              <MenuItem key={index} value={reg}>
+                {reg}
+              </MenuItem>
+            ))} */}
           <MenuItem value={'northeast'}>Northeast</MenuItem>
           <MenuItem value={'north atlantic'}>North Atlatic</MenuItem>
           <MenuItem value={'southeast'}>Southeast</MenuItem>

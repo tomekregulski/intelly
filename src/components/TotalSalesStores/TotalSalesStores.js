@@ -5,8 +5,6 @@ import './totalSalesStore.css';
 
 const options = {
   indexAxis: 'y',
-  // Elements options apply to all of the options unless overridden in a dataset
-  // In this case, we are setting the border of each horizontal bar to be 2px wide
   elements: {
     bar: {
       borderWidth: 1,
@@ -26,7 +24,6 @@ const options = {
 
 const TotalSalesStores = () => {
   const [dataChart, setDataChart] = useState({});
-  // const [data, setData] = useState({});
 
   const { storeData } = useAPI();
 
@@ -50,7 +47,6 @@ const TotalSalesStores = () => {
         totalSalesByStore.push(obj);
       }
 
-      // setData(totalSalesByStore);
       setDataChart({
         labels: stores,
         datasets: [
