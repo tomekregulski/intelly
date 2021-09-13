@@ -43,6 +43,18 @@ export default {
       opacity: '1',
     },
   },
+  prompt: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  prompt: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+
+  firstLine: {
+    paddingBottom: '10px',
+  },
   submitBtn: {
     animation: '$moveInBottom 5000ms',
     background: 'transparent',

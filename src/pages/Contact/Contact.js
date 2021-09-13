@@ -31,9 +31,12 @@ const Contact = (props) => {
     <div className={classes.background}>
       <div className={classes.heading}>
         <h2 className={classes.title}>Get in touch!</h2>
-        <p>
-          I'd love to hear from you! Please use the form below to send a brief
-          message, and I'll be happy to get back to you.
+        <p className={classes.prompt}>
+          <span className={classes.firstLine}>Experiencing any issues?</span>
+          <span>
+            Use the form below to submit a ticket, and we'll get back to you as
+            soon as possible.
+          </span>
         </p>
       </div>
       <form

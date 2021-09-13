@@ -9,7 +9,9 @@ function Navbar(props) {
   return (
     <nav className={classes.nav}>
       <div>
-        <img className={classes.logo} src={image} alt='Intelly' />
+        <Link to='/'>
+          <img className={classes.logo} src={image} alt='Intelly' />
+        </Link>
       </div>
       <div className={classes.navLinks}>
         <Link className={classes.navLinkItem} to='/contact'>
