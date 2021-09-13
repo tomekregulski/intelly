@@ -6,7 +6,7 @@ import testData from '../data/data';
 export const apiResponse = testData;
 
 export const api = axios.create({
-  baseURL: 'https://api.covid19api.com',
+  baseURL: 'https://intelly-server.herokuapp.com/api/whole-foods',
 });
 
 // export const dataByProduct = productData(testData);
