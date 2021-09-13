@@ -138,7 +138,14 @@ export function APIContextProvider({ children }) {
         setTimeframeProductData(products);
       }
     }
-  }, [setTimeframeData, timeframeData, region, setRegion]);
+  }, [
+    setSkusTimeframe,
+    skusTimeframe,
+    timeframeData,
+    setTimeframeData,
+    region,
+    setRegion,
+  ]);
 
   // useEffect(() => {
   //   if (baseData.length) {
