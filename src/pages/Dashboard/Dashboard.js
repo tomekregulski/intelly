@@ -15,7 +15,6 @@ import Select from '@material-ui/core/Select';
 import TotalSalesStores from '../../components/TotalSalesStores/TotalSalesStores';
 import TotalSalesWeeklyStores from '../../components/TotalSalesWeeklyStores/TotalSalesWeeklyStores';
 import TotalSalesStoresByProduct from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProduct';
-
 import { useAPI } from '../../context/apiContext';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Dashboard() {
-  const { setRegion } = useAPI();
+  const { setRegion, region } = useAPI();
   const classes = useStyles();
 
   const handleChange = (event) => {
@@ -40,17 +39,13 @@ function Dashboard() {
 
   return (
     <main>
-      <div className='chartContainer'>
-        {/* {classic.length ? <BarChart data={classic} datakey='sales' /> : null}
-          {basil.length ? <BarChart data={basil} datakey='sales' /> : null}
-          {garlic.length ? <BarChart data={garlic} datakey='sales' /> : null} */}
-      </div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id='demo-simple-select-label'>All Regions</InputLabel>
+      <div className='chartContainer'></div>
+      <FormControl id='regionSelect' className={classes.formControl}>
+        <InputLabel>All Regions</InputLabel>
         <Select
           labelId='demo-simple-select-label'
           id='demo-simple-select'
-          value={''}
+          value={region}
           onChange={handleChange}
         >
           <MenuItem value={'all regions'}>All Regions</MenuItem>
@@ -62,9 +57,9 @@ function Dashboard() {
       <div>
         <RevenueTable />
         <VelocityTable />
+        <TotalSalesStores />
         <WeeklyTable />
         <TotalSalesWeeklyStores />
-        <TotalSalesStores />
         <TotalSalesStoresByProduct />
       </div>
     </main>

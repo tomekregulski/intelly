@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useAPI } from '../../context/apiContext';
+import './totalSalesStore.css';
 
 const options = {
   indexAxis: 'y',
@@ -14,11 +15,11 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'right',
+      position: 'top',
     },
     title: {
       display: true,
-      text: 'Chart.js Horizontal Bar Chart',
+      text: 'Total Unit Sales x Store - Last Week',
     },
   },
 };
@@ -64,13 +65,9 @@ const TotalSalesStores = () => {
   }, [storeData]);
 
   return (
-    <>
-      <div className='header'>
-        <h1 className='title'>Total Sales x Stores</h1>
-        <div className='links'></div>
-      </div>
+    <div id='salesByStore'>
       <Bar data={dataChart} options={options} />
-    </>
+    </div>
   );
 };
 export default TotalSalesStores;

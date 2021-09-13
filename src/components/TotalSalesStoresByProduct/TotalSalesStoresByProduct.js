@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { useAPI } from '../../context/apiContext';
+import './totalSalesStoresByProduct.css';
 
 const options = {
   scales: {
@@ -11,6 +12,15 @@ const options = {
         },
       },
     ],
+  },
+  plugins: {
+    legend: {
+      position: 'top',
+    },
+    title: {
+      display: true,
+      text: 'Unit Sales x Store x SKU - Last Week',
+    },
   },
 };
 
@@ -63,12 +73,9 @@ const GroupedBar = () => {
     }
   }, [storeData]);
   return (
-    <>
-      <div className='header'>
-        <h1 className='title'>Sales x Store x Product</h1>
-      </div>
+    <div id='salesStoreByProduct'>
       <Bar data={dataChart} options={options} />
-    </>
+    </div>
   );
 };
 export default GroupedBar;

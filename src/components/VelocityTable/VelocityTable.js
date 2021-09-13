@@ -18,47 +18,50 @@ function VelocityTable() {
   }, [productData]);
 
   return (
-    <TableContainer className='tableContainer' component={Paper}>
-      <Table aria-label='simple table'>
-        <TableHead>
-          <TableRow>
-            <TableCell>Product</TableCell>
-            <TableCell align='left'>Units Sold</TableCell>
-            <TableCell align='left'>Total Stores</TableCell>
-            <TableCell align='left'>Velocity Last Week</TableCell>
-            <TableCell align='left'>4 Weeks</TableCell>
-            <TableCell align='left'>12 Weeks</TableCell>
-            <TableCell align='left'>52 Weeks</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.length &&
-            data.map((item) => (
-              <TableRow key={item.name}>
-                <TableCell component='th' scope='row'>
-                  {item.name}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.salesWeek).toFixed(1)}
-                </TableCell>
-                <TableCell align='left'>{item.stores}</TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.salesWeek / item.stores).toFixed(1)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.sales4W / item.stores).toFixed(1)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.sales12W / item.stores).toFixed(1)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.sales52W / item.stores).toFixed(1)}
-                </TableCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <h2 className='tableTitle'>Units Sold Per Store Per Week</h2>
+      <TableContainer id='velocityTable' component={Paper}>
+        <Table size='small' aria-label='simple table'>
+          <TableHead>
+            <TableRow>
+              <TableCell>Product</TableCell>
+              <TableCell align='left'>Units Sold</TableCell>
+              <TableCell align='left'>Total Stores</TableCell>
+              <TableCell align='left'>Velocity Last Week</TableCell>
+              <TableCell align='left'>4 Weeks</TableCell>
+              <TableCell align='left'>12 Weeks</TableCell>
+              <TableCell align='left'>52 Weeks</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.length &&
+              data.map((item) => (
+                <TableRow key={item.name}>
+                  <TableCell component='th' scope='row'>
+                    {item.name}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.salesWeek).toFixed(1)}
+                  </TableCell>
+                  <TableCell align='left'>{item.stores}</TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.salesWeek / item.stores).toFixed(1)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.sales4W / item.stores).toFixed(1)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.sales12W / item.stores).toFixed(1)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.sales52W / item.stores).toFixed(1)}
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
 

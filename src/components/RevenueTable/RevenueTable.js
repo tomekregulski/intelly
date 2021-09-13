@@ -20,57 +20,60 @@ function RevenueTable() {
   }, [productData]);
 
   return (
-    <TableContainer className='tableContainer' component={Paper}>
-      <Table aria-label='simple table'>
-        <TableHead>
-          <TableRow>
-            <TableCell>Product</TableCell>
-            <TableCell align='left'>Units Sold LW</TableCell>
-            <TableCell align='left'>Revenue LW</TableCell>
-            <TableCell align='left'>Units Sold 4W</TableCell>
-            <TableCell align='left'>Revenue 4W</TableCell>
-            <TableCell align='left'>Units Sold 12W</TableCell>
-            <TableCell align='left'>Revenue 12W</TableCell>
-            <TableCell align='left'>Units Sold 52W</TableCell>
-            <TableCell align='left'>Revenue 52W</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.length &&
-            data.map((item) => (
-              <TableRow key={item.name}>
-                <TableCell component='th' scope='row'>
-                  {item.name}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.salesWeek).toFixed(0)}
-                </TableCell>
-                <TableCell align='left'>
-                  ${parseFloat(item.salesWeek * item.price).toFixed(2)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.sales4W).toFixed(0)}
-                </TableCell>
-                <TableCell align='left'>
-                  ${parseFloat(item.sales4W * item.price).toFixed(2)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.sales12W).toFixed(0)}
-                </TableCell>
-                <TableCell align='left'>
-                  ${parseFloat(item.sales12W * item.price).toFixed(2)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.sales52W).toFixed(0)}
-                </TableCell>
-                <TableCell align='left'>
-                  ${parseFloat(item.sales52W * item.price).toFixed(2)}
-                </TableCell>
-              </TableRow>
-            ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      <h2 className='tableTitle'>Sales Recap</h2>
+      <TableContainer id='revenueTable' component={Paper}>
+        <Table size='small' aria-label='simple table'>
+          <TableHead>
+            <TableRow>
+              <TableCell>Product</TableCell>
+              <TableCell align='left'>Units Sold LW</TableCell>
+              <TableCell align='left'>Revenue LW</TableCell>
+              <TableCell align='left'>Units Sold 4W</TableCell>
+              <TableCell align='left'>Revenue 4W</TableCell>
+              <TableCell align='left'>Units Sold 12W</TableCell>
+              <TableCell align='left'>Revenue 12W</TableCell>
+              <TableCell align='left'>Units Sold 52W</TableCell>
+              <TableCell align='left'>Revenue 52W</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.length &&
+              data.map((item) => (
+                <TableRow key={item.name}>
+                  <TableCell component='th' scope='row'>
+                    {item.name}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.salesWeek).toFixed(0)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    ${parseFloat(item.salesWeek * item.price).toFixed(2)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.sales4W).toFixed(0)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    ${parseFloat(item.sales4W * item.price).toFixed(2)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.sales12W).toFixed(0)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    ${parseFloat(item.sales12W * item.price).toFixed(2)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(item.sales52W).toFixed(0)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    ${parseFloat(item.sales52W * item.price).toFixed(2)}
+                  </TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </>
   );
 }
 
