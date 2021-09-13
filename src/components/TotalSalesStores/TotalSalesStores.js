@@ -4,7 +4,16 @@ import { useAPI } from '../../context/apiContext';
 import './totalSalesStore.css';
 
 const options = {
-  indexAxis: 'y',
+  // indexAxis: 'y',
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+        },
+      },
+    ],
+  },
   elements: {
     bar: {
       borderWidth: 1,
@@ -25,19 +34,23 @@ const options = {
 const TotalSalesStores = () => {
   const [dataChart, setDataChart] = useState({});
 
-  const { storeData } = useAPI();
+  const { timeframeStoreData } = useAPI();
 
   useEffect(() => {
-    if (storeData) {
+    if (timeframeStoreData) {
       const totalSalesByStore = [];
       let stores = [];
       let sales = [];
 
-      for (let i = 0; i < storeData.length; i++) {
+      for (let i = 0; i < timeframeStoreData.length; i++) {
         let storeTotal = 0;
-        let storeName = storeData[i].name;
-        for (const sku in storeData[i].sales) {
-          storeTotal = storeTotal + storeData[i].sales[sku].week1;
+        let storeName = timeframeStoreData[i].name;
+        for (const sku in timeframeStoreData[i].sales) {
+          let number = 0;
+          if (timeframeStoreData[i].sales[sku].week1) {
+            number = timeframeStoreData[i].sales[sku].week1;
+          }
+          storeTotal = storeTotal + number;
         }
         let obj = {};
         obj['name'] = storeName;
@@ -58,7 +71,7 @@ const TotalSalesStores = () => {
         ],
       });
     }
-  }, [storeData]);
+  }, [timeframeStoreData]);
 
   return (
     <div id='salesByStore'>

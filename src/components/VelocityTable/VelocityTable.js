@@ -11,11 +11,11 @@ import './velocityTable.css';
 
 function VelocityTable() {
   const [data, setData] = useState([]);
-  const { productData } = useAPI();
+  const { timeframeProductData } = useAPI();
 
   useEffect(() => {
-    setData(productData);
-  }, [productData]);
+    setData(timeframeProductData);
+  }, [timeframeProductData]);
 
   return (
     <>
@@ -41,20 +41,26 @@ function VelocityTable() {
                     {item.name}
                   </TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.salesWeek).toFixed(1)}
+                    {parseFloat(item.unitSalesLW)}
                   </TableCell>
-                  <TableCell align='left'>{item.stores}</TableCell>
+                  <TableCell align='left'>{item.storesLW}</TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.salesWeek / item.stores).toFixed(1)}
-                  </TableCell>
-                  <TableCell align='left'>
-                    {parseFloat(item.sales4W / item.stores).toFixed(1)}
+                    {parseFloat(item.unitSalesLW / item.storesLW).toFixed(1)}
                   </TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.sales12W / item.stores).toFixed(1)}
+                    {parseFloat(item.unitSales4W / item.stores4W / 4).toFixed(
+                      1
+                    )}
                   </TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.sales52W / item.stores).toFixed(1)}
+                    {parseFloat(
+                      item.unitSales12W / item.stores12W / 12
+                    ).toFixed(1)}
+                  </TableCell>
+                  <TableCell align='left'>
+                    {parseFloat(
+                      item.unitSales52W / item.stores52W / 52
+                    ).toFixed(1)}
                   </TableCell>
                 </TableRow>
               ))}

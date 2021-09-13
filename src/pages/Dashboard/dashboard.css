@@ -5,3 +5,10 @@
 #regionSelect {
   margin: 0 40px 10px;
 }
+
+.loading {
+  display: block;
+  text-align: center;
+  font-size: 32px;
+  padding: 50px;
+}

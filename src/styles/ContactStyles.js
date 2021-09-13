@@ -47,10 +47,6 @@ export default {
     display: 'flex',
     flexDirection: 'column',
   },
-  prompt: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
 
   firstLine: {
     paddingBottom: '10px',

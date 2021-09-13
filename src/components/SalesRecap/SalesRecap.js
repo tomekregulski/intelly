@@ -7,22 +7,24 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useAPI } from '../../context/apiContext';
-import './revenueTable.css';
+import './salesRecap.css';
 
-function RevenueTable() {
+function SalesRecap() {
   const [data, setData] = useState([]);
-  const { productData } = useAPI();
+  const { timeframeProductData } = useAPI();
+
+  console.log(timeframeProductData);
 
   useEffect(() => {
-    if (productData) {
-      setData(productData);
+    if (timeframeProductData) {
+      setData(timeframeProductData);
     }
-  }, [productData]);
+  }, [timeframeProductData]);
 
   return (
     <>
       <h2 className='tableTitle'>Sales Recap</h2>
-      <TableContainer id='revenueTable' component={Paper}>
+      <TableContainer id='salesRecap' component={Paper}>
         <Table size='small' aria-label='simple table'>
           <TableHead>
             <TableRow>
@@ -45,28 +47,28 @@ function RevenueTable() {
                     {item.name}
                   </TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.salesWeek).toFixed(0)}
+                    {parseFloat(item.unitSalesLW).toFixed(0)}
                   </TableCell>
                   <TableCell align='left'>
-                    ${parseFloat(item.salesWeek * item.price).toFixed(2)}
+                    ${parseFloat(item.netSalesLW).toFixed(2)}
                   </TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.sales4W).toFixed(0)}
+                    {parseFloat(item.unitSales4W).toFixed(0)}
                   </TableCell>
                   <TableCell align='left'>
-                    ${parseFloat(item.sales4W * item.price).toFixed(2)}
+                    ${parseFloat(item.netSales4W).toFixed(2)}
                   </TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.sales12W).toFixed(0)}
+                    {parseFloat(item.unitSales12W).toFixed(0)}
                   </TableCell>
                   <TableCell align='left'>
-                    ${parseFloat(item.sales12W * item.price).toFixed(2)}
+                    ${parseFloat(item.netSales12W).toFixed(2)}
                   </TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.sales52W).toFixed(0)}
+                    {parseFloat(item.unitSales52W).toFixed(0)}
                   </TableCell>
                   <TableCell align='left'>
-                    ${parseFloat(item.sales52W * item.price).toFixed(2)}
+                    ${parseFloat(item.netSales52W).toFixed(2)}
                   </TableCell>
                 </TableRow>
               ))}
@@ -77,4 +79,4 @@ function RevenueTable() {
   );
 }
 
-export default RevenueTable;
+export default SalesRecap;
