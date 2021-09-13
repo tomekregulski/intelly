@@ -12,10 +12,12 @@ export function APIContextProvider({ children }) {
   const [storeData, setStoreData] = useState([]);
   const [productData, setProductData] = useState([]);
   const [region, setRegion] = useState('all regions');
+  const [skus, setSkus] = useState([]);
+  const [regions, setRegions] = useState([]);
+  const [categories, setCategories] = useState([]);
   const { REACT_APP_DATA_API_URL } = process.env;
 
   useEffect(() => {
-    console.log(REACT_APP_DATA_API_URL);
     async function fetchData() {
       const apiResponse = await axios.get(
         `https://intelly-server.herokuapp.com/api/whole-foods`
@@ -27,6 +29,33 @@ export function APIContextProvider({ children }) {
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (baseData.length) {
+      let regionList = [];
+      let skuList = [];
+      let categoryList = [];
+      for (var i = 0; i < baseData.length; i++) {
+        let capReg =
+          baseData[i].region.charAt(0).toUpperCase() +
+          baseData[i].region.slice(1);
+        if (!regionList.includes(capReg)) {
+          regionList.push(capReg);
+        }
+
+        if (!skuList.includes(baseData[i].sku)) {
+          skuList.push(baseData[i].sku);
+        }
+
+        if (!categoryList.includes(baseData[i].category)) {
+          categoryList.push(baseData[i].category);
+        }
+      }
+      setRegions(regionList);
+      setSkus(skuList);
+      setCategories(categoryList);
+    }
+  }, [baseData, setBaseData]);
 
   useEffect(() => {
     let stores = [];
@@ -51,6 +80,8 @@ export function APIContextProvider({ children }) {
         storeData,
         productData,
         setRegion,
+        skus,
+        regions,
       }}
     >
       {children}

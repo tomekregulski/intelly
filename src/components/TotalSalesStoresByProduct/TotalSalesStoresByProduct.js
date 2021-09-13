@@ -3,6 +3,15 @@ import { Bar } from 'react-chartjs-2';
 import { useAPI } from '../../context/apiContext';
 import './totalSalesStoresByProduct.css';
 
+const colors = [
+  'rgba(255, 99, 132, 0.2)',
+  'rgba(54, 162, 235, 0.2)',
+  'rgba(255, 206, 86, 0.2)',
+  'rgba(75, 192, 192, 0.2)',
+  'rgba(153, 102, 255, 0.2)',
+  'rgba(255, 159, 64, 0.2)',
+];
+
 const options = {
   scales: {
     yAxes: [
@@ -27,44 +36,42 @@ const options = {
 const GroupedBar = () => {
   const [dataChart, setDataChart] = useState({});
 
-  const { storeData } = useAPI();
+  const { storeData, skus } = useAPI();
 
   useEffect(() => {
-    if (storeData) {
+    if (storeData && skus) {
       let stores = [];
-      let classic = [];
-      let garlic = [];
-      let basil = [];
+      let salesData = [];
+
+      for (let i = 0; i < skus.length; i++) {
+        console.log(skus[i]);
+        salesData.push({
+          label: skus[i],
+          data: [],
+          backgroundColor: colors[i],
+        });
+      }
+
+      console.log(salesData);
 
       for (let i = 0; i < storeData.length; i++) {
         stores.push(storeData[i].name);
-        classic.push(storeData[i].sales.Classic.week1);
-        garlic.push(storeData[i].sales.Garlic.week1);
-        basil.push(storeData[i].sales.Basil.week1);
+        let salesObj = storeData[i].sales;
+        for (const property in salesObj) {
+          const index = salesData.find((x) => x.label === property);
+          index.data.push(salesObj[property]['week1']);
+        }
       }
+
+      console.log(salesData);
 
       setDataChart({
         labels: stores,
-        datasets: [
-          {
-            label: 'Classic',
-            data: classic,
-            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-          },
-          {
-            label: 'Garlic',
-            data: garlic,
-            backgroundColor: ['rgba(54, 162, 235, 0.2)'],
-          },
-          {
-            label: 'Basil',
-            data: basil,
-            backgroundColor: ['rgba(75, 192, 192, 0.2)'],
-          },
-        ],
+        datasets: salesData,
       });
     }
   }, [storeData]);
+
   return (
     <div id='salesStoreByProduct'>
       <Bar data={dataChart} options={options} />

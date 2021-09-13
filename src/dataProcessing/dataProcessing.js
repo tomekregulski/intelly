@@ -84,3 +84,40 @@ export const fetchStoreData = (testData, region) => {
 
   return stores;
 };
+
+export const fetchStoreByProductData = (testData, region) => {
+  let stores = [];
+  let filteredData;
+  if (region !== 'all regions') {
+    filteredData = testData.filter((item) => item.region === region);
+  } else {
+    filteredData = testData;
+  }
+  if (filteredData.length) {
+    filteredData.map((item) => {
+      if (!stores.find((o) => o.name === item.store)) {
+        stores.push({
+          name: item.store,
+          sales: {},
+        });
+      }
+    });
+  }
+
+  //   for (var i = 0; i < filteredData.length; i++) {
+  //     for (var j = 0; j < stores.length; j++) {
+  //       if (filteredData[i].store === stores[j].name) {
+  //         let sku = filteredData[i].sku;
+  //         if (!(sku in stores[j].sales)) {
+  //           stores[j].sales[sku] = {};
+  //         }
+  //         stores[j].sales[sku]['week1'] = filteredData[i].salesWeek;
+  //         stores[j].sales[sku]['week2'] = filteredData[i].salesWeek2;
+  //         stores[j].sales[sku]['week3'] = filteredData[i].salesWeek3;
+  //         stores[j].sales[sku]['week4'] = filteredData[i].salesWeek4;
+  //       }
+  //     }
+  //   }
+
+  return stores;
+};

@@ -10,6 +10,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -23,6 +24,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -36,6 +38,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -49,6 +52,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -62,6 +66,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -75,6 +80,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -88,6 +94,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -101,6 +108,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -114,6 +122,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -127,6 +136,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -140,6 +150,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -153,6 +164,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -166,6 +178,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -179,6 +192,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -192,6 +206,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -205,6 +220,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -218,6 +234,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -231,6 +248,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'northeast',
   },
   {
@@ -244,6 +262,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -257,6 +276,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -270,6 +290,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -283,6 +304,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -296,6 +318,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -309,6 +332,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -322,6 +346,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -335,6 +360,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -348,6 +374,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -361,6 +388,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -374,6 +402,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -387,6 +416,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -400,6 +430,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -413,6 +444,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -426,6 +458,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -439,6 +472,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -452,6 +486,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -465,6 +500,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'north atlantic',
   },
   {
@@ -478,6 +514,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -491,6 +528,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -504,6 +542,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -517,6 +556,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -530,6 +570,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -543,6 +584,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -556,6 +598,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -569,6 +612,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -582,6 +626,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -595,6 +640,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -608,6 +654,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -621,6 +668,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -634,6 +682,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -647,6 +696,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -660,6 +710,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -673,6 +724,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -686,6 +738,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
   {
@@ -699,6 +752,7 @@ const practiceData = [
     sales12W: parseFloat((Math.random() * (160 - 16) + 16).toFixed(1)),
     sales52W: parseFloat((Math.random() * (520 - 52) + 52).toFixed(1)),
     price: 3.99,
+    category: 'pasta sauce',
     region: 'southeast',
   },
 ];
