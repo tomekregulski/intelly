@@ -11,23 +11,23 @@ import './weeklySalesStore.css';
 
 const TotalSalesWeeklyStores = () => {
   const [data, setData] = useState([]);
-  const { storeData } = useAPI();
+  const { timeframeStoreData } = useAPI();
 
   useEffect(() => {
-    if (storeData) {
+    if (timeframeStoreData) {
       const weeklySalesByStore = [];
 
-      for (let i = 0; i < storeData.length; i++) {
+      for (let i = 0; i < timeframeStoreData.length; i++) {
         let week1 = 0;
         let week2 = 0;
         let week3 = 0;
         let week4 = 0;
-        let storeName = storeData[i].name;
-        for (const sku in storeData[i].sales) {
-          week1 = week1 + storeData[i].sales[sku].week1;
-          week2 = week2 + storeData[i].sales[sku].week2;
-          week3 = week3 + storeData[i].sales[sku].week3;
-          week4 = week4 + storeData[i].sales[sku].week4;
+        let storeName = timeframeStoreData[i].name;
+        for (const sku in timeframeStoreData[i].sales) {
+          week1 = week1 + timeframeStoreData[i].sales[sku].week1;
+          week2 = week2 + timeframeStoreData[i].sales[sku].week2;
+          week3 = week3 + timeframeStoreData[i].sales[sku].week3;
+          week4 = week4 + timeframeStoreData[i].sales[sku].week4;
         }
         let obj = {};
         obj['name'] = storeName;
@@ -39,7 +39,7 @@ const TotalSalesWeeklyStores = () => {
       }
       setData(weeklySalesByStore);
     }
-  }, [storeData]);
+  }, [timeframeStoreData]);
 
   return (
     <>

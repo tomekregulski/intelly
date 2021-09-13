@@ -11,11 +11,11 @@ import './weeklyTable.css';
 
 function DenseTable() {
   const [data, setData] = useState([]);
-  const { productData } = useAPI();
+  const { timeframeProductData } = useAPI();
 
   useEffect(() => {
-    setData(productData);
-  }, [productData]);
+    setData(timeframeProductData);
+  }, [timeframeProductData]);
 
   return (
     <>
@@ -41,36 +41,40 @@ function DenseTable() {
                   {item.name}
                 </TableCell>
                 <TableCell align='left'>
-                  {parseFloat(item.salesWeek).toFixed(1)}
+                  {parseFloat(item.unitSalesLW).toFixed(1)}
                 </TableCell>
                 <TableCell align='left'>
                   {parseFloat(
-                    ((item.salesWeek - item.salesWeek2) / item.salesWeek2) * 100
-                  ).toFixed(1)}
-                  %
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(item.salesWeek2).toFixed(1)}
-                </TableCell>
-                <TableCell align='left'>
-                  {parseFloat(
-                    ((item.salesWeek2 - item.salesWeek3) / item.salesWeek3) *
+                    ((item.unitSalesLW - item.unitSalesWeek2) /
+                      item.unitSalesWeek2) *
                       100
                   ).toFixed(1)}
                   %
                 </TableCell>
                 <TableCell align='left'>
-                  {parseFloat(item.salesWeek3).toFixed(1)}
+                  {parseFloat(item.unitSalesWeek2).toFixed(1)}
                 </TableCell>
                 <TableCell align='left'>
                   {parseFloat(
-                    ((item.salesWeek3 - item.salesWeek4) / item.salesWeek4) *
+                    ((item.unitSalesWeek2 - item.unitSalesWeek3) /
+                      item.unitSalesWeek3) *
                       100
                   ).toFixed(1)}
                   %
                 </TableCell>
                 <TableCell align='left'>
-                  {parseFloat(item.salesWeek4).toFixed(1)}
+                  {parseFloat(item.unitSalesWeek3).toFixed(1)}
+                </TableCell>
+                <TableCell align='left'>
+                  {parseFloat(
+                    ((item.unitSalesWeek3 - item.unitSalesWeek4) /
+                      item.unitSalesWeek4) *
+                      100
+                  ).toFixed(1)}
+                  %
+                </TableCell>
+                <TableCell align='left'>
+                  {parseFloat(item.unitSalesWeek4).toFixed(1)}
                 </TableCell>
               </TableRow>
             ))}

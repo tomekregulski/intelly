@@ -36,41 +36,36 @@ const options = {
 const GroupedBar = () => {
   const [dataChart, setDataChart] = useState({});
 
-  const { storeData, skus } = useAPI();
+  const { skusTimeframe, timeframeStoreData } = useAPI();
 
   useEffect(() => {
-    if (storeData && skus) {
+    if (timeframeStoreData && skusTimeframe) {
       let stores = [];
       let salesData = [];
 
-      for (let i = 0; i < skus.length; i++) {
-        console.log(skus[i]);
+      for (let i = 0; i < skusTimeframe.length; i++) {
         salesData.push({
-          label: skus[i],
+          label: skusTimeframe[i],
           data: [],
           backgroundColor: colors[i],
         });
       }
 
-      console.log(salesData);
-
-      for (let i = 0; i < storeData.length; i++) {
-        stores.push(storeData[i].name);
-        let salesObj = storeData[i].sales;
+      for (let i = 0; i < timeframeStoreData.length; i++) {
+        stores.push(timeframeStoreData[i].name);
+        let salesObj = timeframeStoreData[i].sales;
         for (const property in salesObj) {
           const index = salesData.find((x) => x.label === property);
           index.data.push(salesObj[property]['week1']);
         }
       }
 
-      console.log(salesData);
-
       setDataChart({
         labels: stores,
         datasets: salesData,
       });
     }
-  }, [storeData]);
+  }, [timeframeStoreData, skusTimeframe]);
 
   return (
     <div id='salesStoreByProduct'>

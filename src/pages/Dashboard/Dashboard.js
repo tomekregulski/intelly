@@ -3,7 +3,7 @@ import React from 'react';
 // import { withStyles } from '@material-ui/styles';
 // import styles from '../styles/DashboardStyles';
 import VelocityTable from '../../components/VelocityTable/VelocityTable';
-import RevenueTable from '../../components/RevenueTable/RevenueTable';
+import SalesRecap from '../../components/SalesRecap/SalesRecap';
 import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
 import './dashboard.css';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,47 +28,50 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Dashboard() {
-  const { setRegion, region, regions } = useAPI();
+  const { setRegion, timeframeRegions, region, timeframeStoreData } = useAPI();
   const classes = useStyles();
 
   const handleChange = (event) => {
     event.preventDefault();
     setRegion('' || event.target.value);
   };
-
-  return (
-    <main>
-      <div className='chartContainer'></div>
-      <FormControl id='regionSelect' className={classes.formControl}>
-        <InputLabel>All Regions</InputLabel>
-        <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          value={region}
-          onChange={handleChange}
-        >
-          <MenuItem value={'all regions'}>All Regions</MenuItem>
-          {/* {regions.length &&
-            regions.map((reg, index) => (
-              <MenuItem key={index} value={reg}>
-                {reg}
-              </MenuItem>
-            ))} */}
-          <MenuItem value={'northeast'}>Northeast</MenuItem>
-          <MenuItem value={'north atlantic'}>North Atlatic</MenuItem>
-          <MenuItem value={'southeast'}>Southeast</MenuItem>
-        </Select>
-      </FormControl>
-      <div>
-        <RevenueTable />
-        <VelocityTable />
-        <TotalSalesStores />
-        <WeeklyTable />
-        <TotalSalesWeeklyStores />
-        <TotalSalesStoresByProduct />
-      </div>
-    </main>
-  );
+  if (timeframeStoreData.length) {
+    return (
+      <main>
+        <div className='chartContainer'></div>
+        <FormControl id='regionSelect' className={classes.formControl}>
+          <InputLabel>All Regions</InputLabel>
+          <Select
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            value={region}
+            onChange={handleChange}
+          >
+            <MenuItem value={'all regions'}>All Regions</MenuItem>
+            {timeframeRegions.length ? (
+              timeframeRegions.map((reg, index) => (
+                <MenuItem key={index} value={reg}>
+                  {reg}
+                </MenuItem>
+              ))
+            ) : (
+              <MenuItem value={'Northeast'}>Northeast</MenuItem>
+            )}
+          </Select>
+        </FormControl>
+        <div>
+          <SalesRecap />
+          <VelocityTable />
+          <TotalSalesStores />
+          <WeeklyTable />
+          <TotalSalesWeeklyStores />
+          <TotalSalesStoresByProduct />
+        </div>
+      </main>
+    );
+  } else {
+    return <h1 className='loading'>Please wait while we fetch your data...</h1>;
+  }
 }
 
 export default Dashboard;
