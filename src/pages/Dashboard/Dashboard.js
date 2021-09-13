@@ -33,8 +33,7 @@ function Dashboard() {
 
   const handleChange = (event) => {
     event.preventDefault();
-    setRegion(event.target.value);
-    console.log(event.target.value);
+    setRegion('' || event.target.value);
   };
 
   return (

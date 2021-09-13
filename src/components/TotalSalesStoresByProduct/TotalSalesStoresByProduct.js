@@ -26,7 +26,6 @@ const options = {
 
 const GroupedBar = () => {
   const [dataChart, setDataChart] = useState({});
-  // const [data, setData] = useState({});
 
   const { storeData } = useAPI();
 
@@ -44,12 +43,6 @@ const GroupedBar = () => {
         basil.push(storeData[i].sales.Basil.week1);
       }
 
-      console.log(stores);
-      console.log(classic);
-      console.log(garlic);
-      console.log(basil);
-
-      // setData(totalSalesByStore);
       setDataChart({
         labels: stores,
         datasets: [
