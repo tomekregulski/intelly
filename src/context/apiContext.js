@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect, createContext } from 'react';
-// import { apiResponse } from '../api/api';
 import {
   fetchProductData,
   fetchStoreData,
@@ -9,8 +8,6 @@ import axios from 'axios';
 const APIContext = createContext();
 
 export function APIContextProvider({ children }) {
-  // const { region } = useContext(RegionContext);
-  // for more complex state you might set up useReducer for Redux-like state updates
   const [baseData, setBaseData] = useState([]);
   const [storeData, setStoreData] = useState([]);
   const [productData, setProductData] = useState([]);
@@ -20,9 +17,6 @@ export function APIContextProvider({ children }) {
   useEffect(() => {
     console.log(REACT_APP_DATA_API_URL);
     async function fetchData() {
-      // const apiResponse = await axios.get(
-      //   `https://intelly-server.herokuapp.com/api/whole-foods`
-      // );
       const apiResponse = await axios.get(
         REACT_APP_DATA_API_URL + 'api/whole-foods'
       );
@@ -50,7 +44,6 @@ export function APIContextProvider({ children }) {
 
   return (
     <APIContext.Provider
-      // Add required values to the value prop within an object (my preference)
       value={{
         storeData,
         productData,
@@ -62,7 +55,6 @@ export function APIContextProvider({ children }) {
   );
 }
 
-// Create a hook to use the APIContext, this is a Kent C. Dodds pattern
 export function useAPI() {
   const context = useContext(APIContext);
   if (context === undefined) {
