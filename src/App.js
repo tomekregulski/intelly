@@ -13,8 +13,8 @@ function App() {
         <Switch>
           <APIContextProvider>
             <Route exact path='/' component={Dashboard} />
+            <Route exact path='/contact' component={Contact} />
           </APIContextProvider>
-          <Route exact path='/contact' component={Contact} />
         </Switch>
       </div>
     </>
