@@ -12,3 +12,25 @@
   font-size: 32px;
   padding: 50px;
 }
+
+#topLevel {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1460px) {
+  #topLevel {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #charts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

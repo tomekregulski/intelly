@@ -1,7 +1,4 @@
 import React from 'react';
-// import { Button } from '@material-ui/core';
-// import { withStyles } from '@material-ui/styles';
-// import styles from '../styles/DashboardStyles';
 import VelocityTable from '../../components/VelocityTable/VelocityTable';
 import SalesRecap from '../../components/SalesRecap/SalesRecap';
 import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
@@ -48,24 +45,26 @@ function Dashboard() {
             onChange={handleChange}
           >
             <MenuItem value={'all regions'}>All Regions</MenuItem>
-            {timeframeRegions.length ? (
-              timeframeRegions.map((reg, index) => (
-                <MenuItem key={index} value={reg}>
-                  {reg}
-                </MenuItem>
-              ))
-            ) : (
-              <MenuItem value={'Northeast'}>Northeast</MenuItem>
-            )}
+            {timeframeRegions.length
+              ? timeframeRegions.map((reg, index) => (
+                  <MenuItem key={index} value={reg}>
+                    {reg}
+                  </MenuItem>
+                ))
+              : null}
           </Select>
         </FormControl>
         <div>
-          <SalesRecap />
-          <VelocityTable />
-          <TotalSalesStores />
-          <WeeklyTable />
-          <TotalSalesWeeklyStores />
-          <TotalSalesStoresByProduct />
+          <div id='topLevel'>
+            <SalesRecap />
+            <VelocityTable />
+            <WeeklyTable />
+            <TotalSalesWeeklyStores />
+          </div>
+          <div id='charts'>
+            <TotalSalesStores />
+            <TotalSalesStoresByProduct />
+          </div>
         </div>
       </main>
     );

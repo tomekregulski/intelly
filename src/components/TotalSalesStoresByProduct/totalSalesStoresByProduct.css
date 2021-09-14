@@ -3,3 +3,9 @@
   margin: 20px 40px 80px;
   padding-bottom: 80px;
 }
+
+@media (max-width: 1460px) {
+  #salesStoreByProduct {
+    margin: 60px 0 0 0;
+  }
+}

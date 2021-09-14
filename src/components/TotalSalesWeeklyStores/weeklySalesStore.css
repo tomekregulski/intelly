@@ -1,4 +1,31 @@
 #weeklySalesStore {
-  width: 50%;
-  margin: 20px 40px 80px;
+  width: 43%;
+  margin: 0 0 0 1%;
+}
+
+.tableTitle {
+  background-color: rgba(5, 188, 255, 0.646);
+  color: white !important;
+  /* border: none !important; */
+}
+
+.tableHeaders {
+  background-color: rgba(5, 188, 255, 0.646);
+  color: white !important;
+  border: none !important;
+}
+
+.tableBody {
+  border: solid 1px black;
+}
+
+.highlighted {
+  background-color: rgba(5, 197, 255, 0.205);
+}
+
+@media (max-width: 1460px) {
+  #weeklySalesStore {
+    margin: 0 0 15px 0;
+    width: 75%;
+  }
 }
