@@ -12,16 +12,9 @@ html {
 
 html,
 body {
-  font-size: 16px;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
 }
-
-/* body {
-  background-image: url('./images/taylor_up_close.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100%;
-  line-height: 1;
-} */
 
 header {
   text-align: center;

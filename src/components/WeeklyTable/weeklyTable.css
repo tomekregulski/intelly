@@ -1,9 +1,27 @@
 #weeklyProduct {
-  width: 50%;
-  margin: 20px 40px 80px;
+  width: 45%;
+  margin: 0 0 0 0;
 }
 
 .tableTitle {
-  margin: 20px 40px;
-  font-size: 1.3rem;
+  background-color: rgba(5, 188, 255, 0.646);
+  color: white !important;
+  /* border: none !important; */
+}
+
+.tableHeaders {
+  background-color: rgba(5, 188, 255, 0.646);
+  color: white !important;
+  /* border: none !important; */
+}
+
+.tableBody {
+  border: solid 1px black;
+}
+
+@media (max-width: 1460px) {
+  #weeklyProduct {
+    margin: 0 0 15px 0;
+    width: 75%;
+  }
 }

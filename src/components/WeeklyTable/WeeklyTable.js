@@ -19,19 +19,37 @@ function DenseTable() {
 
   return (
     <>
-      <h2 className='tableTitle'>% Change in Sales - Last 4 Weeks</h2>
       <TableContainer id='weeklyProduct' component={Paper}>
-        <Table size='small' aria-label='a dense table'>
+        <Table className='tableBody' size='small' aria-label='a dense table'>
           <TableHead>
             <TableRow>
-              <TableCell>Product</TableCell>
-              <TableCell align='left'>Last Week</TableCell>
-              <TableCell align='left'>% Change</TableCell>
-              <TableCell align='left'>Week 2</TableCell>
-              <TableCell align='left'>% Change</TableCell>
-              <TableCell align='left'>Week 3</TableCell>
-              <TableCell align='left'>% Change</TableCell>
-              <TableCell align='left'>Week 4</TableCell>
+              <TableCell className='tableTitle' align='center' colSpan={8}>
+                % Change in Sales - Last 4 Weeks
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className='tableHeaders'>Product</TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Last Week
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                % Change
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Week 2
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                % Change
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Week 3
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                % Change
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Week 4
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

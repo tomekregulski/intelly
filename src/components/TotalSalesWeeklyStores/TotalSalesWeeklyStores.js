@@ -43,58 +43,71 @@ const TotalSalesWeeklyStores = () => {
 
   return (
     <>
-      <h2 className='tableTitle'>% Change x Store - Last 4 Weeks</h2>
       <TableContainer id='weeklySalesStore' component={Paper}>
-        <Table size='small' aria-label='simple table'>
+        <Table className='tableBody' size='small' aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell>Store</TableCell>
-              <TableCell align='left'>Last Week</TableCell>
-              <TableCell align='left'>% Change</TableCell>
-              <TableCell align='left'>Week 2</TableCell>
-              <TableCell align='left'>% Change</TableCell>
-              <TableCell align='left'>Week 3</TableCell>
-              <TableCell align='left'>% Change</TableCell>
-              <TableCell align='left'>Week 4</TableCell>
+              <TableCell className='tableTitle' align='center' colSpan={8}>
+                % Change x Store - Last 4 Weeks
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className='tableHeaders'>Store</TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                Last Week
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                % Change
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                Week 2
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                % Change
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                Week 3
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                % Change
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                Week 4
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.length &&
-              data.map((item) => (
-                <TableRow key={item.name}>
+              data.map((item, index) => (
+                <TableRow
+                  key={index}
+                  className={index % 2 === 1 ? 'highlighted' : null}
+                >
                   <TableCell component='th' scope='row'>
                     {item.name}
                   </TableCell>
+                  <TableCell align='left'>{item.week1}</TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.week1).toFixed(1)}
-                  </TableCell>
-                  <TableCell align='left'>
-                    {parseFloat(
-                      ((item.week1 - item.week2) / item.week2) * 100
-                    ).toFixed(1)}
+                    {(((item.week1 - item.week2) / item.week2) * 100).toFixed(
+                      1
+                    )}
                     %
                   </TableCell>
+                  <TableCell align='left'>{item.week2}</TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.week2).toFixed(1)}
-                  </TableCell>
-                  <TableCell align='left'>
-                    {parseFloat(
-                      ((item.week2 - item.week3) / item.week3) * 100
-                    ).toFixed(1)}
+                    {(((item.week2 - item.week3) / item.week3) * 100).toFixed(
+                      1
+                    )}
                     %
                   </TableCell>
+                  <TableCell align='left'>{item.week3}</TableCell>
                   <TableCell align='left'>
-                    {parseFloat(item.week3).toFixed(1)}
-                  </TableCell>
-                  <TableCell align='left'>
-                    {parseFloat(
-                      ((item.week3 - item.week4) / item.week4) * 100
-                    ).toFixed(1)}
+                    {(((item.week3 - item.week4) / item.week4) * 100).toFixed(
+                      1
+                    )}
                     %
                   </TableCell>
-                  <TableCell align='left'>
-                    {parseFloat(item.week4).toFixed(1)}
-                  </TableCell>
+                  <TableCell align='left'>{item.week4}</TableCell>
                 </TableRow>
               ))}
           </TableBody>

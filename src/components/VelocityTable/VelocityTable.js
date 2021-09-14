@@ -19,24 +19,52 @@ function VelocityTable() {
 
   return (
     <>
-      <h2 className='tableTitle'>Units Sold Per Store Per Week</h2>
       <TableContainer id='velocityTable' component={Paper}>
-        <Table size='small' aria-label='simple table'>
+        <Table className='tableBody' size='small' aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell>Product</TableCell>
-              <TableCell align='left'>Units Sold</TableCell>
-              <TableCell align='left'>Total Stores</TableCell>
-              <TableCell align='left'>Velocity Last Week</TableCell>
-              <TableCell align='left'>4 Weeks</TableCell>
-              <TableCell align='left'>12 Weeks</TableCell>
-              <TableCell align='left'>52 Weeks</TableCell>
+              <TableCell className='tableTitle' align='center' colSpan={7}>
+                Units Sold Per Store Per Week
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className='tableHeaders' colSpan={1} />
+              <TableCell className='tableHeaders' colSpan={2} align='center'>
+                Last Week
+              </TableCell>
+              <TableCell className='tableHeaders' colSpan={4} align='center'>
+                Average Units Sold Per Store Per Week
+              </TableCell>
+            </TableRow>
+            <TableRow className='tableSubHeader'>
+              <TableCell className='tableHeaders'>Product</TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                Units Sold
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                Total Stores
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                Last Week
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                4 Weeks
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                12 Weeks
+              </TableCell>
+              <TableCell className='tableHeaders' align='left'>
+                52 Weeks
+              </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
+          <TableBody className='tableBody'>
             {data.length &&
-              data.map((item) => (
-                <TableRow key={item.name}>
+              data.map((item, index) => (
+                <TableRow
+                  key={index}
+                  className={index % 2 === 1 ? 'highlighted' : null}
+                >
                   <TableCell component='th' scope='row'>
                     {item.name}
                   </TableCell>

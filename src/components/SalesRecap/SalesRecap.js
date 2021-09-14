@@ -23,26 +23,68 @@ function SalesRecap() {
 
   return (
     <>
-      <h2 className='tableTitle'>Sales Recap</h2>
       <TableContainer id='salesRecap' component={Paper}>
-        <Table size='small' aria-label='simple table'>
+        <Table className='tableBody' size='small' aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell>Product</TableCell>
-              <TableCell align='left'>Units Sold LW</TableCell>
-              <TableCell align='left'>Revenue LW</TableCell>
-              <TableCell align='left'>Units Sold 4W</TableCell>
-              <TableCell align='left'>Revenue 4W</TableCell>
-              <TableCell align='left'>Units Sold 12W</TableCell>
-              <TableCell align='left'>Revenue 12W</TableCell>
-              <TableCell align='left'>Units Sold 52W</TableCell>
-              <TableCell align='left'>Revenue 52W</TableCell>
+              <TableCell className='tableTitle' align='center' colSpan={9}>
+                Sales Recap
+              </TableCell>
+            </TableRow>
+            <TableRow className='subHeader'>
+              <TableCell
+                colSpan={2}
+                className='tableHeaders'
+                align='center'
+              ></TableCell>
+              <TableCell colSpan={2} className='tableHeaders' align='center'>
+                Last Week
+              </TableCell>
+              <TableCell colSpan={2} className='tableHeaders' align='center'>
+                4 Weeks
+              </TableCell>
+              <TableCell colSpan={2} className='tableHeaders' align='center'>
+                12 Weeks
+              </TableCell>
+              <TableCell colSpan={2} className='tableHeaders' align='center'>
+                52 Weeks
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell className='tableHeaders'>Product</TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Sales
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Revenue
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Sales
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Revenue
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Sales
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Revenue
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Sales
+              </TableCell>
+              <TableCell className='tableHeaders' align='center'>
+                Revenue
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data.length &&
-              data.map((item) => (
-                <TableRow key={item.name}>
+              data.map((item, index) => (
+                <TableRow
+                  key={index}
+                  className={index % 2 === 1 ? 'highlighted' : null}
+                >
                   <TableCell component='th' scope='row'>
                     {item.name}
                   </TableCell>

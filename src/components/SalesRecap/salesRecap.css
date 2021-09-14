@@ -1,9 +1,41 @@
 #salesRecap {
-  margin: 20px 40px 80px;
-  width: 75%;
+  margin: 20px 0.5% 5px 0;
+  width: 49%;
 }
 
 .tableTitle {
-  margin: 20px 40px;
-  font-size: 1.3rem;
+  background-color: rgba(5, 188, 255, 0.646);
+  color: white !important;
+  /* border: none !important; */
+}
+
+.tableHeaders {
+  background-color: rgba(5, 188, 255, 0.646);
+  color: white !important;
+  border: none !important;
+}
+.subHeader {
+  border-bottom: solid 1px white;
+  border-right: solid 1px black;
+  border-left: solid 1px black;
+}
+
+.tableBody {
+  border: solid 1px rgba(255, 255, 255, 0.5);
+}
+
+.MuiTableCell-root {
+  border-right: solid 1px black;
+  line-height: 1.1;
+}
+
+.highlighted {
+  background-color: rgba(5, 197, 255, 0.205);
+}
+
+@media (max-width: 1460px) {
+  #salesRecap {
+    margin: 80px 0 15px 0;
+    width: 75%;
+  }
 }
