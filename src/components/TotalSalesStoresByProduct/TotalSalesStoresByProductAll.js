@@ -101,7 +101,7 @@ const TotalSalesStoresByProductAll = () => {
   }, [sortedData, setSortedData]);
 
   return (
-    <div id='salesStoreByProduct'>
+    <div id='salesStoreByProductAll'>
       <Bar data={dataChart} options={options} />
     </div>
   );

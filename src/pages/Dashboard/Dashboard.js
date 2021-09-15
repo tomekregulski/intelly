@@ -6,6 +6,9 @@ import './dashboard.css';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+import ChartTabsFullView from '../../components/ChartTabs/ChartTabsFullView';
+import ChartTabsTotalSalesMediumView from '../../components/ChartTabs/ChartTabsTotalSalesMediumView';
+import ChartTabsSkuSalesMediumView from '../../components/ChartTabs/ChartTabsSkuSalesMediumView';
 
 // import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
@@ -18,7 +21,7 @@ import { useAPI } from '../../context/apiContext';
 import TotalSalesByStoreData from '../../components/TotalSalesStores/TotalSalesByStoreData';
 import TotalSalesStoresByProductData from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProductData';
 import TotalStoresAll from '../../components/TotalSalesStores/TotalStoresAll';
-import TotalSalesStoresByProductAll from '../../components/TotalSalesStoresByProduct/TotalSalesStoreByProductAll';
+import TotalSalesStoresByProductAll from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProductAll';
 import WeeklyChangeByStore from '../../components/WeeklyChangeByStore/WeeklyChangeByStore';
 import UnitsSoldPerStorePerWeek from '../../components/UnitsSoldPerStorePerWeek/UnitsSoldPerStorePerWeek';
 
@@ -37,7 +40,7 @@ function Dashboard() {
   const { setRegion, timeframeRegions, region, timeframeStoreData } = useAPI();
   const classes = useStyles();
 
-  const breakpoint = 1100;
+  const breakpoint = 1350;
   React.useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
     // subscribe to window resize event "onComponentDidMount"
@@ -93,14 +96,14 @@ function Dashboard() {
           {region !== 'all regions' && (
             <div id='charts'>
               {width > breakpoint ? (
-                <TotalStoresAll />
+                <ChartTabsFullView />
               ) : (
-                <TotalSalesByStoreData />
-              )}
-              {width > breakpoint ? (
-                <TotalSalesStoresByProductAll />
-              ) : (
-                <TotalSalesStoresByProductData />
+                <>
+                  <ChartTabsTotalSalesMediumView />
+                  <ChartTabsSkuSalesMediumView />
+                  {/* <TotalSalesByStoreData /> */}
+                  {/* <TotalSalesStoresByProductData /> */}
+                </>
               )}
             </div>
           )}
