@@ -1,6 +1,5 @@
 #rootWeeklyStore {
   width: 100%;
-  /* margin: 20px 0 0 2.5px; */
   border: solid rgba(242, 242, 242, 0.2) 1px;
   border-radius: 0;
 }
@@ -20,9 +19,7 @@
 .paper {
   width: 100%;
 }
-/* .table {
-  min-width: 750px;
-} */
+
 .visuallyHidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -44,10 +41,9 @@
 }
 
 .MuiTablePagination-toolbar {
-  /* padding: 5px 0 0 0; */
   height: 10px;
 }
-
+/* 
 .MuiTableRow-root td:first-child {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -58,6 +54,12 @@
   border-bottom-right-radius: 0;
 }
 
+.MuiTablePagination-root {
+
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+} */
+
 @media (min-width: 650px) {
   #rootWeeklyStore {
     max-width: 780px;
@@ -65,7 +67,4 @@
 }
 
 @media (min-width: 1300px) {
-  #rootWeeklyStore {
-    /* max-width: 700px; */
-  }
 }

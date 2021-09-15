@@ -118,7 +118,7 @@ function EnhancedTableHead(props) {
       <TableRow>
         <TableCell
           padding='none'
-          // className='tableTitle'
+          className='tableTitle'
           align='center'
           colSpan={8}
         >
@@ -128,6 +128,7 @@ function EnhancedTableHead(props) {
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell
+            className='tableHeaders'
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding='none'

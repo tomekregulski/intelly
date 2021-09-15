@@ -31,14 +31,11 @@ function SalesRecap() {
 
   return (
     <>
-      <TableContainer
-        // id='salesRecap'
-        component={Paper}
-      >
+      <TableContainer id='salesRecap' component={Paper}>
         <Table
           // fixedHeader={false}
           // style={{ width: 'auto', tableLayout: 'auto' }}
-          // className={classes.table}
+          className={classes.table}
           // className='tableBody'
           size='small'
           aria-label='simple table'

@@ -9,70 +9,66 @@
   padding: 50px;
 }
 
-#topLevel {
-  display: flex;
-  /* flex-direction: column; */
-  /* overflow: scroll; */
-  /* align-items: flex-start; */
-  justify-content: center;
-  margin: 0 2%;
+#weeklyTablesColumnB {
+  margin-top: 10px;
 }
-
-/* .tableContainer {
-  margin-bottom: 10px;
-} */
 
 #charts {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 @media (min-width: 650px) {
-  /* #topLevel {
-    width: 98%;
-    align-items: center;
-  } */
-
-  /* #charts {
-    margin-top: 30px;
-  } */
+  #weeklyTables {
+    margin: 0 0 50px;
+  }
+  #weeklyTablesColumnB {
+    display: flex;
+    justify-content: center;
+  }
+  #weeklyTablesColumnA {
+    max-width: 777px;
+    display: block;
+    margin: 0 auto;
+  }
 }
 
-@media (min-width: 1300px) {
-  /* #regionSelect {
-    margin: 20px 1% 10px;
-  }
-  #dataSection {
-    display: block;
-  } */
-
-  #topLevel {
-    display: flex;
-    /* flex-direction: column; */
-    /* overflow: scroll; */
-    /* align-items: flex-start; */
+@media (min-width: 800px) {
+  #weeklyTables {
     justify-content: center;
-    margin: 0 2%;
+    align-items: center;
+    margin: 0 0 50px;
   }
+}
 
-  /* #dataSection {
+@media (min-width: 1420px) {
+  /* #data-section {
     display: flex;
     flex-direction: column;
-    align-items: center;
   } */
+  #weeklyTables {
+    display: flex;
+    flex-direction: row;
+    /* overflow: none; */
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin: 0 0 50px;
+  }
 
-  /* #secondLevel {
-    margin-right: 10px;
-  } */
+  #weeklyTablesColumnA {
+    margin-right: 5px;
+  }
 
-  /* #charts {
+  #weeklyTablesColumnB {
+    margin-top: 10px;
+    margin-left: 5px;
+  }
+
+  #charts {
     display: flex;
     flex-direction: row;
     justify-content: center;
     padding-bottom: 20px;
-  } */
-
-  /* #charts :last-child {
-    margin-top: 0px;
-  }  */
+  }
 }
