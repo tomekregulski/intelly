@@ -9,7 +9,7 @@ export default {
   },
   logo: {
     width: '10rem',
-    margin: '1rem 0 1rem 2rem',
+    margin: '.5rem 0 1rem 1rem',
   },
   navLinks: {
     display: 'flex',

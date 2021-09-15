@@ -1,29 +1,18 @@
 import React, { useState } from 'react';
-import VelocityTable from '../../components/VelocityTable/VelocityTable';
+import { useAPI } from '../../context/apiContext';
 import SalesRecap from '../../components/SalesRecap/SalesRecap';
-import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
 import './dashboard.css';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import ChartTabsFullView from '../../components/ChartTabs/ChartTabsFullView';
 import ChartTabsTotalSalesMediumView from '../../components/ChartTabs/ChartTabsTotalSalesMediumView';
 import ChartTabsSkuSalesMediumView from '../../components/ChartTabs/ChartTabsSkuSalesMediumView';
-
-// import FormHelperText from '@material-ui/core/FormHelperText';
+import TotalSalesByStoreTable from '../../components/TotalSalesStores/TotalSalesByStoreTable';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-// import TotalSalesStores from '../../components/TotalSalesStores/TotalSalesStores';
-// import TotalSalesWeeklyStores from '../../components/TotalSalesWeeklyStores/TotalSalesWeeklyStores';
-// import TotalSalesStoresByProduct from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProduct';
-import { useAPI } from '../../context/apiContext';
-// import MaterialAdvancedTable from '../../components/MaterialAdvancedTable/MaterialAdvancedTable';
-import TotalSalesByStoreData from '../../components/TotalSalesStores/TotalSalesByStoreData';
-import TotalSalesStoresByProductData from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProductData';
-import TotalStoresAll from '../../components/TotalSalesStores/TotalStoresAll';
-import TotalSalesStoresByProductAll from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProductAll';
 import WeeklyChangeByStore from '../../components/WeeklyChangeByStore/WeeklyChangeByStore';
 import UnitsSoldPerStorePerWeek from '../../components/UnitsSoldPerStorePerWeek/UnitsSoldPerStorePerWeek';
+import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -40,13 +29,11 @@ function Dashboard() {
   const { setRegion, timeframeRegions, region, timeframeStoreData } = useAPI();
   const classes = useStyles();
 
-  const breakpoint = 1350;
+  const breakpoint = 650;
   React.useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
-    // subscribe to window resize event "onComponentDidMount"
     window.addEventListener('resize', handleResizeWindow);
     return () => {
-      // unsubscribe "onComponentDestroy"
       window.removeEventListener('resize', handleResizeWindow);
     };
   }, []);
@@ -58,7 +45,6 @@ function Dashboard() {
   if (timeframeStoreData.length) {
     return (
       <main>
-        <div className='chartContainer'></div>
         <FormControl id='regionSelect' className={classes.formControl}>
           <InputLabel>All Regions</InputLabel>
           <Select
@@ -77,7 +63,8 @@ function Dashboard() {
               : null}
           </Select>
         </FormControl>
-        <div>
+
+        <section id='dataSection'>
           <div id='topLevel'>
             <div id='secondLevel'>
               <div className='tableContainer'>
@@ -87,7 +74,7 @@ function Dashboard() {
                 <UnitsSoldPerStorePerWeek />
               </div>
               <div className='tableContainer'>
-                <UnitsSoldPerStorePerWeek />
+                <WeeklyTable />
               </div>
             </div>
             <WeeklyChangeByStore />
@@ -96,18 +83,16 @@ function Dashboard() {
           {region !== 'all regions' && (
             <div id='charts'>
               {width > breakpoint ? (
-                <ChartTabsFullView />
-              ) : (
                 <>
                   <ChartTabsTotalSalesMediumView />
                   <ChartTabsSkuSalesMediumView />
-                  {/* <TotalSalesByStoreData /> */}
-                  {/* <TotalSalesStoresByProductData /> */}
                 </>
+              ) : (
+                <TotalSalesByStoreTable />
               )}
             </div>
           )}
-        </div>
+        </section>
       </main>
     );
   } else {

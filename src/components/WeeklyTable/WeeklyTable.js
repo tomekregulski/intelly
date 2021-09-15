@@ -21,8 +21,8 @@ function DenseTable() {
     <>
       <TableContainer id='weeklyProduct' component={Paper}>
         <Table
-          fixedHeader={false}
-          style={{ width: 'auto', tableLayout: 'auto' }}
+          // fixedHeader={false}
+          // style={{ width: 'auto', tableLayout: 'auto' }}
           className='tableBody'
           size='small'
           aria-label='a dense table'

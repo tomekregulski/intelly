@@ -8,9 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import TotalSalesStores from '../TotalSalesStores/TotalSalesStores';
-// import TotalStoresAll from '../TotalSalesStores/TotalStoresAll';
-// import TotalSalesStoresByProductData from '../TotalSalesStoresByProduct/TotalSalesStoreByProductData';
-
+import './chartTabs.css';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -51,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     color: 'black',
-    backgroundColor: 'rgba(20, 175, 242, 0.44)',
+    backgroundColor: 'rgba(0, 180, 249, 0.872)',
     boxShadow: 'none',
   },
 }));
@@ -103,7 +101,7 @@ export default function ChartTabsTotalSalesMediumView() {
   // if width < 600, replace charts with tables
 
   return (
-    <div className={classes.root}>
+    <div id='storeSalesChartRoot'>
       <AppBar className={classes.appBar} position='static'>
         <p style={{ marginTop: '10px' }}>
           Unit Sales x Store x SKU - Last Week

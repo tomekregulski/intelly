@@ -1,33 +1,34 @@
-#salesRecap {
+/* #salesRecap {
   margin: 20px 2.5px 0 0;
-  width: auto;
-}
+  width: 100%;
+} */
 
 .tableTitle {
-  background-color: rgba(5, 188, 255, 0.646);
+  background-color: rgba(0, 180, 249, 0.872);
   color: white !important;
   /* border: none !important; */
 }
 
 .tableHeaders {
-  background-color: rgba(5, 188, 255, 0.646);
+  background-color: rgba(0, 180, 249, 0.872);
   color: white !important;
   border: none !important;
 }
 .subHeader {
-  border-bottom: solid 1px white;
-  border-right: solid 1px black;
-  border-left: solid 1px black;
+  /* border-bottom: solid 1px white; */
+  /* border-right: solid 1px black; */
+  /* border-left: solid 1px black; */
 }
 
-.tableBody {
+/* .tableBody {
   border: solid 1px rgba(255, 255, 255, 0.5);
-}
+} */
 
-.MuiTableCell-root {
+/* .MuiTableCell-root {
   border-right: solid 1px black;
   line-height: 1.1;
-}
+  width: auto;
+} */
 
 .highlighted {
   background-color: rgba(5, 197, 255, 0.205);
