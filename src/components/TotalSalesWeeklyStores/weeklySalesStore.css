@@ -1,6 +1,5 @@
 #weeklySalesStore {
-  width: 43%;
-  margin: 0 0 0 1%;
+  width: auto;
 }
 
 .tableTitle {
@@ -26,6 +25,5 @@
 @media (max-width: 1460px) {
   #weeklySalesStore {
     margin: 0 0 15px 0;
-    width: 75%;
   }
 }

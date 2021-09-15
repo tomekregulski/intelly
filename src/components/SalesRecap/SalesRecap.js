@@ -13,7 +13,7 @@ function SalesRecap() {
   const [data, setData] = useState([]);
   const { timeframeProductData } = useAPI();
 
-  console.log(timeframeProductData);
+  // console.log(timeframeProductData);
 
   useEffect(() => {
     if (timeframeProductData) {
@@ -24,56 +24,90 @@ function SalesRecap() {
   return (
     <>
       <TableContainer id='salesRecap' component={Paper}>
-        <Table className='tableBody' size='small' aria-label='simple table'>
+        <Table
+          fixedHeader={false}
+          style={{ width: 'auto', tableLayout: 'auto' }}
+          className='tableBody'
+          size='small'
+          aria-label='simple table'
+        >
           <TableHead>
             <TableRow>
-              <TableCell className='tableTitle' align='center' colSpan={9}>
+              <TableCell
+                padding='none'
+                className='tableTitle'
+                align='center'
+                colSpan={9}
+              >
                 Sales Recap
               </TableCell>
             </TableRow>
             <TableRow className='subHeader'>
               <TableCell
-                colSpan={2}
+                padding='none'
+                colSpan={1}
                 className='tableHeaders'
                 align='center'
               ></TableCell>
-              <TableCell colSpan={2} className='tableHeaders' align='center'>
+              <TableCell
+                padding='none'
+                colSpan={2}
+                className='tableHeaders'
+                align='center'
+              >
                 Last Week
               </TableCell>
-              <TableCell colSpan={2} className='tableHeaders' align='center'>
+              <TableCell
+                padding='none'
+                colSpan={2}
+                className='tableHeaders'
+                align='center'
+              >
                 4 Weeks
               </TableCell>
-              <TableCell colSpan={2} className='tableHeaders' align='center'>
+              <TableCell
+                padding='none'
+                colSpan={2}
+                className='tableHeaders'
+                align='center'
+              >
                 12 Weeks
               </TableCell>
-              <TableCell colSpan={2} className='tableHeaders' align='center'>
+              <TableCell
+                padding='none'
+                colSpan={2}
+                className='tableHeaders'
+                align='center'
+              >
                 52 Weeks
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell className='tableHeaders'>Product</TableCell>
-              <TableCell className='tableHeaders' align='center'>
+              <TableCell padding='none' className='tableHeaders' align='left'>
+                Product
+              </TableCell>
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Sales
               </TableCell>
-              <TableCell className='tableHeaders' align='center'>
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Revenue
               </TableCell>
-              <TableCell className='tableHeaders' align='center'>
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Sales
               </TableCell>
-              <TableCell className='tableHeaders' align='center'>
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Revenue
               </TableCell>
-              <TableCell className='tableHeaders' align='center'>
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Sales
               </TableCell>
-              <TableCell className='tableHeaders' align='center'>
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Revenue
               </TableCell>
-              <TableCell className='tableHeaders' align='center'>
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Sales
               </TableCell>
-              <TableCell className='tableHeaders' align='center'>
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Revenue
               </TableCell>
             </TableRow>
@@ -85,31 +119,36 @@ function SalesRecap() {
                   key={index}
                   className={index % 2 === 1 ? 'highlighted' : null}
                 >
-                  <TableCell component='th' scope='row'>
+                  <TableCell
+                    align='left'
+                    padding='none'
+                    component='th'
+                    scope='row'
+                  >
                     {item.name}
                   </TableCell>
-                  <TableCell align='left'>
+                  <TableCell padding='none' align='right'>
                     {parseFloat(item.unitSalesLW).toFixed(0)}
                   </TableCell>
-                  <TableCell align='left'>
+                  <TableCell padding='none' align='right'>
                     ${parseFloat(item.netSalesLW).toFixed(2)}
                   </TableCell>
-                  <TableCell align='left'>
+                  <TableCell padding='none' align='right'>
                     {parseFloat(item.unitSales4W).toFixed(0)}
                   </TableCell>
-                  <TableCell align='left'>
+                  <TableCell padding='none' align='right'>
                     ${parseFloat(item.netSales4W).toFixed(2)}
                   </TableCell>
-                  <TableCell align='left'>
+                  <TableCell padding='none' align='right'>
                     {parseFloat(item.unitSales12W).toFixed(0)}
                   </TableCell>
-                  <TableCell align='left'>
+                  <TableCell padding='none' align='right'>
                     ${parseFloat(item.netSales12W).toFixed(2)}
                   </TableCell>
-                  <TableCell align='left'>
+                  <TableCell padding='none' align='right'>
                     {parseFloat(item.unitSales52W).toFixed(0)}
                   </TableCell>
-                  <TableCell align='left'>
+                  <TableCell padding='none' align='right'>
                     ${parseFloat(item.netSales52W).toFixed(2)}
                   </TableCell>
                 </TableRow>

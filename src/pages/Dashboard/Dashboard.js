@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import VelocityTable from '../../components/VelocityTable/VelocityTable';
 import SalesRecap from '../../components/SalesRecap/SalesRecap';
 import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
@@ -6,13 +6,19 @@ import './dashboard.css';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
+
 // import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import TotalSalesStores from '../../components/TotalSalesStores/TotalSalesStores';
-import TotalSalesWeeklyStores from '../../components/TotalSalesWeeklyStores/TotalSalesWeeklyStores';
-import TotalSalesStoresByProduct from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProduct';
+// import TotalSalesStores from '../../components/TotalSalesStores/TotalSalesStores';
+// import TotalSalesWeeklyStores from '../../components/TotalSalesWeeklyStores/TotalSalesWeeklyStores';
+// import TotalSalesStoresByProduct from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProduct';
 import { useAPI } from '../../context/apiContext';
+import MaterialAdvancedTable from '../../components/MaterialAdvancedTable/MaterialAdvancedTable';
+import TotalSalesByStoreData from '../../components/TotalSalesStores/TotalSalesByStoreData';
+import TotalSalesStoresByProductData from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProductData';
+import TotalStoresAll from '../../components/TotalSalesStores/TotalStoresAll';
+import TotalSalesStoresByProductAll from '../../components/TotalSalesStoresByProduct/TotalSalesStoreByProductAll';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -25,8 +31,20 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Dashboard() {
+  const [width, setWidth] = React.useState(window.innerWidth);
   const { setRegion, timeframeRegions, region, timeframeStoreData } = useAPI();
   const classes = useStyles();
+
+  const breakpoint = 700;
+  React.useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+    // subscribe to window resize event "onComponentDidMount"
+    window.addEventListener('resize', handleResizeWindow);
+    return () => {
+      // unsubscribe "onComponentDestroy"
+      window.removeEventListener('resize', handleResizeWindow);
+    };
+  }, []);
 
   const handleChange = (event) => {
     event.preventDefault();
@@ -56,15 +74,29 @@ function Dashboard() {
         </FormControl>
         <div>
           <div id='topLevel'>
-            <SalesRecap />
-            <VelocityTable />
-            <WeeklyTable />
-            <TotalSalesWeeklyStores />
+            <div id='secondLevel'>
+              <SalesRecap />
+              <VelocityTable />
+              <WeeklyTable />
+            </div>
+            <MaterialAdvancedTable />
+            {/* <TotalSalesWeeklyStores /> */}
           </div>
-          <div id='charts'>
-            <TotalSalesStores />
-            <TotalSalesStoresByProduct />
-          </div>
+
+          {region !== 'all regions' && (
+            <div id='charts'>
+              {width > breakpoint ? (
+                <TotalStoresAll />
+              ) : (
+                <TotalSalesByStoreData />
+              )}
+              {width > breakpoint ? (
+                <TotalSalesStoresByProductAll />
+              ) : (
+                <TotalSalesStoresByProductData />
+              )}
+            </div>
+          )}
         </div>
       </main>
     );
