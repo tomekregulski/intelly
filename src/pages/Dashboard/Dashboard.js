@@ -10,6 +10,7 @@ import WeeklyView from '../WeeklyView/WeeklyView';
 import Welcome from '../Welcome/Welcome';
 import MonthlyView from '../MonthlyView/MonthlyView';
 
+import { useAPI } from '../../context/apiContext';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -67,13 +68,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function NavTabs() {
+export default function Navtabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const { timeframeStoreData } = useAPI();
 
   return (
     <div className={classes.root}>
@@ -92,15 +95,21 @@ export default function NavTabs() {
           <LinkTab label='Monthly View' href='/spam' {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        <Welcome />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <WeeklyView />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <MonthlyView />
-      </TabPanel>
+      {timeframeStoreData.length ? (
+        <>
+          <TabPanel value={value} index={0}>
+            <Welcome />
+          </TabPanel>
+          <TabPanel value={value} index={1}>
+            <WeeklyView />
+          </TabPanel>
+          <TabPanel value={value} index={2}>
+            <MonthlyView />
+          </TabPanel>
+        </>
+      ) : (
+        <h1 className='loading'>Please wait while we fetch your data...</h1>
+      )}
     </div>
   );
 }
