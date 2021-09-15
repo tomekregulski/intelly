@@ -1,7 +1,3 @@
-#regionSelect {
-  /* margin: 20px 2% 10px; */
-}
-
 .loading {
   display: block;
   text-align: center;
@@ -22,6 +18,9 @@
 @media (min-width: 650px) {
   #weeklyTables {
     margin: 0 0 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   #weeklyTablesColumnB {
     display: flex;
@@ -29,30 +28,15 @@
   }
   #weeklyTablesColumnA {
     max-width: 777px;
-    display: block;
-    margin: 0 auto;
-  }
-}
-
-@media (min-width: 800px) {
-  #weeklyTables {
-    justify-content: center;
-    align-items: center;
-    margin: 0 0 50px;
   }
 }
 
 @media (min-width: 1420px) {
-  /* #data-section {
-    display: flex;
-    flex-direction: column;
-  } */
   #weeklyTables {
     display: flex;
     flex-direction: row;
-    /* overflow: none; */
     align-items: flex-start;
-    justify-content: flex-end;
+    justify-content: center;
     margin: 0 0 50px;
   }
 
