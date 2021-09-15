@@ -2,20 +2,23 @@
 export default {
   nav: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column-reverse',
+    alignItems: 'center',
     marginTop: '1rem',
+    marginBottom: '.2rem',
   },
   logo: {
-    width: '10rem',
-    margin: '.5rem 0 1rem 1rem',
+    width: '130px',
+    margin: '0 auto 10px',
+    display: 'block',
   },
-  navLinks: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '.5rem',
-  },
+  // navLinks: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   marginTop: '.5rem',
+  // },
   // formControl: {
 
   // },
@@ -43,8 +46,7 @@ export default {
     },
   },
   '@media screen and (min-width: 360px)': {},
-  '@media screen and (min-width: 411px)': {},
-  '@media screen and (min-width: 768px)': {
+  '@media screen and (min-width: 411px)': {
     nav: {
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -52,7 +54,12 @@ export default {
       margin: '1rem 1.5rem 1rem 1.5rem',
       // marginBottom: '1rem',
     },
+    logo: {
+      width: '10rem',
+      margin: '.5rem 0 1rem 1rem',
+    },
   },
+  '@media screen and (min-width: 768px)': {},
   '@media screen and (min-width: 1366px)': {
     navLinks: {
       display: 'flex',
