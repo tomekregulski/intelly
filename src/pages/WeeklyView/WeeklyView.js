@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAPI } from '../../context/apiContext';
 import SalesRecap from '../../components/SalesRecap/SalesRecap';
 import './weeklyView.css';
-import { makeStyles } from '@material-ui/core/styles';
 import ChartTabsTotalSalesMediumView from '../../components/ChartTabs/ChartTabsTotalSalesMediumView';
 import ChartTabsSkuSalesMediumView from '../../components/ChartTabs/ChartTabsSkuSalesMediumView';
 import TotalSalesByStoreTable from '../../components/TotalSalesStores/TotalSalesByStoreTable';
@@ -12,7 +11,7 @@ import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
 
 function Dashboard() {
   const [width, setWidth] = React.useState(window.innerWidth);
-  const { timeframeRegions, region, timeframeStoreData } = useAPI();
+  const { region, timeframeStoreData } = useAPI();
 
   const breakpoint = 650;
   React.useEffect(() => {
