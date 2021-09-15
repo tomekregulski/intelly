@@ -26,10 +26,10 @@ const options = {
     legend: {
       position: 'top',
     },
-    title: {
-      display: true,
-      text: 'Unit Sales x Store x SKU - Last Week',
-    },
+    // title: {
+    //   display: true,
+    //   text: 'Unit Sales x Store x SKU - Last Week',
+    // },
   },
 };
 

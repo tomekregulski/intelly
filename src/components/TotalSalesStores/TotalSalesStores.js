@@ -22,12 +22,13 @@ const options = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top',
+      // position: 'top',
+      display: false,
     },
-    title: {
-      display: true,
-      text: 'Total Unit Sales x Store - Last Week',
-    },
+    // title: {
+    //   display: true,
+    //   text: 'Total Unit Sales x Store - Last Week',
+    // },
   },
 };
 
@@ -84,7 +85,7 @@ const TotalSalesStores = (props) => {
         labels: stores,
         datasets: [
           {
-            label: 'Sales',
+            // label: 'Sales',
             data: sales,
             backgroundColor: ['rgba(255, 99, 132, 0.2)'],
           },

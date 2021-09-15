@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useAPI } from '../../context/apiContext';
-import './totalSalesStore.css';
 import TotalSalesStores from './TotalSalesStores';
 import './totalSalesStore.css';
 
