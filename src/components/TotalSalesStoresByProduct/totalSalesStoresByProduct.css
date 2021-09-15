@@ -1,7 +1,10 @@
-#salesStoreByProduct {
-  width: 75%;
-  margin: 20px 40px 80px;
-  padding-bottom: 80px;
+#salesByStoreByProductContainer {
+  display: flex;
+  justify-content: center;
+}
+
+#salesByStoreByProduct {
+  width: 30%;
 }
 
 @media (max-width: 1460px) {

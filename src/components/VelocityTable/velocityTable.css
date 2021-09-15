@@ -1,6 +1,6 @@
 #velocityTable {
-  margin: 20px 0 5px 0.5%;
-  width: 45%;
+  margin: 5px 2.5px 0 0;
+  width: auto;
 }
 
 .tableTitle {
@@ -29,6 +29,5 @@
 @media (max-width: 1460px) {
   #velocityTable {
     margin: 0 0 15px 0;
-    width: 75%;
   }
 }

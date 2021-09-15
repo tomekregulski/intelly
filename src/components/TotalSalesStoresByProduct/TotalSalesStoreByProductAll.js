@@ -33,22 +33,44 @@ const options = {
   },
 };
 
-const TotalSalesStoresByProduct = (props) => {
+const TotalSalesStoresByProductAll = () => {
   const [dataChart, setDataChart] = useState({});
-  const [data, setData] = useState([]);
 
-  const { skusTimeframe } = useAPI();
+  const { skusTimeframe, timeframeStoreData } = useAPI();
 
-  // console.log(props.data);
+  console.log(timeframeStoreData);
+
+  // useEffect(() => {
+  //   if (timeframeStoreData.length) {
+  //     timeframeStoreData.sort();
+  //   }
+  // })
 
   useEffect(() => {
-    setData(props.data);
-  }, [props]);
+    let tempData = [];
+
+    for (let i = 0; i < timeframeStoreData.length; i++) {
+      let totalSales = 0;
+      let salesObj = timeframeStoreData[i].sales;
+      for (const property in salesObj) {
+        if (salesObj[property]['week1']) {
+          totalSales = totalSales + salesObj[property]['week1'];
+        }
+      }
+      let obj = {
+        name: timeframeStoreData[i].name,
+        totalSales: totalSales,
+        sales: timeframeStoreData[i].sales,
+      };
+      tempData.push(obj);
+    }
+
+    tempData.sort((a, b) => (a.totalSales > b.totalSales ? -1 : 1));
+    console.log(tempData);
+  });
 
   useEffect(() => {
-    // console.log('hello useEffect');
-    if (data.length && skusTimeframe) {
-      // console.log(data);
+    if (timeframeStoreData && skusTimeframe) {
       let stores = [];
       let salesData = [];
 
@@ -60,35 +82,26 @@ const TotalSalesStoresByProduct = (props) => {
         });
       }
 
-      // console.log(salesData);
-
-      for (let i = 0; i < data.length; i++) {
-        stores.push(data[i].name);
-        let salesObj = data[i].skuSales;
+      for (let i = 0; i < timeframeStoreData.length; i++) {
+        stores.push(timeframeStoreData[i].name);
+        let salesObj = timeframeStoreData[i].sales;
         for (const property in salesObj) {
           const index = salesData.find((x) => x.label === property);
-          if (salesObj[property]['week1']) {
-            index.data.push(salesObj[property]['week1']);
-          } else {
-            index.data.push(0);
-          }
+          index.data.push(salesObj[property]['week1']);
         }
-        // console.log(salesData);
       }
-      // console.log(salesData);
-      // console.log(stores);
 
       setDataChart({
         labels: stores,
         datasets: salesData,
       });
     }
-  }, [skusTimeframe, data, setData]);
+  }, [timeframeStoreData, skusTimeframe]);
 
   return (
-    <div id='salesByStoreByProduct'>
+    <div id='salesStoreByProduct'>
       <Bar data={dataChart} options={options} />
     </div>
   );
 };
-export default TotalSalesStoresByProduct;
+export default TotalSalesStoresByProductAll;

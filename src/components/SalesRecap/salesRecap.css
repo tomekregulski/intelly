@@ -1,6 +1,6 @@
 #salesRecap {
-  margin: 20px 0.5% 5px 0;
-  width: 49%;
+  margin: 20px 2.5px 0 0;
+  width: auto;
 }
 
 .tableTitle {
@@ -34,8 +34,7 @@
 }
 
 @media (max-width: 1460px) {
-  #salesRecap {
+  /* #salesRecap {
     margin: 80px 0 15px 0;
-    width: 75%;
-  }
+  } */
 }

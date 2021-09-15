@@ -31,34 +31,54 @@ const options = {
   },
 };
 
-const TotalSalesStores = () => {
+const TotalSalesStores = (props) => {
   const [dataChart, setDataChart] = useState({});
 
-  const { timeframeStoreData } = useAPI();
+  // console.log(props);
 
   useEffect(() => {
-    if (timeframeStoreData) {
-      const totalSalesByStore = [];
+    if (props) {
+      // let totalSalesByStore = [];
       let stores = [];
       let sales = [];
+      // let storesChunked = [];
+      // let salesChunked = [];
+      // for (let i = 0; i < 22; i++) {
+      //   let storeTotal = 0;
+      //   let storeName = timeframeStoreData[i].name;
+      //   for (const sku in timeframeStoreData[i].sales) {
+      //     let number = 0;
+      //     if (timeframeStoreData[i].sales[sku].week1) {
+      //       number = timeframeStoreData[i].sales[sku].week1;
+      //     }
+      //     storeTotal = storeTotal + number;
+      //   }
+      //   let obj = {};
+      //   obj['name'] = storeName;
+      //   obj['sales'] = storeTotal;
+      //   totalSalesByStore.push(obj);
+      // }
 
-      for (let i = 0; i < timeframeStoreData.length; i++) {
-        let storeTotal = 0;
-        let storeName = timeframeStoreData[i].name;
-        for (const sku in timeframeStoreData[i].sales) {
-          let number = 0;
-          if (timeframeStoreData[i].sales[sku].week1) {
-            number = timeframeStoreData[i].sales[sku].week1;
-          }
-          storeTotal = storeTotal + number;
-        }
-        let obj = {};
-        obj['name'] = storeName;
-        obj['sales'] = storeTotal;
-        stores.push(storeName);
-        sales.push(storeTotal);
-        totalSalesByStore.push(obj);
+      // totalSalesByStore.sort((a, b) => (a.sales > b.sales ? -1 : 1));
+      // console.log(totalSalesByStore);
+
+      for (let i = 0; i < props.data.length; i++) {
+        stores.push(props.data[i].name);
+        sales.push(props.data[i].sales);
       }
+
+      // console.log(stores);
+      // console.log(sales);
+
+      // let size = 20;
+      // let index = 0;
+      // while (index < stores.length) {
+      //   storesChunked.push(stores.slice(index, index + size));
+      //   salesChunked.push(sales.slice(index, index + size));
+      //   index += size;
+      // }
+      // console.log(storesChunked);
+      // console.log(salesChunked);
 
       setDataChart({
         labels: stores,
@@ -71,7 +91,7 @@ const TotalSalesStores = () => {
         ],
       });
     }
-  }, [timeframeStoreData]);
+  }, [props]);
 
   return (
     <div id='salesByStore'>
