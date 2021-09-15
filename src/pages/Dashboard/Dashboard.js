@@ -1,104 +1,106 @@
-import React, { useState } from 'react';
-import { useAPI } from '../../context/apiContext';
-import SalesRecap from '../../components/SalesRecap/SalesRecap';
-import './dashboard.css';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import ChartTabsTotalSalesMediumView from '../../components/ChartTabs/ChartTabsTotalSalesMediumView';
-import ChartTabsSkuSalesMediumView from '../../components/ChartTabs/ChartTabsSkuSalesMediumView';
-import TotalSalesByStoreTable from '../../components/TotalSalesStores/TotalSalesByStoreTable';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import WeeklyChangeByStore from '../../components/WeeklyChangeByStore/WeeklyChangeByStore';
-import UnitsSoldPerStorePerWeek from '../../components/UnitsSoldPerStorePerWeek/UnitsSoldPerStorePerWeek';
-import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import WeeklyView from '../WeeklyView/WeeklyView';
+import Welcome from '../Welcome/Welcome';
+import MonthlyView from '../MonthlyView/MonthlyView';
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role='tabpanel'
+      hidden={value !== index}
+      id={`nav-tabpanel-${index}`}
+      aria-labelledby={`nav-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box p={3}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `nav-tab-${index}`,
+    'aria-controls': `nav-tabpanel-${index}`,
+  };
+}
+
+function LinkTab(props) {
+  return (
+    <Tab
+      component='a'
+      onClick={(event) => {
+        event.preventDefault();
+      }}
+      {...props}
+    />
+  );
+}
 
 const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+  root: {
+    flexGrow: 1,
+    backgroundColor: theme.palette.background.paper,
   },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
+  appBar: {
+    color: 'black',
+    backgroundColor: 'rgba(0, 180, 249, 0.872)',
+    boxShadow: 'none',
   },
 }));
 
-function Dashboard() {
-  const [width, setWidth] = React.useState(window.innerWidth);
-  const { setRegion, timeframeRegions, region, timeframeStoreData } = useAPI();
+export default function NavTabs() {
   const classes = useStyles();
+  const [value, setValue] = React.useState(0);
 
-  const breakpoint = 650;
-  React.useEffect(() => {
-    const handleResizeWindow = () => setWidth(window.innerWidth);
-    window.addEventListener('resize', handleResizeWindow);
-    return () => {
-      window.removeEventListener('resize', handleResizeWindow);
-    };
-  }, []);
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    setRegion('' || event.target.value);
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
   };
-  if (timeframeStoreData.length) {
-    return (
-      <main>
-        <FormControl id='regionSelect' className={classes.formControl}>
-          <InputLabel>All Regions</InputLabel>
-          <Select
-            labelId='demo-simple-select-label'
-            id='demo-simple-select'
-            value={region}
-            onChange={handleChange}
-          >
-            <MenuItem value={'all regions'}>All Regions</MenuItem>
-            {timeframeRegions.length
-              ? timeframeRegions.map((reg, index) => (
-                  <MenuItem key={index} value={reg}>
-                    {reg}
-                  </MenuItem>
-                ))
-              : null}
-          </Select>
-        </FormControl>
 
-        <section id='dataSection'>
-          <div id='topLevel'>
-            <div id='secondLevel'>
-              <div className='tableContainer'>
-                <SalesRecap />
-              </div>
-              <div className='tableContainer'>
-                <UnitsSoldPerStorePerWeek />
-              </div>
-              <div className='tableContainer'>
-                <WeeklyTable />
-              </div>
-            </div>
-            <WeeklyChangeByStore />
-          </div>
-
-          {region !== 'all regions' && (
-            <div id='charts'>
-              {width > breakpoint ? (
-                <>
-                  <ChartTabsTotalSalesMediumView />
-                  <ChartTabsSkuSalesMediumView />
-                </>
-              ) : (
-                <TotalSalesByStoreTable />
-              )}
-            </div>
-          )}
-          <div style={{ height: '30px' }}>{/* <p>Hello</p> */}</div>
-        </section>
-      </main>
-    );
-  } else {
-    return <h1 className='loading'>Please wait while we fetch your data...</h1>;
-  }
+  return (
+    <div className={classes.root}>
+      <AppBar className={classes.appBar} position='static'>
+        <Tabs
+          TabIndicatorProps={{
+            style: { background: 'rgba(242, 242, 242, .8)' },
+          }}
+          variant='fullWidth'
+          value={value}
+          onChange={handleChange}
+          aria-label='nav tabs example'
+        >
+          <LinkTab label='Home' href='/drafts' {...a11yProps(0)} />
+          <LinkTab label='Weekly View' href='/trash' {...a11yProps(1)} />
+          <LinkTab label='Monthly View' href='/spam' {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <TabPanel value={value} index={0}>
+        <Welcome />
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <WeeklyView />
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <MonthlyView />
+      </TabPanel>
+    </div>
+  );
 }
-
-export default Dashboard;
