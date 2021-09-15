@@ -27,3 +27,16 @@
     margin: 0 0 15px 0;
   }
 }
+
+@media (max-width: 800px) {
+  tableBody {
+    border: solid 1px black;
+    max-width: 650px;
+    display: none;
+    /* margin: 0 5%; */
+    /* overflow: scroll; */
+  }
+  #weeklySalesStore {
+    /* margin: 0 0 15px 0; */
+  }
+}
