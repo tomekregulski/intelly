@@ -3,6 +3,10 @@
   background-color: rgba(242, 242, 242, 0.2);
 }
 
+.MuiBox-root {
+  padding: 10px !important;
+}
+
 @media (min-width: 650px) {
   #skuSalesChartRoot,
   #storeSalesChartRoot {
@@ -22,6 +26,13 @@
   #skuSalesChartRoot,
   #storeSalesChartRoot {
     max-width: 630px;
-    /* margin: 0 auto; */
+    margin: 0;
+  }
+
+  #storeSalesChartRoot {
+    margin-right: 20px;
+  }
+  #skuSalesChartRoot {
+    margin-left: 20px;
   }
 }

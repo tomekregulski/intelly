@@ -10,20 +10,9 @@ import WeeklyChangeByStore from '../../components/WeeklyChangeByStore/WeeklyChan
 import UnitsSoldPerStorePerWeek from '../../components/UnitsSoldPerStorePerWeek/UnitsSoldPerStorePerWeek';
 import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
-
 function Dashboard() {
   const [width, setWidth] = React.useState(window.innerWidth);
   const { timeframeRegions, region, timeframeStoreData } = useAPI();
-  const classes = useStyles();
 
   const breakpoint = 650;
   React.useEffect(() => {
@@ -38,8 +27,8 @@ function Dashboard() {
     return (
       <main>
         <section id='dataSection'>
-          <div id='topLevel'>
-            <div id='secondLevel'>
+          <div id='weeklyTables'>
+            <div id='weeklyTablesColumnA'>
               <div className='tableContainer'>
                 <SalesRecap />
               </div>
@@ -50,7 +39,9 @@ function Dashboard() {
                 <WeeklyTable />
               </div>
             </div>
-            <WeeklyChangeByStore />
+            <div id='weeklyTablesColumnB'>
+              <WeeklyChangeByStore />
+            </div>
           </div>
 
           {region !== 'all regions' && (
@@ -58,6 +49,7 @@ function Dashboard() {
               {width > breakpoint ? (
                 <>
                   <ChartTabsTotalSalesMediumView />
+                  <div style={{ height: '30px' }}>{/* <p>Hello</p> */}</div>
                   <ChartTabsSkuSalesMediumView />
                 </>
               ) : (

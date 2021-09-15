@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -9,9 +10,17 @@ import Paper from '@material-ui/core/Paper';
 import { useAPI } from '../../context/apiContext';
 import './weeklyTable.css';
 
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+});
+
 function DenseTable() {
   const [data, setData] = useState([]);
   const { timeframeProductData } = useAPI();
+
+  const classes = useStyles();
 
   useEffect(() => {
     setData(timeframeProductData);
@@ -23,7 +32,8 @@ function DenseTable() {
         <Table
           // fixedHeader={false}
           // style={{ width: 'auto', tableLayout: 'auto' }}
-          className='tableBody'
+          className={classes.table}
+          // className='tableBody'
           size='small'
           aria-label='a dense table'
         >

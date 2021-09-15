@@ -14,13 +14,3 @@
   color: white !important;
   /* border: none !important; */
 }
-
-.tableBody {
-  /* border: solid 1px black; */
-}
-
-@media (max-width: 1460px) {
-  #weeklyProduct {
-    margin: 0 0 15px 0;
-  }
-}

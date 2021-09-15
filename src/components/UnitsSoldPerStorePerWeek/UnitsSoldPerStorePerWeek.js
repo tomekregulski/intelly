@@ -38,7 +38,7 @@ export default function UnitsSoldPerStorePerWeek() {
   }, [timeframeProductData]);
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer style={{ marginBottom: '10px' }} component={Paper}>
       <Table
         // fixedHeader={false}
         // style={{ width: 'auto', tableLayout: 'auto' }}

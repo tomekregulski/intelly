@@ -20,5 +20,17 @@
   width: 1;
 }
 
+.tableTitle {
+  background-color: rgba(0, 180, 249, 0.872);
+  color: white !important;
+  /* border: none !important; */
+}
+
+.tableHeaders {
+  background-color: rgba(0, 180, 249, 0.872);
+  color: white !important;
+  border: none !important;
+}
+
 @media (max-width: 800px) {
 }
