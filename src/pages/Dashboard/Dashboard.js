@@ -14,11 +14,13 @@ import Select from '@material-ui/core/Select';
 // import TotalSalesWeeklyStores from '../../components/TotalSalesWeeklyStores/TotalSalesWeeklyStores';
 // import TotalSalesStoresByProduct from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProduct';
 import { useAPI } from '../../context/apiContext';
-import MaterialAdvancedTable from '../../components/MaterialAdvancedTable/MaterialAdvancedTable';
+// import MaterialAdvancedTable from '../../components/MaterialAdvancedTable/MaterialAdvancedTable';
 import TotalSalesByStoreData from '../../components/TotalSalesStores/TotalSalesByStoreData';
 import TotalSalesStoresByProductData from '../../components/TotalSalesStoresByProduct/TotalSalesStoresByProductData';
 import TotalStoresAll from '../../components/TotalSalesStores/TotalStoresAll';
 import TotalSalesStoresByProductAll from '../../components/TotalSalesStoresByProduct/TotalSalesStoreByProductAll';
+import WeeklyChangeByStore from '../../components/WeeklyChangeByStore/WeeklyChangeByStore';
+import UnitsSoldPerStorePerWeek from '../../components/UnitsSoldPerStorePerWeek/UnitsSoldPerStorePerWeek';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -35,7 +37,7 @@ function Dashboard() {
   const { setRegion, timeframeRegions, region, timeframeStoreData } = useAPI();
   const classes = useStyles();
 
-  const breakpoint = 700;
+  const breakpoint = 1100;
   React.useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
     // subscribe to window resize event "onComponentDidMount"
@@ -75,12 +77,17 @@ function Dashboard() {
         <div>
           <div id='topLevel'>
             <div id='secondLevel'>
-              <SalesRecap />
-              <VelocityTable />
-              <WeeklyTable />
+              <div className='tableContainer'>
+                <SalesRecap />
+              </div>
+              <div className='tableContainer'>
+                <UnitsSoldPerStorePerWeek />
+              </div>
+              <div className='tableContainer'>
+                <UnitsSoldPerStorePerWeek />
+              </div>
             </div>
-            <MaterialAdvancedTable />
-            {/* <TotalSalesWeeklyStores /> */}
+            <WeeklyChangeByStore />
           </div>
 
           {region !== 'all regions' && (

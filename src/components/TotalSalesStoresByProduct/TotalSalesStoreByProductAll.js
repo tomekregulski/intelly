@@ -35,10 +35,11 @@ const options = {
 
 const TotalSalesStoresByProductAll = () => {
   const [dataChart, setDataChart] = useState({});
+  const [sortedData, setSortedData] = useState({});
 
   const { skusTimeframe, timeframeStoreData } = useAPI();
 
-  console.log(timeframeStoreData);
+  // console.log(timeframeStoreData);
 
   // useEffect(() => {
   //   if (timeframeStoreData.length) {
@@ -67,10 +68,11 @@ const TotalSalesStoresByProductAll = () => {
 
     tempData.sort((a, b) => (a.totalSales > b.totalSales ? -1 : 1));
     console.log(tempData);
-  });
+    setSortedData(tempData);
+  }, [timeframeStoreData]);
 
   useEffect(() => {
-    if (timeframeStoreData && skusTimeframe) {
+    if (sortedData && skusTimeframe) {
       let stores = [];
       let salesData = [];
 
@@ -82,9 +84,9 @@ const TotalSalesStoresByProductAll = () => {
         });
       }
 
-      for (let i = 0; i < timeframeStoreData.length; i++) {
-        stores.push(timeframeStoreData[i].name);
-        let salesObj = timeframeStoreData[i].sales;
+      for (let i = 0; i < sortedData.length; i++) {
+        stores.push(sortedData[i].name);
+        let salesObj = sortedData[i].sales;
         for (const property in salesObj) {
           const index = salesData.find((x) => x.label === property);
           index.data.push(salesObj[property]['week1']);
@@ -96,7 +98,7 @@ const TotalSalesStoresByProductAll = () => {
         datasets: salesData,
       });
     }
-  }, [timeframeStoreData, skusTimeframe]);
+  }, [sortedData, setSortedData]);
 
   return (
     <div id='salesStoreByProduct'>
