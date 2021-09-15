@@ -138,7 +138,7 @@ function EnhancedTableHead(props) {
       <TableRow>
         <TableCell
           padding='none'
-          // className='tableTitle'
+          className='tableTitle'
           align='center'
           colSpan={8}
         >
@@ -148,13 +148,13 @@ function EnhancedTableHead(props) {
       <TableRow>
         <TableCell
           padding='none'
-          // className='tableTitle'
+          className='tableTitle'
           align='center'
           colSpan={1}
         ></TableCell>
         <TableCell
           padding='none'
-          // className='tableTitle'
+          className='tableTitle'
           align='center'
           colSpan={2}
         >
@@ -162,7 +162,7 @@ function EnhancedTableHead(props) {
         </TableCell>
         <TableCell
           padding='none'
-          // className='tableTitle'
+          className='tableTitle'
           align='center'
           colSpan={2}
         >
@@ -170,7 +170,7 @@ function EnhancedTableHead(props) {
         </TableCell>
         <TableCell
           padding='none'
-          // className='tableTitle'
+          className='tableTitle'
           align='center'
           colSpan={2}
         >
@@ -178,7 +178,7 @@ function EnhancedTableHead(props) {
         </TableCell>
         <TableCell
           padding='none'
-          // className='tableTitle'
+          className='tableTitle'
           align='center'
           colSpan={1}
         >
@@ -197,6 +197,7 @@ function EnhancedTableHead(props) {
 
         {headCells.map((headCell) => (
           <TableCell
+            className='tableHeaders'
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
             padding='none'
@@ -419,7 +420,7 @@ export default function WeeklyChangeByStore() {
     rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
   return (
-    <div className='root'>
+    <div id='rootWeeklyStore'>
       <Paper className='paper'>
         {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer>
@@ -445,7 +446,11 @@ export default function WeeklyChangeByStore() {
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
-                    <TableRow tabIndex={-1} key={item.name}>
+                    <TableRow
+                      className={index % 2 === 1 ? 'highlighted' : null}
+                      tabIndex={-1}
+                      key={item.name}
+                    >
                       <TableCell
                         component='th'
                         id={labelId}

@@ -1,3 +1,27 @@
-.root {
+#storeSalesChartRoot,
+#skuSalesChartRoot {
   background-color: rgba(242, 242, 242, 0.2);
+}
+
+@media (min-width: 650px) {
+  #skuSalesChartRoot,
+  #storeSalesChartRoot {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 800px) {
+  #skuSalesChartRoot,
+  #storeSalesChartRoot {
+    max-width: 730px;
+  }
+}
+
+@media (min-width: 1300px) {
+  #skuSalesChartRoot,
+  #storeSalesChartRoot {
+    max-width: 630px;
+    /* margin: 0 auto; */
+  }
 }

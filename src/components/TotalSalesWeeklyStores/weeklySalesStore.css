@@ -1,15 +1,11 @@
-#weeklySalesStore {
-  width: auto;
-}
-
 .tableTitle {
-  background-color: rgba(5, 188, 255, 0.646);
+  background-color: rgba(0, 180, 249, 0.872);
   color: white !important;
   /* border: none !important; */
 }
 
 .tableHeaders {
-  background-color: rgba(5, 188, 255, 0.646);
+  background-color: rgba(0, 180, 249, 0.872);
   color: white !important;
   border: none !important;
 }

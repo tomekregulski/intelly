@@ -50,7 +50,7 @@ export default function UnitsSoldPerStorePerWeek() {
           <TableRow>
             <TableCell
               padding='none'
-              // className='tableTitle'
+              className='tableTitle'
               align='center'
               colSpan={7}
             >
@@ -58,14 +58,10 @@ export default function UnitsSoldPerStorePerWeek() {
             </TableCell>
           </TableRow>
           <TableRow>
+            <TableCell padding='none' className='tableHeaders' colSpan={1} />
             <TableCell
               padding='none'
-              //  className='tableHeaders'
-              colSpan={1}
-            />
-            <TableCell
-              padding='none'
-              // className='tableHeaders'
+              className='tableHeaders'
               colSpan={2}
               align='center'
             >
@@ -73,7 +69,7 @@ export default function UnitsSoldPerStorePerWeek() {
             </TableCell>
             <TableCell
               padding='none'
-              // className='tableHeaders'
+              className='tableHeaders'
               colSpan={4}
               align='center'
             >
@@ -81,52 +77,25 @@ export default function UnitsSoldPerStorePerWeek() {
             </TableCell>
           </TableRow>
           <TableRow className='tableSubHeader'>
-            <TableCell
-              padding='none'
-              // className='tableHeaders'
-            >
+            <TableCell padding='none' className='tableHeaders'>
               Product
             </TableCell>
-            <TableCell
-              padding='none'
-              // className='tableHeaders'
-              align='right'
-            >
+            <TableCell padding='none' className='tableHeaders' align='right'>
               Units Sold
             </TableCell>
-            <TableCell
-              padding='none'
-              // className='tableHeaders'
-              align='right'
-            >
+            <TableCell padding='none' className='tableHeaders' align='right'>
               Total Stores
             </TableCell>
-            <TableCell
-              padding='none'
-              // className='tableHeaders'
-              align='right'
-            >
+            <TableCell padding='none' className='tableHeaders' align='right'>
               Last Week
             </TableCell>
-            <TableCell
-              padding='none'
-              // className='tableHeaders'
-              align='right'
-            >
+            <TableCell padding='none' className='tableHeaders' align='right'>
               4 Weeks
             </TableCell>
-            <TableCell
-              padding='none'
-              // className='tableHeaders'
-              align='right'
-            >
+            <TableCell padding='none' className='tableHeaders' align='right'>
               12 Weeks
             </TableCell>
-            <TableCell
-              padding='none'
-              // className='tableHeaders'
-              align='right'
-            >
+            <TableCell padding='none' className='tableHeaders' align='right'>
               52 Weeks
             </TableCell>
           </TableRow>
@@ -136,7 +105,7 @@ export default function UnitsSoldPerStorePerWeek() {
             data.map((item, index) => (
               <TableRow
                 key={index}
-                // className={index % 2 === 1 ? 'highlighted' : null}
+                className={index % 2 === 1 ? 'highlighted' : null}
               >
                 <TableCell
                   padding='none'

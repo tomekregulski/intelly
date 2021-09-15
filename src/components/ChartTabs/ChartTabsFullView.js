@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     color: 'black',
-    backgroundColor: 'rgba(20, 175, 242, 0.44)',
+    backgroundColor: 'rgba(0, 180, 249, 0.872)',
     boxShadow: 'none',
   },
 }));

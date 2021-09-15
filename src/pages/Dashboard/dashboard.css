@@ -3,7 +3,7 @@
 }
 
 #regionSelect {
-  margin: 0 2% 10px;
+  margin: 20px 2% 10px;
 }
 
 .loading {
@@ -16,42 +16,65 @@
 #topLevel {
   display: flex;
   flex-direction: column;
-  margin: 0 2%;
   overflow: scroll;
-  /* align-items: flex-start; */
+  align-items: flex-start;
   justify-content: flex-start;
-  /* flex-wrap: wrap; */
+  margin: 0 2%;
 }
 
 .tableContainer {
   margin-bottom: 10px;
 }
-#secondLevel {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* align-items: flex-start; */
-}
 
 #charts {
-  width: 90%;
-  margin: 80px auto;
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 1270px) {
-  /* #topLevel {
-    flex-direction: column;
+@media (min-width: 650px) {
+  #topLevel {
+    width: 98%;
     align-items: center;
-    justify-content: center;
-  } */
+  }
 
-  /* #secondLevel {
+  #charts {
+    margin-top: 30px;
+  }
+}
+
+@media (min-width: 1300px) {
+  #regionSelect {
+    margin: 20px 1% 10px;
+  }
+  #dataSection {
+    display: block;
+  }
+  #topLevel {
+    flex-direction: row;
+    overflow: visible;
     justify-content: flex-start;
-  } */
+    align-items: flex-start;
+    /* margin: 0 2%; */
+  }
 
-  /* #charts {
+  #dataSection {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  #secondLevel {
+    margin-right: 10px;
+  }
+
+  #charts {
+    display: flex;
+    flex-direction: row;
     justify-content: center;
-  } */
+    padding-bottom: 20px;
+  }
+
+  #charts :last-child {
+    margin-top: 0px;
+  }
 }

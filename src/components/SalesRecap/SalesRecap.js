@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useAPI } from '../../context/apiContext';
-// import './salesRecap.css';
+import './salesRecap.css';
 
 const useStyles = makeStyles({
   table: {
@@ -38,7 +38,7 @@ function SalesRecap() {
         <Table
           // fixedHeader={false}
           // style={{ width: 'auto', tableLayout: 'auto' }}
-          className={classes.table}
+          // className={classes.table}
           // className='tableBody'
           size='small'
           aria-label='simple table'
@@ -47,26 +47,24 @@ function SalesRecap() {
             <TableRow>
               <TableCell
                 padding='none'
-                // className='tableTitle'
+                className='tableTitle'
                 align='center'
                 colSpan={9}
               >
                 Sales Recap
               </TableCell>
             </TableRow>
-            <TableRow
-            // className='subHeader'
-            >
+            <TableRow className='subHeader'>
               <TableCell
                 padding='none'
                 colSpan={1}
-                // className='tableHeaders'
+                className='tableHeaders'
                 align='center'
               ></TableCell>
               <TableCell
                 padding='none'
                 colSpan={2}
-                // className='tableHeaders'
+                className='tableHeaders'
                 align='center'
               >
                 Last Week
@@ -74,7 +72,7 @@ function SalesRecap() {
               <TableCell
                 padding='none'
                 colSpan={2}
-                // className='tableHeaders'
+                className='tableHeaders'
                 align='center'
               >
                 4 Weeks
@@ -82,7 +80,7 @@ function SalesRecap() {
               <TableCell
                 padding='none'
                 colSpan={2}
-                // className='tableHeaders'
+                className='tableHeaders'
                 align='center'
               >
                 12 Weeks
@@ -90,74 +88,38 @@ function SalesRecap() {
               <TableCell
                 padding='none'
                 colSpan={2}
-                // className='tableHeaders'
+                className='tableHeaders'
                 align='center'
               >
                 52 Weeks
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell
-                padding='none'
-                // className='tableHeaders'
-                align='left'
-              >
+              <TableCell padding='none' className='tableHeaders' align='left'>
                 Product
               </TableCell>
-              <TableCell
-                padding='none'
-                // className='tableHeaders'
-                align='right'
-              >
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Sales
               </TableCell>
-              <TableCell
-                padding='none'
-                // className='tableHeaders'
-                align='right'
-              >
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Revenue
               </TableCell>
-              <TableCell
-                padding='none'
-                // className='tableHeaders'
-                align='right'
-              >
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Sales
               </TableCell>
-              <TableCell
-                padding='none'
-                // className='tableHeaders'
-                align='right'
-              >
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Revenue
               </TableCell>
-              <TableCell
-                padding='none'
-                // className='tableHeaders'
-                align='right'
-              >
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Sales
               </TableCell>
-              <TableCell
-                padding='none'
-                // className='tableHeaders'
-                align='right'
-              >
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Revenue
               </TableCell>
-              <TableCell
-                padding='none'
-                // className='tableHeaders'
-                align='right'
-              >
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Sales
               </TableCell>
-              <TableCell
-                padding='none'
-                // className='tableHeaders'
-                align='right'
-              >
+              <TableCell padding='none' className='tableHeaders' align='right'>
                 Revenue
               </TableCell>
             </TableRow>
@@ -167,7 +129,7 @@ function SalesRecap() {
               data.map((item, index) => (
                 <TableRow
                   key={index}
-                  // className={index % 2 === 1 ? 'highlighted' : null}
+                  className={index % 2 === 1 ? 'highlighted' : null}
                 >
                   <TableCell
                     align='left'

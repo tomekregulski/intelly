@@ -13,11 +13,11 @@ function Navbar(props) {
           <img className={classes.logo} src={image} alt='Intelly' />
         </Link>
       </div>
-      <div className={classes.navLinks}>
+      {/* <div className={classes.navLinks}>
         <Link className={classes.navLinkItem} to='/contact'>
           Contact
         </Link>
-      </div>
+      </div> */}
     </nav>
   );
 }
