@@ -340,7 +340,17 @@ export default function WeeklyChangeByStore() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [data, setData] = useState([]);
+  const [width, setWidth] = React.useState(window.innerWidth);
+
   const { timeframeStoreData } = useAPI();
+
+  React.useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResizeWindow);
+    return () => {
+      window.removeEventListener('resize', handleResizeWindow);
+    };
+  }, []);
 
   useEffect(() => {
     if (timeframeStoreData) {
@@ -416,8 +426,14 @@ export default function WeeklyChangeByStore() {
 
   // const isSelected = (name) => selected.indexOf(name) !== -1;
 
-  const emptyRows =
-    rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+  let emptyRows;
+
+  if (width < 1300) {
+    emptyRows = 0;
+  } else {
+    emptyRows =
+      rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+  }
 
   return (
     <div id='rootWeeklyStore'>
