@@ -128,7 +128,7 @@ export default function ChartTabsSkuSalesMediumView() {
             array.map((item, index) => (
               <Tab
                 key={index}
-                label={'Chart ' + (index + 1)}
+                label={'Page ' + (index + 1)}
                 {...a11yProps(0)}
               />
             ))}
