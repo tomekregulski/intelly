@@ -4,8 +4,6 @@ export default {
     display: 'flex',
     flexDirection: 'column',
     marginTop: '1rem',
-    borderBottom: '1px solid rgb(45, 179, 244)',
-    marginBottom: '.5rem',
   },
   logo: {
     width: '10rem',
@@ -18,6 +16,9 @@ export default {
     alignItems: 'center',
     marginTop: '.5rem',
   },
+  // formControl: {
+
+  // },
   //   firstNavLinks: {
   //     display: 'flex',
   //     justifyContent: 'center',
@@ -29,7 +30,7 @@ export default {
   navLinkItem: {
     marginRight: '.5rem',
     // marginLeft: '.5rem',
-    marginBottom: '.5rem',
+    // marginBottom: '.5rem',
     transition: 'all .5s',
     textDecoration: 'none',
     color: 'black',
@@ -48,8 +49,8 @@ export default {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      // marginLeft: '2rem',
-      marginBottom: '1rem',
+      margin: '1rem 1.5rem 1rem 1.5rem',
+      // marginBottom: '1rem',
     },
   },
   '@media screen and (min-width: 1366px)': {
