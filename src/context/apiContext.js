@@ -17,16 +17,21 @@ export function APIContextProvider({ children }) {
   const [timeframeRegions, setTimeframeRegions] = useState([]);
   const [skusTimeframe, setSkusTimeframe] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
+  const [brand, setBrand] = useState('SIMMER');
 
   useEffect(() => {
     async function fetchData() {
       const apiResponse = await axios.get(
-        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`
+        // `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
+        'http://localhost:5000/api/whole-foods-timeframe-data',
+        {
+          headers: { brand: brand },
+        }
       );
       setTimeframeData(apiResponse.data);
     }
     fetchData();
-  }, []);
+  }, [brand, setBrand]);
 
   useEffect(() => {
     if (timeframeData.length) {
@@ -114,6 +119,7 @@ export function APIContextProvider({ children }) {
     setRegion,
     timeframes,
     currentTimeframe,
+    setBrand,
   ]);
 
   return (
@@ -126,6 +132,7 @@ export function APIContextProvider({ children }) {
         timeframeRegions,
         skusTimeframe,
         categoryList,
+        setBrand,
       }}
     >
       {children}

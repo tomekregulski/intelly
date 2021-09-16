@@ -10,26 +10,31 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 function Navbar(props) {
-  const { setRegion, timeframeRegions, region } = useAPI();
+  const { brand, setBrand, setRegion, timeframeRegions, region } = useAPI();
 
   const { classes } = props;
 
-  const handleChange = (event) => {
+  const handleChangeRegion = (event) => {
     event.preventDefault();
     setRegion('' || event.target.value);
   };
 
+  const handleChangeBrand = (event) => {
+    event.preventDefault();
+    setBrand(event.target.value);
+  };
+
   return (
     <nav className={classes.nav}>
-      <div>
+      <div className={classes.navLinks}>
         <FormControl id='regionSelect' className={classes.formControl}>
           <InputLabel>Select a Region</InputLabel>
           <Select
             style={{ width: '130px' }}
-            labelId='demo-simple-select-label'
-            id='demo-simple-select'
+            labelId='regionLabel'
+            id='regionSelect'
             value={region}
-            onChange={handleChange}
+            onChange={handleChangeRegion}
           >
             <MenuItem value={'all regions'}>All Regions</MenuItem>
             {timeframeRegions.length
@@ -39,6 +44,20 @@ function Navbar(props) {
                   </MenuItem>
                 ))
               : null}
+          </Select>
+        </FormControl>
+
+        <FormControl id='brandSelect' className={classes.formControl}>
+          <InputLabel>Select a Brand</InputLabel>
+          <Select
+            style={{ width: '130px' }}
+            labelId='brandLabel'
+            id='brandSelect'
+            value={brand}
+            onChange={handleChangeBrand}
+          >
+            <MenuItem value={'SIMMER'}>Simmer</MenuItem>
+            <MenuItem value={'SaSo'}>Saso</MenuItem>
           </Select>
         </FormControl>
       </div>
