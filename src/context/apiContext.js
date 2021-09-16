@@ -22,8 +22,8 @@ export function APIContextProvider({ children }) {
   useEffect(() => {
     async function fetchData() {
       const apiResponse = await axios.get(
-        // `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
-        'http://localhost:5000/api/whole-foods-timeframe-data',
+        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
+        // 'http://localhost:5000/api/whole-foods-timeframe-data',
         {
           headers: { brand: brand },
         }
