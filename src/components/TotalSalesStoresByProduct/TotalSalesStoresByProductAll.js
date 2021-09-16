@@ -67,7 +67,7 @@ const TotalSalesStoresByProductAll = () => {
     }
 
     tempData.sort((a, b) => (a.totalSales > b.totalSales ? -1 : 1));
-    console.log(tempData);
+    // console.log(tempData);
     setSortedData(tempData);
   }, [timeframeStoreData]);
 

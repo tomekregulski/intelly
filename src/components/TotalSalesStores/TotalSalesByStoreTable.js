@@ -13,16 +13,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-// import Toolbar from '@material-ui/core/Toolbar';
-// import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-// import Checkbox from '@material-ui/core/Checkbox';
-// import IconButton from '@material-ui/core/IconButton';
-// import Tooltip from '@material-ui/core/Tooltip';
-// import FormControlLabel from '@material-ui/core/FormControlLabel';
-// import Switch from '@material-ui/core/Switch';
-// import DeleteIcon from '@material-ui/icons/Delete';
-// import FilterListIcon from '@material-ui/icons/FilterList';
 import { useAPI } from '../../context/apiContext';
 import './totalSalesByStoreTable.css';
 
@@ -74,44 +65,77 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
-  {
-    id: 'name',
-    numeric: false,
-    disablePadding: true,
-    label: 'Store',
-  },
-  {
-    id: 'totalSales',
-    numeric: true,
-    disablePadding: false,
-    label: 'Total Sales',
-  },
-  {
-    id: 'classicSales',
-    numeric: true,
-    disablePadding: false,
-    label: 'Classic Sales',
-  },
-  {
-    id: 'basilSales',
-    numeric: true,
-    disablePadding: false,
-    label: 'Basil Sales',
-  },
-  {
-    id: 'garlicSales',
-    numeric: true,
-    disablePadding: false,
-    label: 'Garlic Sales',
-  },
-];
-
 function EnhancedTableHead(props) {
   const { order, orderBy, onRequestSort } = props;
+  const [head, setHead] = useState([]);
+
+  const { skusTimeframe, timeframeProductData } = useAPI();
+
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
+
+  useEffect(() => {
+    let tempHead = [
+      {
+        id: 'name',
+        numeric: false,
+        disablePadding: true,
+        label: 'Store',
+      },
+      {
+        id: 'totalSales',
+        numeric: true,
+        disablePadding: false,
+        label: 'Total Sales',
+      },
+    ];
+    if (timeframeProductData.length) {
+      timeframeProductData.map((item) => {
+        tempHead.push({
+          id: `${item.name}`,
+          numeric: true,
+          disablePadding: false,
+          label: `${item.name} Sales`,
+        });
+      });
+      // console.log(tempHead);
+    }
+    setHead(tempHead);
+  }, [timeframeProductData]);
+
+  // const headCells = [
+  //   {
+  //     id: 'name',
+  //     numeric: false,
+  //     disablePadding: true,
+  //     label: 'Store',
+  //   },
+  //   {
+  //     id: 'totalSales',
+  //     numeric: true,
+  //     disablePadding: false,
+  //     label: 'Total Sales',
+  //   },
+  //   {
+  //     id: 'classicSales',
+  //     numeric: true,
+  //     disablePadding: false,
+  //     label: 'Classic Sales',
+  //   },
+  //   {
+  //     id: 'basilSales',
+  //     numeric: true,
+  //     disablePadding: false,
+  //     label: 'Basil Sales',
+  //   },
+  //   {
+  //     id: 'garlicSales',
+  //     numeric: true,
+  //     disablePadding: false,
+  //     label: 'Garlic Sales',
+  //   },
+  // ];
 
   return (
     <TableHead>
@@ -120,34 +144,37 @@ function EnhancedTableHead(props) {
           padding='none'
           className='tableTitle'
           align='center'
-          colSpan={8}
+          colSpan={timeframeProductData.length + 2}
         >
           Total and 'Per SKU' Sales by Store
         </TableCell>
       </TableRow>
       <TableRow>
-        {headCells.map((headCell) => (
-          <TableCell
-            className='tableHeaders'
-            key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding='none'
-            sortDirection={orderBy === headCell.id ? order : false}
-          >
-            <TableSortLabel
-              active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+        {head.length &&
+          head.map((head) => (
+            <TableCell
+              className='tableHeaders'
+              key={head.id}
+              align={head.numeric ? 'right' : 'left'}
+              padding='none'
+              sortDirection={orderBy === head.id ? order : false}
             >
-              {headCell.label}
-              {orderBy === headCell.id ? (
-                <span className='visuallyHidden'>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                </span>
-              ) : null}
-            </TableSortLabel>
-          </TableCell>
-        ))}
+              <TableSortLabel
+                active={orderBy === head.id}
+                direction={orderBy === head.id ? order : 'asc'}
+                onClick={createSortHandler(head.id)}
+              >
+                {head.label}
+                {orderBy === head.id ? (
+                  <span className='visuallyHidden'>
+                    {order === 'desc'
+                      ? 'sorted descending'
+                      : 'sorted ascending'}
+                  </span>
+                ) : null}
+              </TableSortLabel>
+            </TableCell>
+          ))}
       </TableRow>
     </TableHead>
   );
@@ -202,7 +229,7 @@ export default function TotalSalesByStoreTable() {
       for (let i = 0; i < timeframeStoreData.length; i++) {
         let totalSales = 0;
         let storeName = '';
-
+        let salesArray = [];
         let salesObj = timeframeStoreData[i].sales;
         for (const property in salesObj) {
           if (storeName === '') {
@@ -211,18 +238,31 @@ export default function TotalSalesByStoreTable() {
           if (salesObj[property]['week1']) {
             totalSales = totalSales + salesObj[property]['week1'];
           }
+          // console.log(salesObj);
+          console.log(property);
+          let week1 = salesObj[property]['week1']
+            ? salesObj[property]['week1']
+            : 'N/A';
+
+          let obj = {
+            [property]: week1,
+          };
+          // console.log(obj);
+          salesArray.push(obj);
+          // console.log(salesArray);
         }
+        console.log(salesArray);
+
         newStoresList.push({
           name: storeName,
           totalSales: totalSales,
-          skuSales: salesObj,
+          skuSales: salesArray,
         });
       }
 
       const sortedStoreList = newStoresList.sort((a, b) =>
         a.totalSales > b.totalSales ? -1 : 1
       );
-      console.log(sortedStoreList);
       setData(sortedStoreList);
     }
   }, [timeframeStoreData, skusTimeframe]);
@@ -281,7 +321,18 @@ export default function TotalSalesByStoreTable() {
                       <TableCell padding='none' align='right'>
                         {item.totalSales}
                       </TableCell>
-                      <TableCell padding='none' align='right'>
+                      {item.skuSales.map((sku) => {
+                        // console.log(sku);
+                        // console.log([sku][0]);
+                        // console.log(Object.keys(sku)[0]);
+                        console.log(Object.values(sku)[0]);
+                        return (
+                          <TableCell padding='none' align='right'>
+                            {Object.values(sku)[0]}
+                          </TableCell>
+                        );
+                      })}
+                      {/* <TableCell padding='none' align='right'>
                         {item.skuSales['PASTA SAUCE CLASSIC MARINARA OG']
                           ? item.skuSales['PASTA SAUCE CLASSIC MARINARA OG'][
                               'week1'
@@ -313,7 +364,7 @@ export default function TotalSalesByStoreTable() {
                               ]
                             : 'N/A'
                           : 'N/A'}
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   );
                 })}

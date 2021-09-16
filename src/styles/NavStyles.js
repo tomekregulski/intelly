@@ -12,24 +12,14 @@ export default {
     margin: '0 auto 10px',
     display: 'block',
   },
-  // navLinks: {
-  //   display: 'flex',
-  //   flexDirection: 'column',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   marginTop: '.5rem',
-  // },
-  // formControl: {
-
-  // },
-  //   firstNavLinks: {
-  //     display: 'flex',
-  //     justifyContent: 'center',
-  //   },
-  //   secondNavLinks: {
-  //     display: 'flex',
-  //     justifyContent: 'center',
-  //   },
+  navLinks: {
+    '& #regionSelect': {
+      marginRight: '10px',
+    },
+    '& #brandSelect': {
+      marginLeft: '10px',
+    },
+  },
   navLinkItem: {
     marginRight: '.5rem',
     // marginLeft: '.5rem',

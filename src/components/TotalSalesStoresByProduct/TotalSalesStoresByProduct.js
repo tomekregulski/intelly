@@ -83,7 +83,7 @@ const TotalSalesStoresByProduct = (props) => {
         datasets: salesData,
       });
     }
-  }, [skusTimeframe, data, setData]);
+  }, [data, setData]);
 
   return (
     <div id='salesByStoreByProduct'>
