@@ -69,7 +69,7 @@ function EnhancedTableHead(props) {
   const { order, orderBy, onRequestSort } = props;
   const [head, setHead] = useState([]);
 
-  const { skusTimeframe, timeframeProductData } = useAPI();
+  const { timeframeProductData } = useAPI();
 
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -239,7 +239,7 @@ export default function TotalSalesByStoreTable() {
             totalSales = totalSales + salesObj[property]['week1'];
           }
           // console.log(salesObj);
-          console.log(property);
+          // console.log(property);
           let week1 = salesObj[property]['week1']
             ? salesObj[property]['week1']
             : 'N/A';
@@ -251,7 +251,7 @@ export default function TotalSalesByStoreTable() {
           salesArray.push(obj);
           // console.log(salesArray);
         }
-        console.log(salesArray);
+        // console.log(salesArray);
 
         newStoresList.push({
           name: storeName,
@@ -325,7 +325,7 @@ export default function TotalSalesByStoreTable() {
                         // console.log(sku);
                         // console.log([sku][0]);
                         // console.log(Object.keys(sku)[0]);
-                        console.log(Object.values(sku)[0]);
+                        // console.log(Object.values(sku)[0]);
                         return (
                           <TableCell padding='none' align='right'>
                             {Object.values(sku)[0]}

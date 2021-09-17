@@ -60,10 +60,10 @@ export default function ChartTabsSkuSalesMediumView() {
   const [value, setValue] = useState(0);
   const [array, setArray] = useState([]);
 
-  const { skusTimeframe, timeframeStoreData } = useAPI();
+  const { skusTimeframe, timeframeProductData, timeframeStoreData } = useAPI();
 
   useEffect(() => {
-    if (timeframeStoreData && skusTimeframe) {
+    if (timeframeStoreData && timeframeProductData) {
       // console.log(timeframeStoreData);
       // let stores = [];
       // let salesData = [];
