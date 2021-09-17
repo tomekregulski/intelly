@@ -17,6 +17,7 @@ export function APIContextProvider({ children }) {
   const [timeframeRegions, setTimeframeRegions] = useState([]);
   const [skusTimeframe, setSkusTimeframe] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
+  const [category, setCategory] = useState('');
   const [brand, setBrand] = useState('SIMMER');
 
   useEffect(() => {
@@ -78,6 +79,7 @@ export function APIContextProvider({ children }) {
       setTimeframeRegions(regionList);
       setSkusTimeframe(skuList);
       setCategoryList(categoryList);
+      setCategory(categoryList[0]);
       setTimeframes(timeframesArray);
     }
   }, [timeframeData, setTimeframeData]);
@@ -86,21 +88,29 @@ export function APIContextProvider({ children }) {
     let products;
     let stores;
 
-    if (timeframeData.length) {
+    let categoryData = timeframeData.filter(
+      (item) => item.category === category
+    );
+    // console.log('category');
+    // console.log(categoryData);
+
+    if (categoryData.length) {
       products = fetchTimeframeProductData(
-        timeframeData,
+        categoryData,
         region,
         skusTimeframe,
         timeframes,
-        currentTimeframe
+        currentTimeframe,
+        category
       );
 
       stores = fetchTimeframeStoreData(
-        timeframeData,
+        categoryData,
         region,
         skusTimeframe,
         timeframes,
-        currentTimeframe
+        currentTimeframe,
+        category
       );
 
       if (stores.length) {
@@ -108,6 +118,7 @@ export function APIContextProvider({ children }) {
       }
       if (products.length) {
         setTimeframeProductData(products);
+        // console.log(products);
       }
     }
   }, [
@@ -120,6 +131,8 @@ export function APIContextProvider({ children }) {
     timeframes,
     currentTimeframe,
     setBrand,
+    setCategory,
+    category,
   ]);
 
   return (
@@ -133,6 +146,7 @@ export function APIContextProvider({ children }) {
         skusTimeframe,
         categoryList,
         setBrand,
+        setCategory,
       }}
     >
       {children}

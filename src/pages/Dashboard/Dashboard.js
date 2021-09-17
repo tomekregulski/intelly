@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -66,6 +67,20 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'rgba(0, 180, 249, 0.872)',
     boxShadow: 'none',
   },
+  categoryBar: {
+    height: '40px',
+    backgroundColor: 'rgba(0, 180, 249, 0.872)',
+    display: 'flex',
+    justifyContent: 'space-around',
+  },
+  categoryButton: {
+    backgroundColor: 'transparent',
+    width: '100%',
+    border: 'none',
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
 }));
 
 export default function Navtabs() {
@@ -76,7 +91,15 @@ export default function Navtabs() {
     setValue(newValue);
   };
 
-  const { timeframeStoreData } = useAPI();
+  const { timeframeStoreData, categoryList, setCategory } = useAPI();
+
+  const handleCategoryChange = (value) => {
+    if (categoryList) {
+      // console.log(categoryList);
+      // console.log(value);
+      setCategory(value);
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -90,11 +113,40 @@ export default function Navtabs() {
           onChange={handleChange}
           aria-label='nav tabs example'
         >
-          <LinkTab label='Home' href='/drafts' {...a11yProps(0)} />
-          <LinkTab label='Weekly View' href='/trash' {...a11yProps(1)} />
-          <LinkTab label='Monthly View' href='/spam' {...a11yProps(2)} />
+          <LinkTab label='Home' {...a11yProps(0)} />
+          <LinkTab label='Weekly View' {...a11yProps(1)} />
+          <LinkTab label='Monthly View' {...a11yProps(2)} />
         </Tabs>
       </AppBar>
+      {/* <div style={{ height: '20px', backgroundColor: 'red' }}>
+        <button
+          value='Condiments'
+          onClick={(e) => handleCategoryChange(e.target.value)}
+        >
+          Condiments
+        </button>
+        <button
+          value='Dips and Salsas'
+          onClick={(e) => handleCategoryChange(e.target.value)}
+        >
+          Salsas
+        </button> */}
+      {/* </div> */}
+      {categoryList.length > 1 && (
+        <div className={classes.categoryBar}>
+          {categoryList.map((category, index) => (
+            <button
+              key={index}
+              className={classes.categoryButton}
+              value={categoryList[index]}
+              onClick={(e) => handleCategoryChange(e.target.value)}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      )}
+      {/* </div> */}
       {timeframeStoreData.length ? (
         <>
           <TabPanel value={value} index={0}>

@@ -37,7 +37,7 @@ const TotalSalesStoresByProduct = (props) => {
   const [dataChart, setDataChart] = useState({});
   const [data, setData] = useState([]);
 
-  const { skusTimeframe } = useAPI();
+  const { skusTimeframe, timeframeProductData } = useAPI();
 
   // console.log(props.data);
 
@@ -51,10 +51,17 @@ const TotalSalesStoresByProduct = (props) => {
       // console.log(data);
       let stores = [];
       let salesData = [];
+      let currentSkus = [];
+      // console.log(timeframeProductData);
 
-      for (let i = 0; i < skusTimeframe.length; i++) {
+      for (let i = 0; i < timeframeProductData.length; i++) {
+        currentSkus.push(timeframeProductData[i].name);
+      }
+      // console.log(currentSkus);
+
+      for (let i = 0; i < currentSkus.length; i++) {
         salesData.push({
-          label: skusTimeframe[i],
+          label: currentSkus[i],
           data: [],
           backgroundColor: colors[i],
         });
@@ -66,13 +73,16 @@ const TotalSalesStoresByProduct = (props) => {
         stores.push(data[i].name);
         let salesObj = data[i].skuSales;
         for (const property in salesObj) {
+          // if (currentSkus.includes(property)) {
           const index = salesData.find((x) => x.label === property);
           if (salesObj[property]['week1']) {
             index.data.push(salesObj[property]['week1']);
           } else {
             index.data.push(0);
           }
+          // }
         }
+
         // console.log(salesData);
       }
       // console.log(salesData);
