@@ -120,11 +120,31 @@ export const fetchTimeframeStoreData = (
   } else {
     filteredData = data;
   }
+
+  // TO be integrated at a future stage, replacing the sales object below
+  // let skuArr = [];
+
+  // for (var i = 0; i < skuList.length; i++) {
+  //   let obj = {
+  //     [skuList[i]]: {
+  //       week1: 0,
+  //       week2: 0,
+  //       week3: 0,
+  //       week4: 0,
+  //     }
+  //   }
+  //   skuArr.push(obj)
+  // }
+
   if (filteredData.length) {
     filteredData.map((item) => {
       if (!stores.find((o) => o.name === item.store_name)) {
         stores.push({
           name: item.store_name,
+          totalSalesWeek1: 0,
+          totalSalesWeek2: 0,
+          totalSalesWeek3: 0,
+          totalSalesWeek4: 0,
           sales: {},
         });
       }
@@ -143,18 +163,33 @@ export const fetchTimeframeStoreData = (
         }
         if (filteredData[i].timeframe === timeframes[0]) {
           stores[j].sales[sku]['week1'] = parseInt(filteredData[i].unit_sales);
+          stores[j].totalSalesWeek1 =
+            stores[j].totalSalesWeek1 + parseInt(filteredData[i].unit_sales);
         }
         if (filteredData[i].timeframe === timeframes[1]) {
           stores[j].sales[sku]['week2'] = parseInt(filteredData[i].unit_sales);
+          stores[j].totalSalesWeek2 =
+            stores[j].totalSalesWeek2 + parseInt(filteredData[i].unit_sales);
         }
         if (filteredData[i].timeframe === timeframes[2]) {
           stores[j].sales[sku]['week3'] = parseInt(filteredData[i].unit_sales);
+          stores[j].totalSalesWeek3 =
+            stores[j].totalSalesWeek3 + parseInt(filteredData[i].unit_sales);
         }
         if (filteredData[i].timeframe === timeframes[3]) {
           stores[j].sales[sku]['week4'] = parseInt(filteredData[i].unit_sales);
+          stores[j].totalSalesWeek4 =
+            stores[j].totalSalesWeek4 + parseInt(filteredData[i].unit_sales);
         }
       }
     }
   }
+  stores.sort((a, b) => (a.totalSalesWeek1 > b.totalSalesWeek1 ? -1 : 1));
+  // console.log(stores);
+
   return stores;
 };
+
+// new productData
+// retrieve week 1 of 4 timeframes
+//

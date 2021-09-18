@@ -33,6 +33,7 @@ function Dashboard() {
               </div>
               <div className='tableContainer'>
                 <UnitsSoldPerStorePerWeek />
+                <TotalSalesByStoreTable />
               </div>
               <div className='tableContainer'>
                 <WeeklyTable />
@@ -56,7 +57,7 @@ function Dashboard() {
               )}
             </div>
           )}
-          <div style={{ height: '30px' }}>{/* <p>Hello</p> */}</div>
+          <div style={{ height: '30px' }}></div>
         </section>
       </main>
     );
