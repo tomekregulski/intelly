@@ -8,17 +8,22 @@ import axios from 'axios';
 const APIContext = createContext();
 
 export function APIContextProvider({ children }) {
+  const [brand, setBrand] = useState('SIMMER'); // eventually becomes userBrands[0]
   const [timeframeData, setTimeframeData] = useState([]);
-  const [currentTimeframe, setCurrentTimeframe] = useState([]);
   const [timeframes, setTimeframes] = useState([]);
-  const [timeframeStoreData, setTimeframeStoreData] = useState([]);
-  const [timeframeProductData, setTimeframeProductData] = useState([]);
+
+  // const [timeframes, setTimeframes] = useState([]); // is this needed?
+  const [currentTimeframe, setCurrentTimeframe] = useState([]); // is this needed?
+
+  const [timeframeStoreData, setTimeframeStoreData] = useState([]); // needed - can it hold more to avoid lower-level computation?
+  const [timeframeProductData, setTimeframeProductData] = useState([]); // needed - can it hold more to avoid lower-level computation?
+
+  const [currentBrandSkus, setCurrentBrandSkus] = useState([]); // is this needed?
+
+  const [currentBrandRegions, setCurrentBrandRegions] = useState([]);
   const [region, setRegion] = useState('all regions');
-  const [timeframeRegions, setTimeframeRegions] = useState([]);
-  const [skusTimeframe, setSkusTimeframe] = useState([]);
   const [categoryList, setCategoryList] = useState([]);
-  const [category, setCategory] = useState('');
-  const [brand, setBrand] = useState('SIMMER');
+  const [category, setCategory] = useState(''); // set to categoryList[0] after API call
 
   useEffect(() => {
     async function fetchData() {
@@ -76,8 +81,8 @@ export function APIContextProvider({ children }) {
           currentTfData.push(timeframeData[i]);
         }
       }
-      setTimeframeRegions(regionList);
-      setSkusTimeframe(skuList);
+      setCurrentBrandRegions(regionList);
+      setCurrentBrandSkus(skuList);
       setCategoryList(categoryList);
       setCategory(categoryList[0]);
       setTimeframes(timeframesArray);
@@ -98,7 +103,7 @@ export function APIContextProvider({ children }) {
       products = fetchTimeframeProductData(
         categoryData,
         region,
-        skusTimeframe,
+        currentBrandSkus,
         timeframes,
         currentTimeframe,
         category
@@ -107,7 +112,7 @@ export function APIContextProvider({ children }) {
       stores = fetchTimeframeStoreData(
         categoryData,
         region,
-        skusTimeframe,
+        currentBrandSkus,
         timeframes,
         currentTimeframe,
         category
@@ -122,13 +127,13 @@ export function APIContextProvider({ children }) {
       }
     }
   }, [
-    setSkusTimeframe,
-    skusTimeframe,
+    setCurrentBrandSkus,
+    currentBrandSkus,
     timeframeData,
     setTimeframeData,
     region,
     setRegion,
-    timeframes,
+    // timeframes,
     currentTimeframe,
     setBrand,
     setCategory,
@@ -142,8 +147,8 @@ export function APIContextProvider({ children }) {
         setRegion,
         timeframeStoreData,
         timeframeProductData,
-        timeframeRegions,
-        skusTimeframe,
+        currentBrandRegions,
+        currentBrandSkus,
         categoryList,
         setBrand,
         setCategory,

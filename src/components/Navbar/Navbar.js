@@ -10,7 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 function Navbar(props) {
-  const { brand, setBrand, setRegion, timeframeRegions, region } = useAPI();
+  const { brand, setBrand, setRegion, currentBrandRegions, region } = useAPI();
 
   const { classes } = props;
 
@@ -37,8 +37,8 @@ function Navbar(props) {
             onChange={handleChangeRegion}
           >
             <MenuItem value={'all regions'}>All Regions</MenuItem>
-            {timeframeRegions.length
-              ? timeframeRegions.map((reg, index) => (
+            {currentBrandRegions.length
+              ? currentBrandRegions.map((reg, index) => (
                   <MenuItem key={index} value={reg}>
                     {reg}
                   </MenuItem>
@@ -46,7 +46,7 @@ function Navbar(props) {
               : null}
           </Select>
         </FormControl>
-
+        )
         <FormControl id='brandSelect' className={classes.formControl}>
           <InputLabel>Select a Brand</InputLabel>
           <Select
