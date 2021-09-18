@@ -57,48 +57,27 @@ const useStyles = makeStyles((theme) => ({
 export default function ChartTabsTotalSalesMediumView() {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [array, setArray] = useState([]);
+  const [data, setData] = useState([]);
 
   const { timeframeStoreData } = useAPI();
 
   useEffect(() => {
     if (timeframeStoreData) {
-      let totalSalesByStore = [];
-
-      let totalChunked = [];
-      for (let i = 0; i < timeframeStoreData.length; i++) {
-        let storeTotal = 0;
-        let storeName = timeframeStoreData[i].name;
-        for (const sku in timeframeStoreData[i].sales) {
-          let number = 0;
-          if (timeframeStoreData[i].sales[sku].week1) {
-            number = timeframeStoreData[i].sales[sku].week1;
-          }
-          storeTotal = storeTotal + number;
-        }
-        let obj = {};
-        obj['name'] = storeName;
-        obj['sales'] = storeTotal;
-        totalSalesByStore.push(obj);
-      }
-
-      totalSalesByStore.sort((a, b) => (a.sales > b.sales ? -1 : 1));
+      let chunkedData = [];
 
       let size = 20;
       let index = 0;
-      while (index < totalSalesByStore.length) {
-        totalChunked.push(totalSalesByStore.slice(index, index + size));
+      while (index < timeframeStoreData.length) {
+        chunkedData.push(timeframeStoreData.slice(index, index + size));
         index += size;
       }
-      setArray(totalChunked);
+      setData(chunkedData);
     }
   }, [timeframeStoreData]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  // if width < 600, replace charts with tables
 
   return (
     <div id='storeSalesChartRoot'>
@@ -112,8 +91,8 @@ export default function ChartTabsTotalSalesMediumView() {
           onChange={handleChange}
           aria-label='simple tabs example'
         >
-          {array.length &&
-            array.map((item, index) => (
+          {data.length &&
+            data.map((item, index) => (
               <Tab
                 key={index}
                 label={'Page ' + (index + 1)}
@@ -122,8 +101,8 @@ export default function ChartTabsTotalSalesMediumView() {
             ))}
         </Tabs>
       </AppBar>
-      {array.length &&
-        array.map((item, index) => (
+      {data.length &&
+        data.map((item, index) => (
           <>
             <TabPanel key={index} value={value} index={index}>
               <TotalSalesStores key={index} data={item} />

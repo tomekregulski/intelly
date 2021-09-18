@@ -60,46 +60,16 @@ export default function ChartTabsSkuSalesMediumView() {
   const [value, setValue] = useState(0);
   const [array, setArray] = useState([]);
 
-  const { skusTimeframe, timeframeProductData, timeframeStoreData } = useAPI();
+  const { skusTimeframe, timeframeStoreData } = useAPI();
 
   useEffect(() => {
-    if (timeframeStoreData && timeframeProductData) {
-      // console.log(timeframeStoreData);
-      // let stores = [];
-      // let salesData = [];
-      let newStoresList = [];
+    if (timeframeStoreData) {
       let totalChunked = [];
-
-      for (let i = 0; i < timeframeStoreData.length; i++) {
-        let totalSales = 0;
-        let storeName = '';
-
-        let salesObj = timeframeStoreData[i].sales;
-        for (const property in salesObj) {
-          if (storeName === '') {
-            storeName = timeframeStoreData[i].name;
-          }
-          if (salesObj[property]['week1']) {
-            totalSales = totalSales + salesObj[property]['week1'];
-          }
-        }
-        newStoresList.push({
-          name: storeName,
-          totalSales: totalSales,
-          skuSales: salesObj,
-        });
-      }
-      // console.log(newStoresList);
-
-      const sortedStoreList = newStoresList.sort((a, b) =>
-        a.totalSales > b.totalSales ? -1 : 1
-      );
-      // console.log(sortedStoreList);
 
       let size = 20;
       let index = 0;
-      while (index < sortedStoreList.length) {
-        totalChunked.push(sortedStoreList.slice(index, index + size));
+      while (index < timeframeStoreData.length) {
+        totalChunked.push(timeframeStoreData.slice(index, index + size));
         index += size;
       }
       setArray(totalChunked);
@@ -109,8 +79,6 @@ export default function ChartTabsSkuSalesMediumView() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
-  // if width < 600, replace charts with tables
 
   return (
     <div id='skuSalesChartRoot'>

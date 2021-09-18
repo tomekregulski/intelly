@@ -220,10 +220,10 @@ export default function TotalSalesByStoreTable() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [data, setData] = useState([]);
-  const { skusTimeframe, timeframeStoreData } = useAPI();
+  const { currentBrandSkus, timeframeStoreData } = useAPI();
 
   useEffect(() => {
-    if (timeframeStoreData && skusTimeframe) {
+    if (timeframeStoreData && currentBrandSkus) {
       let newStoresList = [];
 
       for (let i = 0; i < timeframeStoreData.length; i++) {
@@ -238,8 +238,7 @@ export default function TotalSalesByStoreTable() {
           if (salesObj[property]['week1']) {
             totalSales = totalSales + salesObj[property]['week1'];
           }
-          // console.log(salesObj);
-          // console.log(property);
+
           let week1 = salesObj[property]['week1']
             ? salesObj[property]['week1']
             : 'N/A';
@@ -247,11 +246,8 @@ export default function TotalSalesByStoreTable() {
           let obj = {
             [property]: week1,
           };
-          // console.log(obj);
           salesArray.push(obj);
-          // console.log(salesArray);
         }
-        // console.log(salesArray);
 
         newStoresList.push({
           name: storeName,
@@ -265,7 +261,7 @@ export default function TotalSalesByStoreTable() {
       );
       setData(sortedStoreList);
     }
-  }, [timeframeStoreData, skusTimeframe]);
+  }, [timeframeStoreData, currentBrandSkus]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
