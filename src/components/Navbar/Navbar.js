@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/styles';
 import styles from '../../styles/NavStyles';
 import { Link } from 'react-router-dom';
@@ -8,15 +8,23 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 
 function Navbar(props) {
-  const { brand, setBrand, setRegion, currentBrandRegions, region } = useAPI();
+  const {
+    userBrands,
+    brand,
+    setBrand,
+    setRegion,
+    currentBrandRegions,
+    region,
+  } = useAPI();
 
-  const { classes } = props;
+  const { classes, handleLogout } = props;
 
   const handleChangeRegion = (event) => {
     event.preventDefault();
-    setRegion('' || event.target.value);
+    setRegion(event.target.value);
   };
 
   const handleChangeBrand = (event) => {
@@ -33,7 +41,7 @@ function Navbar(props) {
             style={{ width: '130px' }}
             labelId='regionLabel'
             id='regionSelect'
-            value={region}
+            value={region || ''}
             onChange={handleChangeRegion}
           >
             <MenuItem value={'all regions'}>All Regions</MenuItem>
@@ -46,22 +54,41 @@ function Navbar(props) {
               : null}
           </Select>
         </FormControl>
-        )
+
         <FormControl id='brandSelect' className={classes.formControl}>
           <InputLabel>Select a Brand</InputLabel>
           <Select
             style={{ width: '130px' }}
             labelId='brandLabel'
             id='brandSelect'
-            value={brand}
+            value={brand || ''}
             onChange={handleChangeBrand}
           >
-            <MenuItem value={'SIMMER'}>Simmer</MenuItem>
-            <MenuItem value={'SaSo'}>Saso</MenuItem>
+            {userBrands.length
+              ? userBrands.map((brand, index) => (
+                  <MenuItem key={index} value={brand}>
+                    {brand.charAt(0).toUpperCase() +
+                      brand.slice(1).toLowerCase()}
+                  </MenuItem>
+                ))
+              : null}
           </Select>
         </FormControl>
       </div>
-      <div>
+      <div className={classes.NavLinksRight}>
+        <Button
+          className={classes.logoutButton}
+          variant='outlined'
+          color='primary'
+        >
+          <Link
+            className={classes.logoutButtonLink}
+            to='/login'
+            onClick={() => handleLogout()}
+          >
+            Logout
+          </Link>
+        </Button>
         <Link to='/'>
           <img className={classes.logo} src={image} alt='Intelly' />
         </Link>

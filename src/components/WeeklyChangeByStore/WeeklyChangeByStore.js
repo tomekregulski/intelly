@@ -17,27 +17,27 @@ import Paper from '@material-ui/core/Paper';
 import { useAPI } from '../../context/apiContext';
 import './weeklyChangeByStore.css';
 
-function createData(
-  name,
-  salesWk1,
-  changeWk1,
-  salesWk2,
-  changeWk2,
-  salesWk3,
-  changeWk3,
-  salesWk4
-) {
-  return {
-    name,
-    salesWk1,
-    changeWk1,
-    salesWk2,
-    changeWk2,
-    salesWk3,
-    changeWk3,
-    salesWk4,
-  };
-}
+// function createData(
+//   name,
+//   salesWk1,
+//   changeWk1,
+//   salesWk2,
+//   changeWk2,
+//   salesWk3,
+//   changeWk3,
+//   salesWk4
+// ) {
+//   return {
+//     name,
+//     salesWk1,
+//     changeWk1,
+//     salesWk2,
+//     changeWk2,
+//     salesWk3,
+//     changeWk3,
+//     salesWk4,
+//   };
+// }
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -82,7 +82,7 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
-  const { classes, order, orderBy, onRequestSort } = props;
+  const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -208,7 +208,7 @@ export default function WeeklyChangeByStore() {
   const [data, setData] = useState([]);
   const [width, setWidth] = React.useState(window.innerWidth);
 
-  const { timeframeStoreData, weeklyStoreData } = useAPI();
+  const { weeklyStoreData } = useAPI();
 
   React.useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
@@ -220,7 +220,7 @@ export default function WeeklyChangeByStore() {
 
   useEffect(() => {
     setData(weeklyStoreData);
-  });
+  }, [weeklyStoreData]);
 
   // useEffect(() => {
   //   if (timeframeStoreData) {
