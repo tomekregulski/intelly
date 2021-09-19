@@ -9,7 +9,8 @@ import axios from 'axios';
 const APIContext = createContext();
 
 export function APIContextProvider({ children }) {
-  const [brand, setBrand] = useState('SIMMER'); // eventually becomes userBrands[0]
+  const [userBrands, setUserBrands] = useState([]);
+  const [brand, setBrand] = useState(''); // eventually becomes userBrands[0]
   const [currentTimeframe, setCurrentTimeframe] = useState([]); // is this needed?
   const [timeframes, setTimeframes] = useState([]);
   const [currentTimeframeRawData, setCurrentTimeframeRawData] = useState([]);
@@ -31,8 +32,9 @@ export function APIContextProvider({ children }) {
   const [category, setCategory] = useState(''); // set to categoryList[0] after API call
 
   useEffect(() => {
-    console.log(brand);
+    // console.log(brand);
     async function fetchData() {
+      // console.log('initial fetch');
       const apiResponse = await axios.get(
         `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/timeframes`,
         // 'http://localhost:5000/api/whole-foods-timeframe-data/timeframes',
@@ -81,7 +83,7 @@ export function APIContextProvider({ children }) {
 
   useEffect(() => {
     if (weeklyRawData.length) {
-      console.log('hello weekly');
+      // console.log('hello weekly');
       let regionList = [];
       let skuList = [];
       let categoryList = [];
@@ -127,7 +129,7 @@ export function APIContextProvider({ children }) {
       (item) => item.category === category
     );
 
-    console.log(categoryWeeklyData);
+    // console.log(categoryWeeklyData);
 
     if (categoryCurrentData.length) {
       products = fetchTimeframeProductData(
@@ -166,7 +168,7 @@ export function APIContextProvider({ children }) {
         category
       );
 
-      console.log(weeklyProducts);
+      // console.log(weeklyProducts);
       if (stores.length) {
         setTimeframeStoreData(stores);
       }
@@ -214,6 +216,8 @@ export function APIContextProvider({ children }) {
         weeklyStoreData,
         weeklyProductData,
         setCategory,
+        setUserBrands,
+        userBrands,
       }}
     >
       {children}

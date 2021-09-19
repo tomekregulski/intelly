@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -10,6 +10,8 @@ import Box from '@material-ui/core/Box';
 import WeeklyView from '../WeeklyView/WeeklyView';
 import Welcome from '../Welcome/Welcome';
 import MonthlyView from '../MonthlyView/MonthlyView';
+import { AuthContext } from '../../context/authContext';
+import AuthService from '../../Services/auth-service';
 
 import { useAPI } from '../../context/apiContext';
 function TabPanel(props) {
@@ -86,12 +88,30 @@ const useStyles = makeStyles((theme) => ({
 export default function Navtabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [authState, setauthState] = useContext(AuthContext);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const { timeframeStoreData, categoryList, setCategory } = useAPI();
+  const {
+    setUserBrands,
+    setBrand,
+    timeframeStoreData,
+    categoryList,
+    setCategory,
+  } = useAPI();
+
+  useEffect(() => {
+    const user = AuthService.getCurrentUser();
+    if (user) {
+      // console.log(user);
+      const brands = user.brands.split(', ');
+      // console.log(brands);
+      setUserBrands(brands);
+      setBrand(brands[0]);
+    }
+  }, []);
 
   const handleCategoryChange = (value) => {
     if (categoryList) {

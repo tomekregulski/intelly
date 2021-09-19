@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAPI } from '../../context/apiContext';
 import SalesRecap from '../../components/SalesRecap/SalesRecap';
 import './weeklyView.css';

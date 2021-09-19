@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { withStyles } from '@material-ui/styles';
 import styles from '../../styles/NavStyles';
 import { Link } from 'react-router-dom';
@@ -10,9 +10,22 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 function Navbar(props) {
-  const { brand, setBrand, setRegion, currentBrandRegions, region } = useAPI();
+  const {
+    userBrands,
+    brand,
+    setBrand,
+    setRegion,
+    currentBrandRegions,
+    region,
+  } = useAPI();
 
   const { classes } = props;
+
+  useEffect(() => {
+    if (userBrands) {
+      // console.log(userBrands);
+    }
+  }, [userBrands]);
 
   const handleChangeRegion = (event) => {
     event.preventDefault();
@@ -56,8 +69,14 @@ function Navbar(props) {
             value={brand}
             onChange={handleChangeBrand}
           >
-            <MenuItem value={'SIMMER'}>Simmer</MenuItem>
-            <MenuItem value={'SaSo'}>Saso</MenuItem>
+            {userBrands.length
+              ? userBrands.map((brand, index) => (
+                  <MenuItem key={index} value={brand}>
+                    {brand.charAt(0).toUpperCase() +
+                      brand.slice(1).toLowerCase()}
+                  </MenuItem>
+                ))
+              : null}
           </Select>
         </FormControl>
       </div>
