@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,7 +10,6 @@ import Box from '@material-ui/core/Box';
 import WeeklyView from '../WeeklyView/WeeklyView';
 import Welcome from '../Welcome/Welcome';
 import MonthlyView from '../MonthlyView/MonthlyView';
-import { AuthContext } from '../../context/authContext';
 import AuthService from '../../Services/auth-service';
 
 import { useAPI } from '../../context/apiContext';
@@ -88,7 +87,6 @@ const useStyles = makeStyles((theme) => ({
 export default function Navtabs() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-  const [authState, setauthState] = useContext(AuthContext);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -111,7 +109,7 @@ export default function Navtabs() {
       setUserBrands(brands);
       setBrand(brands[0]);
     }
-  }, []);
+  }, [setBrand, setUserBrands]);
 
   const handleCategoryChange = (value) => {
     if (categoryList) {

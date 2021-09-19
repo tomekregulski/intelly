@@ -16,8 +16,6 @@ export function APIContextProvider({ children }) {
   const [currentTimeframeRawData, setCurrentTimeframeRawData] = useState([]);
   const [weeklyRawData, setWeeklyRawData] = useState([]);
 
-  // const [timeframes, setTimeframes] = useState([]); // is this needed?
-
   const [timeframeProductData, setTimeframeProductData] = useState([]); // needed - can it hold more to avoid lower-level computation?
   const [timeframeStoreData, setTimeframeStoreData] = useState([]); // needed - can it hold more to avoid lower-level computation?
   const [weeklyStoreData, setWeeklyStoreData] = useState([]); // needed - can it hold more to avoid lower-level computation?
@@ -29,7 +27,7 @@ export function APIContextProvider({ children }) {
   const [currentBrandRegions, setCurrentBrandRegions] = useState([]);
   const [region, setRegion] = useState('');
   const [categoryList, setCategoryList] = useState([]);
-  const [category, setCategory] = useState(''); // set to categoryList[0] after API call
+  const [category, setCategory] = useState('');
 
   useEffect(() => {
     // console.log(brand);
@@ -190,16 +188,12 @@ export function APIContextProvider({ children }) {
   }, [
     setCurrentBrandSkus,
     currentBrandSkus,
-    currentTimeframeRawData,
-
-    setCurrentTimeframeRawData,
     region,
     setRegion,
-    // timeframes,
     currentTimeframe,
-    setBrand,
     setCategory,
     category,
+    timeframes,
   ]);
 
   return (

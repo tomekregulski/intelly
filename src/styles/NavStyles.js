@@ -1,3 +1,5 @@
+// import { CssBaseline } from '@material-ui/core';
+
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   nav: {
@@ -18,6 +20,24 @@ export default {
     },
     '& #brandSelect': {
       marginLeft: '10px',
+    },
+  },
+  NavLinksRight: {
+    display: 'flex',
+    flexDirection: 'column-reverse',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logoutButton: {
+    borderColor: 'black',
+    // border: 'solid .5px black',
+    color: 'black',
+  },
+  logoutButtonLink: {
+    color: 'black',
+    textDecoration: 'none',
+    '&visited': {
+      color: 'black',
     },
   },
   navLinkItem: {
@@ -55,11 +75,22 @@ export default {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'flex-end',
-      justifyContent: 'space-between',
+      justifyContent: 'center',
+    },
+    NavLinksRight: {
+      width: '300px',
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
     navLinkItem: {
       marginBottom: '0',
       marginRight: '4rem',
+    },
+    logoutButton: {
+      marginBottom: '5px',
+      marginRight: '10px',
     },
   },
   '@media screen and (min-width: 1920px)': {},

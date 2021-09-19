@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { AuthContext } from '../../context/authContext';
+import React, { useState, useEffect } from 'react';
+// import { AuthContext } from '../../context/authContext';
 import AuthService from '../../Services/auth-service';
-import { useAPI } from '../../context/apiContext';
 
 const Welcome = () => {
   const [currentUser, setCurrentUser] = useState([]);
@@ -19,10 +18,9 @@ const Welcome = () => {
     <div style={{ textAlign: 'center', marginTop: '40px' }}>
       {/* <h1>Welcome to Intelly's Retail Data Dashboard!</h1> */}
       {currentUser && (
-        <h1>
-          {' '}
+        <p>
           Welcome, {currentUser.first_name} {currentUser.last_name}!
-        </h1>
+        </p>
       )}
       <p style={{ marginTop: '30px' }}>
         {/* We are just getting things off the ground, and construction is still

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/styles';
 import styles from '../../styles/NavStyles';
 import { Link } from 'react-router-dom';
@@ -8,6 +8,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 
 function Navbar(props) {
   const {
@@ -19,17 +20,11 @@ function Navbar(props) {
     region,
   } = useAPI();
 
-  const { classes } = props;
-
-  useEffect(() => {
-    if (userBrands) {
-      // console.log(userBrands);
-    }
-  }, [userBrands]);
+  const { classes, handleLogout } = props;
 
   const handleChangeRegion = (event) => {
     event.preventDefault();
-    setRegion('' || event.target.value);
+    setRegion(event.target.value);
   };
 
   const handleChangeBrand = (event) => {
@@ -46,7 +41,7 @@ function Navbar(props) {
             style={{ width: '130px' }}
             labelId='regionLabel'
             id='regionSelect'
-            value={region}
+            value={region || ''}
             onChange={handleChangeRegion}
           >
             <MenuItem value={'all regions'}>All Regions</MenuItem>
@@ -59,14 +54,14 @@ function Navbar(props) {
               : null}
           </Select>
         </FormControl>
-        )
+
         <FormControl id='brandSelect' className={classes.formControl}>
           <InputLabel>Select a Brand</InputLabel>
           <Select
             style={{ width: '130px' }}
             labelId='brandLabel'
             id='brandSelect'
-            value={brand}
+            value={brand || ''}
             onChange={handleChangeBrand}
           >
             {userBrands.length
@@ -80,7 +75,20 @@ function Navbar(props) {
           </Select>
         </FormControl>
       </div>
-      <div>
+      <div className={classes.NavLinksRight}>
+        <Button
+          className={classes.logoutButton}
+          variant='outlined'
+          color='primary'
+        >
+          <Link
+            className={classes.logoutButtonLink}
+            to='/login'
+            onClick={() => handleLogout()}
+          >
+            Logout
+          </Link>
+        </Button>
         <Link to='/'>
           <img className={classes.logo} src={image} alt='Intelly' />
         </Link>

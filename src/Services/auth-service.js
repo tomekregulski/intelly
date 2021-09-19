@@ -3,23 +3,23 @@ import axios from 'axios';
 const API_URL = '/api/users/';
 
 class AuthService {
-  login(email, password) {
-    return axios
-      .post(API_URL + 'login', {
-        email,
-        password,
-      })
-      .then((response) => {
-        if (response.data.accessToken) {
-          localStorage.setItem('user', JSON.stringify(response.data));
-        }
+  // login(email, password) {
+  //   return axios
+  //     .post(API_URL + 'login', {
+  //       email,
+  //       password,
+  //     })
+  //     .then((response) => {
+  //       if (response.data.accessToken) {
+  //         localStorage.setItem('user', JSON.stringify(response.data));
+  //       }
 
-        return response.data;
-      });
-  }
+  //       return response.data;
+  //     });
+  // }
 
   logout() {
-    localStorage.removeItem('user');
+    localStorage.removeItem('intellyUser');
   }
 
   //   register(first_name, last_name, email, password) {

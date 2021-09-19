@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { Grid, TextField, Paper, Button } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -10,11 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [authState, setAuthState] = useContext(AuthContext);
 
-  // const required = (value) => {
-  //   if (!value) {
-  //     return <div role='alert'>This field is required!</div>;
-  //   }
-  // };
+  const history = useHistory();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,7 +33,6 @@ const Login = () => {
         )
         .then((response) => {
           if (response.data.accessToken) {
-            // console.log(response.data);
             setAuthState({
               id: response.data.id,
               email: response.data.email,
@@ -46,18 +42,20 @@ const Login = () => {
               brands: response.data.brands,
               token: response.data.accessToken,
             });
+            console.log('logged in successfully');
+            history.push('/');
+            window.location.reload();
           }
         });
-      // redirectToHome();
-      console.log('logged in successfully');
-    } else {
-      console.log('Some error ocurred');
     }
   };
 
   return (
     <div style={{ padding: 30 }}>
       <Paper>
+        <h1 style={{ textAlign: 'center', padding: '40px 0' }}>
+          Please Log In
+        </h1>
         <Grid
           container
           spacing={3}
