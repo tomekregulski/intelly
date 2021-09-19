@@ -26,7 +26,7 @@ export function APIContextProvider({ children }) {
   const [currentBrandSkus, setCurrentBrandSkus] = useState([]); // is this needed?
 
   const [currentBrandRegions, setCurrentBrandRegions] = useState([]);
-  const [region, setRegion] = useState('all regions');
+  const [region, setRegion] = useState('');
   const [categoryList, setCategoryList] = useState([]);
   const [category, setCategory] = useState(''); // set to categoryList[0] after API call
 
@@ -104,6 +104,7 @@ export function APIContextProvider({ children }) {
       setCurrentBrandSkus(skuList);
       setCategoryList(categoryList);
       setCategory(categoryList[0]);
+      setRegion(regionList[0]);
     }
   }, [
     setCurrentTimeframeRawData,
