@@ -34,8 +34,8 @@ export function APIContextProvider({ children }) {
     console.log(brand);
     async function fetchData() {
       const apiResponse = await axios.get(
-        // `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/timeframes`
-        'http://localhost:5000/api/whole-foods-timeframe-data/timeframes',
+        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/timeframes`,
+        // 'http://localhost:5000/api/whole-foods-timeframe-data/timeframes',
         {
           headers: { brand: brand },
         }
@@ -54,8 +54,8 @@ export function APIContextProvider({ children }) {
   useEffect(() => {
     async function fetchData() {
       const apiResponse = await axios.get(
-        // `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
-        'http://localhost:5000/api/whole-foods-timeframe-data',
+        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
+        // 'http://localhost:5000/api/whole-foods-timeframe-data',
         {
           headers: { brand: brand, timeframe: currentTimeframe },
         }
@@ -68,8 +68,8 @@ export function APIContextProvider({ children }) {
   useEffect(() => {
     async function fetchData() {
       const apiResponse = await axios.get(
-        // `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
-        'http://localhost:5000/api/whole-foods-timeframe-data/weekly',
+        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/weekly`,
+        // 'http://localhost:5000/api/whole-foods-timeframe-data/weekly',
         {
           headers: { brand: brand, timeframes: timeframes },
         }
