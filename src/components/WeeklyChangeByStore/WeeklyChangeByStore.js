@@ -208,7 +208,7 @@ export default function WeeklyChangeByStore() {
   const [data, setData] = useState([]);
   const [width, setWidth] = React.useState(window.innerWidth);
 
-  const { timeframeStoreData } = useAPI();
+  const { timeframeStoreData, weeklyStoreData } = useAPI();
 
   React.useEffect(() => {
     const handleResizeWindow = () => setWidth(window.innerWidth);
@@ -219,32 +219,36 @@ export default function WeeklyChangeByStore() {
   }, []);
 
   useEffect(() => {
-    if (timeframeStoreData) {
-      const weeklySalesByStore = [];
+    setData(weeklyStoreData);
+  });
 
-      for (let i = 0; i < timeframeStoreData.length; i++) {
-        let week1 = 0;
-        let week2 = 0;
-        let week3 = 0;
-        let week4 = 0;
-        let storeName = timeframeStoreData[i].name;
-        for (const sku in timeframeStoreData[i].sales) {
-          week1 = week1 + timeframeStoreData[i].sales[sku].week1;
-          week2 = week2 + timeframeStoreData[i].sales[sku].week2;
-          week3 = week3 + timeframeStoreData[i].sales[sku].week3;
-          week4 = week4 + timeframeStoreData[i].sales[sku].week4;
-        }
-        let obj = {};
-        obj['name'] = storeName;
-        obj['week1'] = week1;
-        obj['week2'] = week2;
-        obj['week3'] = week3;
-        obj['week4'] = week4;
-        weeklySalesByStore.push(obj);
-      }
-      setData(weeklySalesByStore);
-    }
-  }, [timeframeStoreData]);
+  // useEffect(() => {
+  //   if (timeframeStoreData) {
+  //     const weeklySalesByStore = [];
+
+  //     for (let i = 0; i < timeframeStoreData.length; i++) {
+  //       let week1 = 0;
+  //       let week2 = 0;
+  //       let week3 = 0;
+  //       let week4 = 0;
+  //       let storeName = timeframeStoreData[i].name;
+  //       for (const sku in timeframeStoreData[i].sales) {
+  //         week1 = week1 + timeframeStoreData[i].sales[sku].week1;
+  //         week2 = week2 + timeframeStoreData[i].sales[sku].week2;
+  //         week3 = week3 + timeframeStoreData[i].sales[sku].week3;
+  //         week4 = week4 + timeframeStoreData[i].sales[sku].week4;
+  //       }
+  //       let obj = {};
+  //       obj['name'] = storeName;
+  //       obj['week1'] = week1;
+  //       obj['week2'] = week2;
+  //       obj['week3'] = week3;
+  //       obj['week4'] = week4;
+  //       weeklySalesByStore.push(obj);
+  //     }
+  //     setData(weeklySalesByStore);
+  //   }
+  // }, [timeframeStoreData]);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -308,40 +312,43 @@ export default function WeeklyChangeByStore() {
                         {item.name}
                       </TableCell>
                       <TableCell padding='none' align='right'>
-                        {item.week1 ? item.week1 : 'N/A'}
+                        {item.totalSalesWeek1 ? item.totalSalesWeek1 : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right'>
-                        {item.week1 - item.week2
+                        {item.totalSalesWeek1 - item.totalSalesWeek2
                           ? (
-                              ((item.week1 - item.week2) / item.week2) *
+                              ((item.totalSalesWeek1 - item.totalSalesWeek2) /
+                                item.totalSalesWeek2) *
                               100
                             ).toFixed(1) + '%'
                           : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right'>
-                        {item.week2 ? item.week2 : 'N/A'}
+                        {item.totalSalesWeek2 ? item.totalSalesWeek2 : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right'>
-                        {item.week3 && item.week2
+                        {item.totalSalesWeek3 && item.totalSalesWeek2
                           ? (
-                              ((item.week2 - item.week3) / item.week3) *
+                              ((item.totalSalesWeek2 - item.totalSalesWeek3) /
+                                item.totalSalesWeek3) *
                               100
                             ).toFixed(1) + '%'
                           : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right'>
-                        {item.week3 ? item.week3 : 'N/A'}
+                        {item.totalSalesWeek3 ? item.totalSalesWeek3 : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right'>
-                        {item.week4 && item.week3
+                        {item.totalSalesWeek4 && item.totalSalesWeek3
                           ? (
-                              ((item.week3 - item.week4) / item.week4) *
+                              ((item.totalSalesWeek3 - item.totalSalesWeek4) /
+                                item.totalSalesWeek4) *
                               100
                             ).toFixed(1) + '%'
                           : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right'>
-                        {item.week4 ? item.week4 : 'N/A'}
+                        {item.totalSalesWeek4 ? item.totalSalesWeek4 : 'N/A'}
                       </TableCell>
                     </TableRow>
                   );

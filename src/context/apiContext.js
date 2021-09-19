@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect, createContext } from 'react';
 import {
   fetchTimeframeProductData,
   fetchTimeframeStoreData,
+  fetchWeeklyProductData,
 } from '../dataProcessing/dataProcessing';
 import axios from 'axios';
 
@@ -9,14 +10,18 @@ const APIContext = createContext();
 
 export function APIContextProvider({ children }) {
   const [brand, setBrand] = useState('SIMMER'); // eventually becomes userBrands[0]
-  const [timeframeData, setTimeframeData] = useState([]);
+  const [currentTimeframe, setCurrentTimeframe] = useState([]); // is this needed?
   const [timeframes, setTimeframes] = useState([]);
+  const [currentTimeframeRawData, setCurrentTimeframeRawData] = useState([]);
+  const [weeklyRawData, setWeeklyRawData] = useState([]);
 
   // const [timeframes, setTimeframes] = useState([]); // is this needed?
-  const [currentTimeframe, setCurrentTimeframe] = useState([]); // is this needed?
 
-  const [timeframeStoreData, setTimeframeStoreData] = useState([]); // needed - can it hold more to avoid lower-level computation?
   const [timeframeProductData, setTimeframeProductData] = useState([]); // needed - can it hold more to avoid lower-level computation?
+  const [timeframeStoreData, setTimeframeStoreData] = useState([]); // needed - can it hold more to avoid lower-level computation?
+  const [weeklyStoreData, setWeeklyStoreData] = useState([]); // needed - can it hold more to avoid lower-level computation?
+
+  const [weeklyProductData, setWeeklyProductData] = useState([]); // needed - can it hold more to avoid lower-level computation?
 
   const [currentBrandSkus, setCurrentBrandSkus] = useState([]); // is this needed?
 
@@ -26,82 +31,106 @@ export function APIContextProvider({ children }) {
   const [category, setCategory] = useState(''); // set to categoryList[0] after API call
 
   useEffect(() => {
+    console.log(brand);
     async function fetchData() {
       const apiResponse = await axios.get(
-        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
-        // 'http://localhost:5000/api/whole-foods-timeframe-data',
+        // `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/timeframes`
+        'http://localhost:5000/api/whole-foods-timeframe-data/timeframes',
         {
           headers: { brand: brand },
         }
       );
-      setTimeframeData(apiResponse.data);
+
+      let tf = [];
+      for (let i = 0; i < apiResponse.data.length; i++) {
+        tf.push(apiResponse.data[i]['timeframe']);
+      }
+      setTimeframes(tf);
+      setCurrentTimeframe(tf[0]);
     }
     fetchData();
   }, [brand, setBrand]);
 
   useEffect(() => {
-    if (timeframeData.length) {
-      let timeframesArray = [];
-      let currentTf = null;
-      let currentTfData = [];
+    async function fetchData() {
+      const apiResponse = await axios.get(
+        // `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
+        'http://localhost:5000/api/whole-foods-timeframe-data',
+        {
+          headers: { brand: brand, timeframe: currentTimeframe },
+        }
+      );
+      setCurrentTimeframeRawData(apiResponse.data);
+    }
+    fetchData();
+  }, [setTimeframes, setCurrentTimeframe, timeframes, currentTimeframe]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const apiResponse = await axios.get(
+        // `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
+        'http://localhost:5000/api/whole-foods-timeframe-data/weekly',
+        {
+          headers: { brand: brand, timeframes: timeframes },
+        }
+      );
+      setWeeklyRawData(apiResponse.data);
+    }
+    fetchData();
+  }, [setTimeframes, setCurrentTimeframe, timeframes, currentTimeframe]);
+
+  useEffect(() => {
+    if (weeklyRawData.length) {
+      console.log('hello weekly');
       let regionList = [];
       let skuList = [];
       let categoryList = [];
-      for (let i = 0; i < timeframeData.length; i++) {
-        if (
-          timeframeData[i].timeframe.length === 8 &&
-          !timeframesArray.includes(timeframeData[i].timeframe)
-        ) {
-          timeframesArray.push(timeframeData[i].timeframe);
+
+      for (let i = 0; i < weeklyRawData.length; i++) {
+        if (!regionList.includes(weeklyRawData[i].region)) {
+          regionList.push(weeklyRawData[i].region);
         }
 
-        if (!regionList.includes(timeframeData[i].region)) {
-          regionList.push(timeframeData[i].region);
+        if (!skuList.includes(weeklyRawData[i].sku_name)) {
+          skuList.push(weeklyRawData[i].sku_name);
         }
 
-        if (!skuList.includes(timeframeData[i].sku_name)) {
-          skuList.push(timeframeData[i].sku_name);
-        }
-
-        if (!categoryList.includes(timeframeData[i].category)) {
-          categoryList.push(timeframeData[i].category);
+        if (!categoryList.includes(weeklyRawData[i].category)) {
+          categoryList.push(weeklyRawData[i].category);
         }
       }
 
-      timeframesArray.sort().reverse();
-      currentTf = timeframesArray[0];
-
-      for (let i = timeframesArray.length; i > 4; i--) {
-        timeframesArray.pop();
-      }
-      setCurrentTimeframe(currentTf);
-
-      for (var i = 0; i < timeframeData.length; i++) {
-        if (timeframeData[i].timeframe.startsWith(currentTf)) {
-          currentTfData.push(timeframeData[i]);
-        }
-      }
       setCurrentBrandRegions(regionList);
       setCurrentBrandSkus(skuList);
       setCategoryList(categoryList);
       setCategory(categoryList[0]);
-      setTimeframes(timeframesArray);
     }
-  }, [timeframeData, setTimeframeData]);
+  }, [
+    setCurrentTimeframeRawData,
+    setWeeklyRawData,
+    currentTimeframeRawData,
+    weeklyRawData,
+  ]);
 
   useEffect(() => {
     let products;
     let stores;
+    let weeklyStores;
+    let weeklyProducts;
 
-    let categoryData = timeframeData.filter(
+    let categoryCurrentData = currentTimeframeRawData.filter(
       (item) => item.category === category
     );
-    // console.log('category');
-    // console.log(categoryData);
 
-    if (categoryData.length) {
+    let categoryWeeklyData = weeklyRawData.filter(
+      (item) => item.category === category
+    );
+
+    console.log(categoryWeeklyData);
+
+    if (categoryCurrentData.length) {
       products = fetchTimeframeProductData(
-        categoryData,
+        categoryCurrentData,
         region,
         currentBrandSkus,
         timeframes,
@@ -110,7 +139,7 @@ export function APIContextProvider({ children }) {
       );
 
       stores = fetchTimeframeStoreData(
-        categoryData,
+        categoryCurrentData,
         region,
         currentBrandSkus,
         timeframes,
@@ -118,6 +147,25 @@ export function APIContextProvider({ children }) {
         category
       );
 
+      weeklyStores = fetchTimeframeStoreData(
+        categoryWeeklyData,
+        region,
+        currentBrandSkus,
+        timeframes,
+        currentTimeframe,
+        category
+      );
+
+      weeklyProducts = fetchWeeklyProductData(
+        categoryWeeklyData,
+        region,
+        currentBrandSkus,
+        timeframes,
+        currentTimeframe,
+        category
+      );
+
+      console.log(weeklyProducts);
       if (stores.length) {
         setTimeframeStoreData(stores);
       }
@@ -125,12 +173,23 @@ export function APIContextProvider({ children }) {
         setTimeframeProductData(products);
         // console.log(products);
       }
+
+      if (weeklyStores.length) {
+        setWeeklyStoreData(weeklyStores);
+        // console.log(products);
+      }
+
+      if (weeklyProducts.length) {
+        setWeeklyProductData(weeklyProducts);
+        // console.log(products);
+      }
     }
   }, [
     setCurrentBrandSkus,
     currentBrandSkus,
-    timeframeData,
-    setTimeframeData,
+    currentTimeframeRawData,
+
+    setCurrentTimeframeRawData,
     region,
     setRegion,
     // timeframes,
@@ -151,6 +210,8 @@ export function APIContextProvider({ children }) {
         currentBrandSkus,
         categoryList,
         setBrand,
+        weeklyStoreData,
+        weeklyProductData,
         setCategory,
       }}
     >

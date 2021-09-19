@@ -18,13 +18,13 @@ const useStyles = makeStyles({
 
 function DenseTable() {
   const [data, setData] = useState([]);
-  const { timeframeProductData } = useAPI();
+  const { weeklyProductData } = useAPI();
 
   const classes = useStyles();
 
   useEffect(() => {
-    setData(timeframeProductData);
-  }, [timeframeProductData]);
+    setData(weeklyProductData);
+  }, [weeklyProductData]);
 
   return (
     <>

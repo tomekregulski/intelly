@@ -36,7 +36,7 @@ const TotalSalesStores = (props) => {
 
   useEffect(() => {
     if (props) {
-      console.log(props);
+      // console.log(props);
       let stores = [];
       let sales = [];
 

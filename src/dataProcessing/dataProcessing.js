@@ -193,3 +193,67 @@ export const fetchTimeframeStoreData = (
 // new productData
 // retrieve week 1 of 4 timeframes
 //
+
+export const fetchWeeklyProductData = (
+  data,
+  region,
+  skuList,
+  timeframes,
+  currentTimeframe
+) => {
+  let skus = [];
+  let filteredData;
+  if (region !== 'all regions') {
+    filteredData = data.filter((item) => item.region === region);
+  } else {
+    filteredData = data;
+  }
+
+  if (filteredData.length) {
+    filteredData.map((item) => {
+      if (!skus.find((o) => o.name === item.sku_name)) {
+        skus.push({
+          name: item.sku_name,
+          unitSalesLW: 0,
+          unitSalesWeek2: 0,
+          unitSalesWeek3: 0,
+          unitSalesWeek4: 0,
+        });
+      }
+    });
+  }
+
+  for (var i = 0; i < filteredData.length; i++) {
+    for (var j = 0; j < skus.length; j++) {
+      if (
+        filteredData[i].sku_name === skus[j].name &&
+        filteredData[i].timeframe === currentTimeframe
+      ) {
+        skus[j].unitSalesLW =
+          skus[j].unitSalesLW + parseInt(filteredData[i].unit_sales);
+      }
+      if (
+        filteredData[i].sku_name === skus[j].name &&
+        filteredData[i].timeframe === timeframes[1]
+      ) {
+        skus[j].unitSalesWeek2 =
+          skus[j].unitSalesWeek2 + parseInt(filteredData[i].unit_sales);
+      }
+      if (
+        filteredData[i].sku_name === skus[j].name &&
+        filteredData[i].timeframe === timeframes[2]
+      ) {
+        skus[j].unitSalesWeek3 =
+          skus[j].unitSalesWeek3 + parseInt(filteredData[i].unit_sales);
+      }
+      if (
+        filteredData[i].sku_name === skus[j].name &&
+        filteredData[i].timeframe === timeframes[3]
+      ) {
+        skus[j].unitSalesWeek4 =
+          skus[j].unitSalesWeek4 + parseInt(filteredData[i].unit_sales);
+      }
+    }
+  }
+  return skus;
+};

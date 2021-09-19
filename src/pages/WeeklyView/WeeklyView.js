@@ -33,7 +33,6 @@ function Dashboard() {
               </div>
               <div className='tableContainer'>
                 <UnitsSoldPerStorePerWeek />
-                <TotalSalesByStoreTable />
               </div>
               <div className='tableContainer'>
                 <WeeklyTable />
