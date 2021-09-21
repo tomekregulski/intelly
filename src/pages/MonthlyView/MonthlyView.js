@@ -1,16 +1,15 @@
 import React from 'react';
+import MonthlySalesRecap from '../../components/MonthlySalesRecap/MonthlySalesRecap';
+import MonthlyVelocityTable from '../../components/MonthlyVelocityTable/MonthlyVelocityTable';
+import MonthlyRevenueRecap from '../../components/MonthlyRevenueRecap/MonthlyRevenueRecap';
+import './monthlyView.css';
 
 const MonthlyView = () => {
   return (
-    <div style={{ textAlign: 'center', marginTop: '40px' }}>
-      <h1>Monthly View Coming Soon!</h1>
-      <p style={{ marginTop: '30px' }}>
-        This section will allow longterm lookbacks at the monthly and quarterly
-        levels.
-      </p>
-      <p style={{ marginTop: '5px' }}>
-        Please come back soon to see how things are moving along!
-      </p>
+    <div id='monthlyViewContainer'>
+      <MonthlyRevenueRecap />
+      <MonthlySalesRecap />
+      <MonthlyVelocityTable />
     </div>
   );
 };

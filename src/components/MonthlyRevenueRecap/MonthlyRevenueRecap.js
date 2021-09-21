@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { useAPI } from '../../context/apiContext';
-import './monthlySalesRecap.css';
+import './monthlyRevenueRecap.css';
 
 const useStyles = makeStyles({
   table: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   },
 });
 
-function MonthlySalesRecap() {
+function MonthlyRevenueRecap() {
   const [data, setData] = useState([]);
   const { monthlyProductData } = useAPI();
   const classes = useStyles();
@@ -33,7 +33,7 @@ function MonthlySalesRecap() {
 
   return (
     <>
-      <TableContainer id='monthlySalesRecap' component={Paper}>
+      <TableContainer id='monthlyRevenueRecap' component={Paper}>
         <Table
           className={classes.table}
           // className='tableBody'
@@ -49,7 +49,7 @@ function MonthlySalesRecap() {
                 align='center'
                 colSpan={9}
               >
-                Unit Sales Recap
+                Revenue Recap
               </TableCell>
             </TableRow>
             <TableRow className='tableSubHeader'>
@@ -118,36 +118,36 @@ function MonthlySalesRecap() {
                     {item.name}
                   </TableCell>
                   <TableCell style={cellStyle} padding='none' align='center'>
-                    {item.unitSales4W
-                      ? parseFloat(item.unitSales4W).toFixed(0)
+                    {item.netSales4W
+                      ? '$' + parseFloat(item.netSales4W).toFixed(2)
                       : 'N/A'}
                   </TableCell>
                   <TableCell style={cellStyle} padding='none' align='center'>
-                    {item.unitSales8W
+                    {item.netSales8W
                       ? parseFloat(
-                          ((item.unitSales4W - item.unitSales8W) /
-                            item.unitSales8W) *
+                          ((item.netSales4W - item.netSales8W) /
+                            item.netSales8W) *
                             100
                         ).toFixed(1) + '%'
                       : 'N/A'}
                   </TableCell>
                   <TableCell style={cellStyle} padding='none' align='center'>
-                    {item.unitSales8W
-                      ? parseFloat(item.unitSales8W).toFixed(0)
+                    {item.netSales8W
+                      ? '$' + parseFloat(item.netSales8W).toFixed(2)
                       : 'N/A'}
                   </TableCell>
                   <TableCell style={cellStyle} padding='none' align='center'>
-                    {item.unitSales12W
+                    {item.netSales12W
                       ? parseFloat(
-                          ((item.unitSales8W - item.unitSales12W) /
-                            item.unitSales12W) *
+                          ((item.netSales8W - item.netSales12W) /
+                            item.netSales12W) *
                             100
                         ).toFixed(1) + '%'
                       : 'N/A'}
                   </TableCell>
                   <TableCell style={cellStyle} padding='none' align='center'>
-                    {item.unitSales12W
-                      ? parseFloat(item.unitSales12W).toFixed(0)
+                    {item.netSales12W
+                      ? '$' + parseFloat(item.netSales12W).toFixed(2)
                       : 'N/A'}
                   </TableCell>
                 </TableRow>
@@ -159,4 +159,4 @@ function MonthlySalesRecap() {
   );
 }
 
-export default MonthlySalesRecap;
+export default MonthlyRevenueRecap;

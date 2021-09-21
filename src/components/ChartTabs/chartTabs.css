@@ -18,21 +18,15 @@
 @media (min-width: 800px) {
   #skuSalesChartRoot,
   #storeSalesChartRoot {
-    max-width: 730px;
+    max-width: 750px;
   }
 }
 
-@media (min-width: 1300px) {
-  #skuSalesChartRoot,
+@media (min-width: 1550px) {
   #storeSalesChartRoot {
-    max-width: 630px;
-    margin: 0;
-  }
-
-  #storeSalesChartRoot {
-    margin-right: 20px;
+    margin-right: 6px;
   }
   #skuSalesChartRoot {
-    margin-left: 20px;
+    margin-left: 6px;
   }
 }

@@ -43,22 +43,6 @@
 .MuiTablePagination-toolbar {
   height: 10px;
 }
-/* 
-.MuiTableRow-root td:first-child {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.MuiTableRow-root td:last-child {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.MuiTablePagination-root {
-
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-} */
 
 @media (min-width: 650px) {
   #rootWeeklyStore {

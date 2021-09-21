@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import { AuthContext } from '../../context/authContext';
 import AuthService from '../../Services/auth-service';
+import WelcomeTable from '../../components/WelcomeTable/WelcomeTable';
 
 const Welcome = () => {
   const [currentUser, setCurrentUser] = useState([]);
@@ -15,25 +16,17 @@ const Welcome = () => {
   }, []);
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '40px' }}>
-      {/* <h1>Welcome to Intelly's Retail Data Dashboard!</h1> */}
-      {currentUser && (
-        <p>
-          Welcome, {currentUser.first_name} {currentUser.last_name}!
-        </p>
-      )}
-      <p style={{ marginTop: '30px' }}>
-        {/* We are just getting things off the ground, and construction is still
-        underway for both the Welcome and Monthly pages. */}
-        This dashboard will allow you to review Whole Foods sales portal data
-        for any brands that you have registered with us.
+    <div style={{ textAlign: 'center', margin: '40px auto 0', width: '90%' }}>
+      {currentUser && <h1>Retail Data Dashboard</h1>}
+      <p style={{ marginTop: '15px' }}>
+        The table on this page displays a handful of top-level metrics for your
+        brand and region.
       </p>
       <p style={{ marginTop: '5px' }}>
-        {/* In the meantime, please feel free to explore the Weekly page, and come
-        back soon to see how things are moving along! */}
-        To get started, use the menus above to select a brand and/or region, and
-        then navigate over to the weekly or monthly view.
+        Use the menu in the top-left corner to shift focus, or head into the
+        Weekly and Monthly views to dive deeper.
       </p>
+      <WelcomeTable />
     </div>
   );
 };

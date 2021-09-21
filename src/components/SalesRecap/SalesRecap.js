@@ -12,7 +12,7 @@ import './salesRecap.css';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+    minWidth: 750,
   },
 });
 
@@ -21,20 +21,20 @@ function SalesRecap() {
   const { timeframeProductData } = useAPI();
   const classes = useStyles();
 
-  // console.log(timeframeProductData);
-
   useEffect(() => {
     if (timeframeProductData) {
       setData(timeframeProductData);
     }
   }, [timeframeProductData]);
 
+  const cellStyle = {
+    padding: '3px',
+  };
+
   return (
     <>
       <TableContainer id='salesRecap' component={Paper}>
         <Table
-          // fixedHeader={false}
-          // style={{ width: 'auto', tableLayout: 'auto' }}
           className={classes.table}
           // className='tableBody'
           size='small'
@@ -43,6 +43,7 @@ function SalesRecap() {
           <TableHead>
             <TableRow>
               <TableCell
+                style={cellStyle}
                 padding='none'
                 className='tableTitle'
                 align='center'
@@ -53,12 +54,14 @@ function SalesRecap() {
             </TableRow>
             <TableRow className='subHeader'>
               <TableCell
+                style={cellStyle}
                 padding='none'
                 colSpan={1}
                 className='tableHeaders'
                 align='center'
               ></TableCell>
               <TableCell
+                style={cellStyle}
                 padding='none'
                 colSpan={2}
                 className='tableHeaders'
@@ -67,6 +70,7 @@ function SalesRecap() {
                 Last Week
               </TableCell>
               <TableCell
+                style={cellStyle}
                 padding='none'
                 colSpan={2}
                 className='tableHeaders'
@@ -75,6 +79,7 @@ function SalesRecap() {
                 4 Weeks
               </TableCell>
               <TableCell
+                style={cellStyle}
                 padding='none'
                 colSpan={2}
                 className='tableHeaders'
@@ -83,6 +88,7 @@ function SalesRecap() {
                 12 Weeks
               </TableCell>
               <TableCell
+                style={cellStyle}
                 padding='none'
                 colSpan={2}
                 className='tableHeaders'
@@ -92,31 +98,76 @@ function SalesRecap() {
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell padding='none' className='tableHeaders' align='left'>
+              <TableCell
+                style={cellStyle}
+                padding='none'
+                className='tableHeaders'
+                align='left'
+              >
                 Product
               </TableCell>
-              <TableCell padding='none' className='tableHeaders' align='right'>
+              <TableCell
+                style={cellStyle}
+                padding='none'
+                className='tableHeaders'
+                align='right'
+              >
                 Sales
               </TableCell>
-              <TableCell padding='none' className='tableHeaders' align='right'>
+              <TableCell
+                style={cellStyle}
+                padding='none'
+                className='tableHeaders'
+                align='right'
+              >
                 Revenue
               </TableCell>
-              <TableCell padding='none' className='tableHeaders' align='right'>
+              <TableCell
+                style={cellStyle}
+                padding='none'
+                className='tableHeaders'
+                align='right'
+              >
                 Sales
               </TableCell>
-              <TableCell padding='none' className='tableHeaders' align='right'>
+              <TableCell
+                style={cellStyle}
+                padding='none'
+                className='tableHeaders'
+                align='right'
+              >
                 Revenue
               </TableCell>
-              <TableCell padding='none' className='tableHeaders' align='right'>
+              <TableCell
+                style={cellStyle}
+                padding='none'
+                className='tableHeaders'
+                align='right'
+              >
                 Sales
               </TableCell>
-              <TableCell padding='none' className='tableHeaders' align='right'>
+              <TableCell
+                style={cellStyle}
+                padding='none'
+                className='tableHeaders'
+                align='right'
+              >
                 Revenue
               </TableCell>
-              <TableCell padding='none' className='tableHeaders' align='right'>
+              <TableCell
+                style={cellStyle}
+                padding='none'
+                className='tableHeaders'
+                align='right'
+              >
                 Sales
               </TableCell>
-              <TableCell padding='none' className='tableHeaders' align='right'>
+              <TableCell
+                style={cellStyle}
+                padding='none'
+                className='tableHeaders'
+                align='right'
+              >
                 Revenue
               </TableCell>
             </TableRow>
@@ -129,6 +180,7 @@ function SalesRecap() {
                   className={index % 2 === 1 ? 'highlighted' : null}
                 >
                   <TableCell
+                    style={cellStyle}
                     align='left'
                     padding='none'
                     component='th'
@@ -136,28 +188,28 @@ function SalesRecap() {
                   >
                     {item.name}
                   </TableCell>
-                  <TableCell padding='none' align='right'>
+                  <TableCell style={cellStyle} padding='none' align='right'>
                     {parseFloat(item.unitSalesLW).toFixed(0)}
                   </TableCell>
-                  <TableCell padding='none' align='right'>
+                  <TableCell style={cellStyle} padding='none' align='right'>
                     ${parseFloat(item.netSalesLW).toFixed(2)}
                   </TableCell>
-                  <TableCell padding='none' align='right'>
+                  <TableCell style={cellStyle} padding='none' align='right'>
                     {parseFloat(item.unitSales4W).toFixed(0)}
                   </TableCell>
-                  <TableCell padding='none' align='right'>
+                  <TableCell style={cellStyle} padding='none' align='right'>
                     ${parseFloat(item.netSales4W).toFixed(2)}
                   </TableCell>
-                  <TableCell padding='none' align='right'>
+                  <TableCell style={cellStyle} padding='none' align='right'>
                     {parseFloat(item.unitSales12W).toFixed(0)}
                   </TableCell>
-                  <TableCell padding='none' align='right'>
+                  <TableCell style={cellStyle} padding='none' align='right'>
                     ${parseFloat(item.netSales12W).toFixed(2)}
                   </TableCell>
-                  <TableCell padding='none' align='right'>
+                  <TableCell style={cellStyle} padding='none' align='right'>
                     {parseFloat(item.unitSales52W).toFixed(0)}
                   </TableCell>
-                  <TableCell padding='none' align='right'>
+                  <TableCell style={cellStyle} padding='none' align='right'>
                     ${parseFloat(item.netSales52W).toFixed(2)}
                   </TableCell>
                 </TableRow>

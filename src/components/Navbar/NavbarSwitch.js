@@ -3,9 +3,6 @@ import Navbar from './Navbar';
 import NavbarLoggedOut from './NavbarLoggedOut';
 import AuthService from '../../Services/auth-service';
 
-// import AuthService from '../../Services/auth-service';
-// import { useAPI } from '../../context/apiContext';
-
 function NavbarSwitch() {
   const [currentUser, setCurrentUser] = useState({});
 

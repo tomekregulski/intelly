@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useAPI } from '../../context/apiContext';
+
 import PropTypes from 'prop-types';
-// import clsx from 'clsx';
-import {
-  // lighten,
-  makeStyles,
-} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -14,30 +11,9 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
-import { useAPI } from '../../context/apiContext';
-import './weeklyChangeByStore.css';
 
-// function createData(
-//   name,
-//   salesWk1,
-//   changeWk1,
-//   salesWk2,
-//   changeWk2,
-//   salesWk3,
-//   changeWk3,
-//   salesWk4
-// ) {
-//   return {
-//     name,
-//     salesWk1,
-//     changeWk1,
-//     salesWk2,
-//     changeWk2,
-//     salesWk3,
-//     changeWk3,
-//     salesWk4,
-//   };
-// }
+import { makeStyles } from '@material-ui/core/styles';
+import './weeklyChangeByStore.css';
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -87,10 +63,15 @@ function EnhancedTableHead(props) {
     onRequestSort(event, property);
   };
 
+  const cellStyle = {
+    padding: '3px',
+  };
+
   return (
     <TableHead>
       <TableRow>
         <TableCell
+          style={cellStyle}
           padding='none'
           className='tableTitle'
           align='center'
@@ -101,12 +82,14 @@ function EnhancedTableHead(props) {
       </TableRow>
       <TableRow>
         <TableCell
+          style={cellStyle}
           padding='none'
           className='tableTitle'
           align='center'
           colSpan={1}
         ></TableCell>
         <TableCell
+          style={cellStyle}
           padding='none'
           className='tableTitle'
           align='center'
@@ -115,6 +98,7 @@ function EnhancedTableHead(props) {
           Week 1
         </TableCell>
         <TableCell
+          style={cellStyle}
           padding='none'
           className='tableTitle'
           align='center'
@@ -123,6 +107,7 @@ function EnhancedTableHead(props) {
           Week 2
         </TableCell>
         <TableCell
+          style={cellStyle}
           padding='none'
           className='tableTitle'
           align='center'
@@ -131,6 +116,7 @@ function EnhancedTableHead(props) {
           Week 3
         </TableCell>
         <TableCell
+          style={cellStyle}
           padding='none'
           className='tableTitle'
           align='center'
@@ -142,6 +128,7 @@ function EnhancedTableHead(props) {
       <TableRow>
         {headCells.map((headCell) => (
           <TableCell
+            style={cellStyle}
             className='tableHeaders'
             key={headCell.id}
             align={headCell.numeric ? 'right' : 'left'}
@@ -178,7 +165,7 @@ EnhancedTableHead.propTypes = {
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    // margin: '20px 0 0 2.5px',
+    padding: '10px 10px',
   },
   paper: {
     width: '100%',
@@ -222,33 +209,9 @@ export default function WeeklyChangeByStore() {
     setData(weeklyStoreData);
   }, [weeklyStoreData]);
 
-  // useEffect(() => {
-  //   if (timeframeStoreData) {
-  //     const weeklySalesByStore = [];
-
-  //     for (let i = 0; i < timeframeStoreData.length; i++) {
-  //       let week1 = 0;
-  //       let week2 = 0;
-  //       let week3 = 0;
-  //       let week4 = 0;
-  //       let storeName = timeframeStoreData[i].name;
-  //       for (const sku in timeframeStoreData[i].sales) {
-  //         week1 = week1 + timeframeStoreData[i].sales[sku].week1;
-  //         week2 = week2 + timeframeStoreData[i].sales[sku].week2;
-  //         week3 = week3 + timeframeStoreData[i].sales[sku].week3;
-  //         week4 = week4 + timeframeStoreData[i].sales[sku].week4;
-  //       }
-  //       let obj = {};
-  //       obj['name'] = storeName;
-  //       obj['week1'] = week1;
-  //       obj['week2'] = week2;
-  //       obj['week3'] = week3;
-  //       obj['week4'] = week4;
-  //       weeklySalesByStore.push(obj);
-  //     }
-  //     setData(weeklySalesByStore);
-  //   }
-  // }, [timeframeStoreData]);
+  const cellStyle = {
+    padding: '3px',
+  };
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -308,13 +271,14 @@ export default function WeeklyChangeByStore() {
                         id={labelId}
                         scope='row'
                         padding='none'
+                        style={cellStyle}
                       >
                         {item.name}
                       </TableCell>
-                      <TableCell padding='none' align='right'>
+                      <TableCell padding='none' align='right' style={cellStyle}>
                         {item.totalSalesWeek1 ? item.totalSalesWeek1 : 'N/A'}
                       </TableCell>
-                      <TableCell padding='none' align='right'>
+                      <TableCell padding='none' align='right' style={cellStyle}>
                         {item.totalSalesWeek1 - item.totalSalesWeek2
                           ? (
                               ((item.totalSalesWeek1 - item.totalSalesWeek2) /
@@ -323,10 +287,10 @@ export default function WeeklyChangeByStore() {
                             ).toFixed(1) + '%'
                           : 'N/A'}
                       </TableCell>
-                      <TableCell padding='none' align='right'>
+                      <TableCell padding='none' align='right' style={cellStyle}>
                         {item.totalSalesWeek2 ? item.totalSalesWeek2 : 'N/A'}
                       </TableCell>
-                      <TableCell padding='none' align='right'>
+                      <TableCell padding='none' align='right' style={cellStyle}>
                         {item.totalSalesWeek3 && item.totalSalesWeek2
                           ? (
                               ((item.totalSalesWeek2 - item.totalSalesWeek3) /
@@ -335,10 +299,10 @@ export default function WeeklyChangeByStore() {
                             ).toFixed(1) + '%'
                           : 'N/A'}
                       </TableCell>
-                      <TableCell padding='none' align='right'>
+                      <TableCell padding='none' align='right' style={cellStyle}>
                         {item.totalSalesWeek3 ? item.totalSalesWeek3 : 'N/A'}
                       </TableCell>
-                      <TableCell padding='none' align='right'>
+                      <TableCell padding='none' align='right' style={cellStyle}>
                         {item.totalSalesWeek4 && item.totalSalesWeek3
                           ? (
                               ((item.totalSalesWeek3 - item.totalSalesWeek4) /
@@ -347,7 +311,7 @@ export default function WeeklyChangeByStore() {
                             ).toFixed(1) + '%'
                           : 'N/A'}
                       </TableCell>
-                      <TableCell padding='none' align='right'>
+                      <TableCell padding='none' align='right' style={cellStyle}>
                         {item.totalSalesWeek4 ? item.totalSalesWeek4 : 'N/A'}
                       </TableCell>
                     </TableRow>

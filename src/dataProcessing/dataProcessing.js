@@ -257,3 +257,87 @@ export const fetchWeeklyProductData = (
   }
   return skus;
 };
+
+export const fetchMonthlyProducts = (
+  data,
+  region,
+  skuList,
+  timeframes,
+  currentTimeframe
+) => {
+  let skus = [];
+  let filteredData;
+  if (region !== 'all regions') {
+    filteredData = data.filter((item) => item.region === region);
+  } else {
+    filteredData = data;
+  }
+
+  if (filteredData.length) {
+    filteredData.map((item) => {
+      if (!skus.find((o) => o.name === item.sku_name)) {
+        skus.push({
+          name: item.sku_name,
+        });
+      }
+    });
+  }
+
+  for (let i = 0; i < skus.length; i++) {
+    for (let j = 0; j < timeframes.length; j++) {
+      const storesKey = `stores${(j + 1) * 4}W`;
+      const netSalesKey = `netSales${(j + 1) * 4}W`;
+      const unitSalesKey = `unitSales${(j + 1) * 4}W`;
+      skus[i][storesKey] = 0;
+      skus[i][netSalesKey] = 0;
+      skus[i][unitSalesKey] = 0;
+    }
+  }
+
+  for (var i = 0; i < filteredData.length; i++) {
+    for (let j = 0; j < timeframes.length; j++) {
+      let storeKey;
+      let unitSalesKey;
+      let netSalesKey;
+      let week;
+      let sku;
+      let netSales;
+      let unitSales;
+      if (timeframes[j] === filteredData[i].timeframe) {
+        week = (j + 1) * 4;
+        storeKey = `stores${week}W`;
+        unitSalesKey = `unitSales${week}W`;
+        netSalesKey = `netSales${week}W`;
+        sku = filteredData[i].sku_name;
+        netSales = filteredData[i].net_sales;
+        unitSales = filteredData[i].unit_sales;
+      }
+      for (let k = 0; k < skus.length; k++) {
+        if (skus[k].name === sku) {
+          skus[k][storeKey] = skus[k][storeKey] + 1;
+          skus[k][unitSalesKey] = skus[k][unitSalesKey] + parseInt(unitSales);
+          skus[k][netSalesKey] = skus[k][netSalesKey] + parseInt(netSales);
+        }
+      }
+    }
+  }
+
+  // for (var i = 0; i < filteredData.length; i++) {
+  //   for (var j = 0; j < timeframes.length; j++) {
+  //     for (var k = 0; k < skus.length; k++) {
+  //       if (
+  //         filteredData[i].sku_name === skus[k].name &&
+  //         filteredData[i].timeframe === timeframes[j]
+  //       ) {
+  //         skus[k].stores4W = skus[k].stores4W + 1;
+  //         skus[k].netSales4W =
+  //           skus[k].netSales4W + parseInt(filteredData[i].net_sales);
+  //         skus[k].unitSales4W =
+  //           skus[k].unitSales4W + parseInt(filteredData[i].unit_sales);
+  //       }
+  //     }
+  //   }
+  // }
+  console.log(skus);
+  return skus;
+};
