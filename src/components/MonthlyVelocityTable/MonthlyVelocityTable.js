@@ -140,7 +140,11 @@ export default function MonthlyVelocityTable() {
                   {item.name}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='center'>
-                  {parseFloat(item.unitSales4W / item.stores4W / 4).toFixed(1)}
+                  {item.unitSales4W
+                    ? parseFloat(item.unitSales4W / item.stores4W / 4).toFixed(
+                        1
+                      )
+                    : 'N/A'}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='center'>
                   {item.unitSales8W
@@ -153,7 +157,11 @@ export default function MonthlyVelocityTable() {
                     : 'N/A'}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='center'>
-                  {parseFloat(item.unitSales8W / item.stores8W / 4).toFixed(1)}
+                  {item.unitSales8W
+                    ? parseFloat(item.unitSales8W / item.stores8W / 4).toFixed(
+                        1
+                      )
+                    : 'N/A'}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='center'>
                   {item.unitSales12W
@@ -188,29 +196,37 @@ export default function MonthlyVelocityTable() {
                 Grand Total
               </TableCell>
               <TableCell style={gtCellStyle} padding='none' align='center'>
-                {grandTotals.velocityM1.toFixed(1)}
+                {grandTotals.velocityM1
+                  ? grandTotals.velocityM1.toFixed(1)
+                  : 'N/A'}
               </TableCell>
               <TableCell style={gtCellStyle} padding='none' align='center'>
-                {(
-                  ((grandTotals.velocityM1 - grandTotals.velocityM2) /
-                    grandTotals.velocityM2) *
-                  100
-                ).toFixed(1)}
-                %
+                {grandTotals.velocityM2
+                  ? (
+                      ((grandTotals.velocityM1 - grandTotals.velocityM2) /
+                        grandTotals.velocityM2) *
+                      100
+                    ).toFixed(1) + '%'
+                  : 'N/A'}
               </TableCell>
               <TableCell style={gtCellStyle} padding='none' align='center'>
-                {grandTotals.velocityM2.toFixed(1)}
+                {grandTotals.velocityM2
+                  ? grandTotals.velocityM2.toFixed(1)
+                  : 'N/A'}
               </TableCell>
               <TableCell style={gtCellStyle} padding='none' align='center'>
-                {(
-                  ((grandTotals.velocityM2 - grandTotals.velocityM3) /
-                    grandTotals.velocityM3) *
-                  100
-                ).toFixed(1)}
-                %
+                {grandTotals.velocityM3
+                  ? (
+                      ((grandTotals.velocityM2 - grandTotals.velocityM3) /
+                        grandTotals.velocityM3) *
+                      100
+                    ).toFixed(1) + '%'
+                  : 'N/A'}
               </TableCell>
               <TableCell style={gtCellStyle} padding='none' align='center'>
-                {grandTotals.velocityM3.toFixed(1)}
+                {grandTotals.velocityM3
+                  ? grandTotals.velocityM3.toFixed(1)
+                  : 'N/A'}
               </TableCell>
             </TableRow>
           ) : null}

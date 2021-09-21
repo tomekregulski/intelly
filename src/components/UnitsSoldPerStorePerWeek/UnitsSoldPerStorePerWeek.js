@@ -235,16 +235,24 @@ export default function UnitsSoldPerStorePerWeek() {
                 {grandTotals.storesLW}
               </TableCell>
               <TableCell style={gtCellStyle} padding='none' align='right'>
-                {grandTotals.velocityLW.toFixed(1)}
+                {grandTotals.velocityLW
+                  ? grandTotals.velocityLW.toFixed(1)
+                  : 'N/A'}
               </TableCell>
               <TableCell style={gtCellStyle} padding='none' align='right'>
-                {grandTotals.velocity4W.toFixed(1)}
+                {grandTotals.velocity4W
+                  ? grandTotals.velocity4W.toFixed(1)
+                  : 'N/A'}
               </TableCell>
               <TableCell style={gtCellStyle} padding='none' align='right'>
-                {grandTotals.velocity12W.toFixed(1)}
+                {grandTotals.velocity12W
+                  ? grandTotals.velocity12W.toFixed(1)
+                  : 'N/A'}
               </TableCell>
               <TableCell style={gtCellStyle} padding='none' align='right'>
-                {grandTotals.velocity52W.toFixed(1)}
+                {grandTotals.velocity52W
+                  ? grandTotals.velocity52W.toFixed(1)
+                  : 'N/A'}
               </TableCell>
             </TableRow>
           ) : null}
