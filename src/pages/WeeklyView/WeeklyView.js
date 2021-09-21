@@ -8,7 +8,6 @@ import TotalSalesByStoreTable from '../../components/TotalSalesStores/TotalSales
 import WeeklyChangeByStore from '../../components/WeeklyChangeByStore/WeeklyChangeByStore';
 import UnitsSoldPerStorePerWeek from '../../components/UnitsSoldPerStorePerWeek/UnitsSoldPerStorePerWeek';
 import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
-// import TableTest from '../../components/TableTest/TableTest';
 
 function Dashboard() {
   const [width, setWidth] = React.useState(window.innerWidth);
