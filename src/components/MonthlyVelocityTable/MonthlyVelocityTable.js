@@ -11,18 +11,19 @@ import { useAPI } from '../../context/apiContext';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 730,
+    minWidth: 650,
   },
 });
-
-export default function UnitsSoldPerStorePerWeek() {
+export default function MonthlyVelocityTable() {
   const [data, setData] = useState([]);
-  const { timeframeProductData } = useAPI();
+  const { monthlyProductData } = useAPI();
   const classes = useStyles();
 
   useEffect(() => {
-    setData(timeframeProductData);
-  }, [timeframeProductData]);
+    if (monthlyProductData) {
+      setData(monthlyProductData);
+    }
+  }, [monthlyProductData]);
 
   const cellStyle = {
     padding: '3px',
@@ -40,33 +41,7 @@ export default function UnitsSoldPerStorePerWeek() {
               align='center'
               colSpan={7}
             >
-              Units Sold Per Store Per Week
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell
-              style={cellStyle}
-              padding='none'
-              className='tableHeaders'
-              colSpan={1}
-            />
-            <TableCell
-              style={cellStyle}
-              padding='none'
-              className='tableHeaders'
-              colSpan={2}
-              align='center'
-            >
-              Last Week
-            </TableCell>
-            <TableCell
-              style={cellStyle}
-              padding='none'
-              className='tableHeaders'
-              colSpan={4}
-              align='center'
-            >
-              Average Units Sold Per Store Per Week
+              Units Sold Per Store Per Month
             </TableCell>
           </TableRow>
           <TableRow className='tableSubHeader'>
@@ -81,49 +56,41 @@ export default function UnitsSoldPerStorePerWeek() {
               style={cellStyle}
               padding='none'
               className='tableHeaders'
-              align='right'
+              align='center'
             >
-              Units Sold
+              Month 1
             </TableCell>
             <TableCell
               style={cellStyle}
               padding='none'
               className='tableHeaders'
-              align='right'
+              align='center'
             >
-              Total Stores
+              % Change
             </TableCell>
             <TableCell
               style={cellStyle}
               padding='none'
               className='tableHeaders'
-              align='right'
+              align='center'
             >
-              Last Week
+              Month 2
             </TableCell>
             <TableCell
               style={cellStyle}
               padding='none'
               className='tableHeaders'
-              align='right'
+              align='center'
             >
-              4 Weeks
+              % Change
             </TableCell>
             <TableCell
               style={cellStyle}
               padding='none'
               className='tableHeaders'
-              align='right'
+              align='center'
             >
-              12 Weeks
-            </TableCell>
-            <TableCell
-              style={cellStyle}
-              padding='none'
-              className='tableHeaders'
-              align='right'
-            >
-              52 Weeks
+              Month 3
             </TableCell>
           </TableRow>
         </TableHead>
@@ -143,27 +110,38 @@ export default function UnitsSoldPerStorePerWeek() {
                 >
                   {item.name}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
-                  {parseFloat(item.unitSalesLW)}
-                </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
-                  {item.storesLW}
-                </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
-                  {parseFloat(item.unitSalesLW / item.storesLW).toFixed(1)}
-                </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
+                <TableCell style={cellStyle} padding='none' align='center'>
                   {parseFloat(item.unitSales4W / item.stores4W / 4).toFixed(1)}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
-                  {parseFloat(item.unitSales12W / item.stores12W / 12).toFixed(
-                    1
-                  )}
+                <TableCell style={cellStyle} padding='none' align='center'>
+                  {item.unitSales8W
+                    ? parseFloat(
+                        ((item.unitSales4W / item.stores4W / 4 -
+                          item.unitSales8W / item.stores8W / 4) /
+                          (item.unitSales8W / item.stores8W / 4)) *
+                          100
+                      ).toFixed(1) + '%'
+                    : 'N/A'}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
-                  {parseFloat(item.unitSales52W / item.stores52W / 52).toFixed(
-                    1
-                  )}
+                <TableCell style={cellStyle} padding='none' align='center'>
+                  {parseFloat(item.unitSales8W / item.stores8W / 4).toFixed(1)}
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='center'>
+                  {item.unitSales12W
+                    ? parseFloat(
+                        ((item.unitSales8W / item.stores8W / 4 -
+                          item.unitSales12W / item.stores12W / 4) /
+                          (item.unitSales12W - item.stores12W / 4)) *
+                          100
+                      ).toFixed(1) + '%'
+                    : 'N/A'}
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='center'>
+                  {item.unitSales12W
+                    ? parseFloat(
+                        item.unitSales12W / item.stores12W / 4
+                      ).toFixed(1)
+                    : 'N/A'}
                 </TableCell>
               </TableRow>
             ))}

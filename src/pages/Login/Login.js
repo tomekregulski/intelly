@@ -33,6 +33,7 @@ const Login = () => {
         )
         .then((response) => {
           if (response.data.accessToken) {
+            console.log(response.data);
             setAuthState({
               id: response.data.id,
               email: response.data.email,

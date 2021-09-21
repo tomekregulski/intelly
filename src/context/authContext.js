@@ -17,7 +17,7 @@ export const AuthProvider = (props) => {
       // console.log('intelly login');
       localStorage.setItem('intellyUser', JSON.stringify(authState));
     }
-  }, [setAuthState, authState]);
+  }, [authState, setAuthState]);
 
   return (
     <AuthContext.Provider value={[authState, setAuthState]}>

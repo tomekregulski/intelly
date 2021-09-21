@@ -26,12 +26,9 @@
     display: flex;
     justify-content: center;
   }
-  #weeklyTablesColumnA {
-    max-width: 777px;
-  }
 }
 
-@media (min-width: 1420px) {
+@media (min-width: 1550px) {
   #weeklyTables {
     display: flex;
     flex-direction: row;

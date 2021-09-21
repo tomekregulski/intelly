@@ -84,7 +84,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navtabs() {
+export default function Dashboard() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -100,12 +100,12 @@ export default function Navtabs() {
     setCategory,
   } = useAPI();
 
+  // Pulls current user from localStorage to get list of brands and setBrand to first brand on list
+  // Planned to change to a method where user data is not stored openly in localStorage
   useEffect(() => {
     const user = AuthService.getCurrentUser();
     if (user) {
-      // console.log(user);
       const brands = user.brands.split(', ');
-      // console.log(brands);
       setUserBrands(brands);
       setBrand(brands[0]);
     }
@@ -136,20 +136,7 @@ export default function Navtabs() {
           <LinkTab label='Monthly View' {...a11yProps(2)} />
         </Tabs>
       </AppBar>
-      {/* <div style={{ height: '20px', backgroundColor: 'red' }}>
-        <button
-          value='Condiments'
-          onClick={(e) => handleCategoryChange(e.target.value)}
-        >
-          Condiments
-        </button>
-        <button
-          value='Dips and Salsas'
-          onClick={(e) => handleCategoryChange(e.target.value)}
-        >
-          Salsas
-        </button> */}
-      {/* </div> */}
+
       {categoryList.length > 1 && (
         <div className={classes.categoryBar}>
           {categoryList.map((category, index) => (
@@ -164,7 +151,7 @@ export default function Navtabs() {
           ))}
         </div>
       )}
-      {/* </div> */}
+
       {timeframeStoreData.length ? (
         <>
           <TabPanel value={value} index={0}>
@@ -178,7 +165,7 @@ export default function Navtabs() {
           </TabPanel>
         </>
       ) : (
-        <h1 className='loading'>Please wait while we fetch your data...</h1>
+        <span className='loading'>Please wait while we fetch your data...</span>
       )}
     </div>
   );

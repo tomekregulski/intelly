@@ -8,6 +8,7 @@ import TotalSalesByStoreTable from '../../components/TotalSalesStores/TotalSales
 import WeeklyChangeByStore from '../../components/WeeklyChangeByStore/WeeklyChangeByStore';
 import UnitsSoldPerStorePerWeek from '../../components/UnitsSoldPerStorePerWeek/UnitsSoldPerStorePerWeek';
 import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
+// import TableTest from '../../components/TableTest/TableTest';
 
 function Dashboard() {
   const [width, setWidth] = React.useState(window.innerWidth);
@@ -24,41 +25,39 @@ function Dashboard() {
 
   if (timeframeStoreData.length) {
     return (
-      <main>
-        <section id='dataSection'>
-          <div id='weeklyTables'>
-            <div id='weeklyTablesColumnA'>
-              <div className='tableContainer'>
-                <SalesRecap />
-              </div>
-              <div className='tableContainer'>
-                <UnitsSoldPerStorePerWeek />
-              </div>
-              <div className='tableContainer'>
-                <WeeklyTable />
-              </div>
+      <section id='dataSection'>
+        <div id='weeklyTables'>
+          <div id='weeklyTablesColumnA'>
+            <div className='tableContainer'>
+              <SalesRecap />
             </div>
-            <div id='weeklyTablesColumnB'>
-              <WeeklyChangeByStore />
+            <div className='tableContainer'>
+              <UnitsSoldPerStorePerWeek />
+            </div>
+            <div className='tableContainer'>
+              <WeeklyTable />
             </div>
           </div>
+          <div id='weeklyTablesColumnB'>
+            <WeeklyChangeByStore />
+          </div>
+        </div>
 
-          {region !== 'all regions' && (
-            <div id='charts'>
-              {width > breakpoint ? (
-                <>
-                  <ChartTabsTotalSalesMediumView />
-                  <div style={{ height: '30px' }}></div>
-                  <ChartTabsSkuSalesMediumView />
-                </>
-              ) : (
-                <TotalSalesByStoreTable />
-              )}
-            </div>
-          )}
-          <div style={{ height: '30px' }}></div>
-        </section>
-      </main>
+        {region !== 'all regions' && (
+          <div id='charts'>
+            {width > breakpoint ? (
+              <>
+                <ChartTabsTotalSalesMediumView />
+                <div style={{ height: '30px' }}></div>
+                <ChartTabsSkuSalesMediumView />
+              </>
+            ) : (
+              <TotalSalesByStoreTable />
+            )}
+          </div>
+        )}
+        <div style={{ height: '30px' }}></div>
+      </section>
     );
   } else {
     return <h1 className='loading'>Please wait while we fetch your data...</h1>;

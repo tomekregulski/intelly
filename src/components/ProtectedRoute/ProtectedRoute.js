@@ -1,5 +1,4 @@
 import React from 'react';
-// import { Login } from '../../pages/Login/Login';
 import { Route, Redirect } from 'react-router-dom';
 
 const ProtectedRoute = (props) => {

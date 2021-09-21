@@ -99,43 +99,9 @@ function EnhancedTableHead(props) {
           label: `${item.name} Sales`,
         });
       });
-      // console.log(tempHead);
     }
     setHead(tempHead);
   }, [timeframeProductData]);
-
-  // const headCells = [
-  //   {
-  //     id: 'name',
-  //     numeric: false,
-  //     disablePadding: true,
-  //     label: 'Store',
-  //   },
-  //   {
-  //     id: 'totalSales',
-  //     numeric: true,
-  //     disablePadding: false,
-  //     label: 'Total Sales',
-  //   },
-  //   {
-  //     id: 'classicSales',
-  //     numeric: true,
-  //     disablePadding: false,
-  //     label: 'Classic Sales',
-  //   },
-  //   {
-  //     id: 'basilSales',
-  //     numeric: true,
-  //     disablePadding: false,
-  //     label: 'Basil Sales',
-  //   },
-  //   {
-  //     id: 'garlicSales',
-  //     numeric: true,
-  //     disablePadding: false,
-  //     label: 'Garlic Sales',
-  //   },
-  // ];
 
   return (
     <TableHead>
@@ -195,7 +161,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     width: '100%',
-    // marginBottom: theme.spacing(2),
   },
   table: {
     minWidth: 750,
@@ -221,6 +186,10 @@ export default function TotalSalesByStoreTable() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [data, setData] = useState([]);
   const { currentBrandSkus, timeframeStoreData } = useAPI();
+
+  const cellStyle = {
+    padding: '3px',
+  };
 
   useEffect(() => {
     if (timeframeStoreData && currentBrandSkus) {
@@ -303,10 +272,10 @@ export default function TotalSalesByStoreTable() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((item, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
-
                   return (
                     <TableRow tabIndex={-1} key={item.name}>
                       <TableCell
+                        style={cellStyle}
                         component='th'
                         id={labelId}
                         scope='row'
@@ -314,59 +283,26 @@ export default function TotalSalesByStoreTable() {
                       >
                         {item.name}
                       </TableCell>
-                      <TableCell padding='none' align='right'>
+                      <TableCell style={cellStyle} padding='none' align='right'>
                         {item.totalSales}
                       </TableCell>
                       {item.skuSales.map((sku) => {
-                        // console.log(sku);
-                        // console.log([sku][0]);
-                        // console.log(Object.keys(sku)[0]);
-                        // console.log(Object.values(sku)[0]);
                         return (
-                          <TableCell padding='none' align='right'>
+                          <TableCell
+                            style={cellStyle}
+                            padding='none'
+                            align='right'
+                          >
                             {Object.values(sku)[0]}
                           </TableCell>
                         );
                       })}
-                      {/* <TableCell padding='none' align='right'>
-                        {item.skuSales['PASTA SAUCE CLASSIC MARINARA OG']
-                          ? item.skuSales['PASTA SAUCE CLASSIC MARINARA OG'][
-                              'week1'
-                            ]
-                            ? item.skuSales['PASTA SAUCE CLASSIC MARINARA OG'][
-                                'week1'
-                              ]
-                            : 'N/A'
-                          : 'N/A'}
-                      </TableCell>
-                      <TableCell padding='none' align='right'>
-                        {item.skuSales['PASTA SAUCE TOMATO BASIL OG']
-                          ? item.skuSales['PASTA SAUCE TOMATO BASIL OG'][
-                              'week1'
-                            ]
-                            ? item.skuSales['PASTA SAUCE TOMATO BASIL OG'][
-                                'week1'
-                              ]
-                            : 'N/A'
-                          : 'N/A'}
-                      </TableCell>
-                      <TableCell padding='none' align='right'>
-                        {item.skuSales['PASTA SAUCE ROASTED GARLIC OG']
-                          ? item.skuSales['PASTA SAUCE ROASTED GARLIC OG'][
-                              'week1'
-                            ]
-                            ? item.skuSales['PASTA SAUCE ROASTED GARLIC OG'][
-                                'week1'
-                              ]
-                            : 'N/A'
-                          : 'N/A'}
-                      </TableCell> */}
                     </TableRow>
                   );
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 33 * emptyRows }}>
-                  <TableCell colSpan={8} />
+                  <TableCell style={cellStyle} colSpan={8} />
                 </TableRow>
               )}
             </TableBody>
