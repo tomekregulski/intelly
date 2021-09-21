@@ -68,6 +68,11 @@ function SalesRecap() {
     padding: '3px',
   };
 
+  const gtCellStyle = {
+    padding: '3px',
+    fontWeight: 'bold',
+  };
+
   return (
     <>
       <TableContainer id='salesRecap' component={Paper}>
@@ -256,7 +261,7 @@ function SalesRecap() {
               // className={index % 2 === 1 ? 'highlighted' : null}
               >
                 <TableCell
-                  style={cellStyle}
+                  style={gtCellStyle}
                   align='left'
                   padding='none'
                   component='th'
@@ -264,28 +269,28 @@ function SalesRecap() {
                 >
                   Grand Total
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
                   {grandTotals.salesLW}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
                   ${grandTotals.revenueLW}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
                   {grandTotals.sales4W}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
                   ${grandTotals.revenue4W}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
                   {grandTotals.sales12W}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
                   ${grandTotals.revenue12W}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
                   {grandTotals.sales52W}
                 </TableCell>
-                <TableCell style={cellStyle} padding='none' align='right'>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
                   ${grandTotals.revenue52W}
                 </TableCell>
               </TableRow>

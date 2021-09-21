@@ -16,17 +16,46 @@ const useStyles = makeStyles({
 });
 export default function MonthlyVelocityTable() {
   const [data, setData] = useState([]);
+  const [grandTotals, setGrandTotals] = useState({});
+
   const { monthlyProductData } = useAPI();
   const classes = useStyles();
 
   useEffect(() => {
     if (monthlyProductData) {
       setData(monthlyProductData);
+      let velocityM1 = 0;
+      let velocityM2 = 0;
+      let velocityM3 = 0;
+      for (let i = 0; i < monthlyProductData.length; i++) {
+        velocityM1 =
+          velocityM1 +
+          parseInt(monthlyProductData[i].unitSales4W) /
+            parseInt(monthlyProductData[i].stores4W);
+        velocityM2 =
+          velocityM2 +
+          parseInt(monthlyProductData[i].unitSales8W) /
+            parseInt(monthlyProductData[i].stores8W);
+        velocityM3 =
+          velocityM3 +
+          parseInt(monthlyProductData[i].unitSales12W) /
+            parseInt(monthlyProductData[i].stores12W);
+      }
+      setGrandTotals({
+        velocityM1: velocityM1,
+        velocityM2: velocityM2,
+        velocityM3: velocityM3,
+      });
     }
   }, [monthlyProductData]);
 
   const cellStyle = {
     padding: '3px',
+  };
+
+  const gtCellStyle = {
+    padding: '3px',
+    fontWeight: 'bold',
   };
 
   return (
@@ -145,6 +174,46 @@ export default function MonthlyVelocityTable() {
                 </TableCell>
               </TableRow>
             ))}
+          {grandTotals !== {} ? (
+            <TableRow
+            // className={index % 2 === 1 ? 'highlighted' : null}
+            >
+              <TableCell
+                style={gtCellStyle}
+                align='left'
+                padding='none'
+                component='th'
+                scope='row'
+              >
+                Grand Total
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='center'>
+                {grandTotals.velocityM1.toFixed(1)}
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='center'>
+                {(
+                  ((grandTotals.velocityM1 - grandTotals.velocityM2) /
+                    grandTotals.velocityM2) *
+                  100
+                ).toFixed(1)}
+                %
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='center'>
+                {grandTotals.velocityM2.toFixed(1)}
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='center'>
+                {(
+                  ((grandTotals.velocityM2 - grandTotals.velocityM3) /
+                    grandTotals.velocityM3) *
+                  100
+                ).toFixed(1)}
+                %
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='center'>
+                {grandTotals.velocityM3.toFixed(1)}
+              </TableCell>
+            </TableRow>
+          ) : null}
         </TableBody>
       </Table>
     </TableContainer>

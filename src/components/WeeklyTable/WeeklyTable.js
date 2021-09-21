@@ -18,6 +18,8 @@ const useStyles = makeStyles({
 
 function DenseTable() {
   const [data, setData] = useState([]);
+  const [grandTotals, setGrandTotals] = useState({});
+
   const { weeklyProductData } = useAPI();
 
   const classes = useStyles();
@@ -26,8 +28,35 @@ function DenseTable() {
     padding: '3px',
   };
 
+  const gtCellStyle = {
+    padding: '3px',
+    fontWeight: 'bold',
+  };
+
   useEffect(() => {
-    setData(weeklyProductData);
+    if (weeklyProductData) {
+      setData(weeklyProductData);
+      let totalSalesW1 = 0;
+      let totalSalesW2 = 0;
+      let totalSalesW3 = 0;
+      let totalSalesW4 = 0;
+      for (let i = 0; i < weeklyProductData.length; i++) {
+        totalSalesW1 =
+          totalSalesW1 + parseInt(weeklyProductData[i].unitSalesLW);
+        totalSalesW2 =
+          totalSalesW2 + parseInt(weeklyProductData[i].unitSalesWeek2);
+        totalSalesW3 =
+          totalSalesW3 + parseInt(weeklyProductData[i].unitSalesWeek3);
+        totalSalesW4 =
+          totalSalesW4 + parseInt(weeklyProductData[i].unitSalesWeek4);
+      }
+      setGrandTotals({
+        totalSalesW1: totalSalesW1,
+        totalSalesW2: totalSalesW2,
+        totalSalesW3: totalSalesW3,
+        totalSalesW4: totalSalesW4,
+      });
+    }
   }, [weeklyProductData]);
 
   return (
@@ -171,6 +200,57 @@ function DenseTable() {
                 </TableCell>
               </TableRow>
             ))}
+            {grandTotals !== {} ? (
+              <TableRow
+              // className={index % 2 === 1 ? 'highlighted' : null}
+              >
+                <TableCell
+                  style={gtCellStyle}
+                  align='left'
+                  padding='none'
+                  component='th'
+                  scope='row'
+                >
+                  Grand Total
+                </TableCell>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
+                  {grandTotals.totalSalesW1}
+                </TableCell>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
+                  {(
+                    ((grandTotals.totalSalesW1 - grandTotals.totalSalesW2) /
+                      grandTotals.totalSalesW2) *
+                    100
+                  ).toFixed(1)}
+                  %
+                </TableCell>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
+                  {grandTotals.totalSalesW2}
+                </TableCell>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
+                  {(
+                    ((grandTotals.totalSalesW2 - grandTotals.totalSalesW3) /
+                      grandTotals.totalSalesW3) *
+                    100
+                  ).toFixed(1)}
+                  %
+                </TableCell>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
+                  {grandTotals.totalSalesW3}
+                </TableCell>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
+                  {(
+                    ((grandTotals.totalSalesW3 - grandTotals.totalSalesW4) /
+                      grandTotals.totalSalesW4) *
+                    100
+                  ).toFixed(1)}
+                  %
+                </TableCell>
+                <TableCell style={gtCellStyle} padding='none' align='right'>
+                  {grandTotals.totalSalesW4}
+                </TableCell>
+              </TableRow>
+            ) : null}
           </TableBody>
         </Table>
       </TableContainer>

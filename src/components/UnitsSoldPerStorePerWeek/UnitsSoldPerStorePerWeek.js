@@ -17,15 +17,63 @@ const useStyles = makeStyles({
 
 export default function UnitsSoldPerStorePerWeek() {
   const [data, setData] = useState([]);
+  const [grandTotals, setGrandTotals] = useState({});
+
   const { timeframeProductData } = useAPI();
   const classes = useStyles();
 
   useEffect(() => {
-    setData(timeframeProductData);
+    if (timeframeProductData) {
+      setData(timeframeProductData);
+      let totalSalesLW = 0;
+      let totalStoresLW = 0;
+      let velocityLW = 0;
+      let velocity4W = 0;
+      let velocity12W = 0;
+      let velocity52W = 0;
+      for (let i = 0; i < timeframeProductData.length; i++) {
+        totalSalesLW =
+          totalSalesLW + parseInt(timeframeProductData[i].unitSalesLW);
+        totalStoresLW =
+          totalStoresLW + parseInt(timeframeProductData[i].storesLW);
+        velocityLW =
+          velocityLW +
+          parseInt(timeframeProductData[i].unitSalesLW) /
+            parseInt(timeframeProductData[i].storesLW);
+        velocity4W =
+          velocity4W +
+          parseInt(timeframeProductData[i].unitSales4W) /
+            parseInt(timeframeProductData[i].stores4W) /
+            4;
+        velocity12W =
+          velocity12W +
+          parseInt(timeframeProductData[i].unitSales12W) /
+            parseInt(timeframeProductData[i].stores12W) /
+            12;
+        velocity52W =
+          velocity52W +
+          parseInt(timeframeProductData[i].unitSales52W) /
+            parseInt(timeframeProductData[i].stores52W) /
+            52;
+      }
+      setGrandTotals({
+        salesLW: totalSalesLW,
+        storesLW: totalStoresLW,
+        velocityLW: velocityLW,
+        velocity4W: velocity4W,
+        velocity12W: velocity12W,
+        velocity52W: velocity52W,
+      });
+    }
   }, [timeframeProductData]);
 
   const cellStyle = {
     padding: '3px',
+  };
+
+  const gtCellStyle = {
+    padding: '3px',
+    fontWeight: 'bold',
   };
 
   return (
@@ -167,6 +215,39 @@ export default function UnitsSoldPerStorePerWeek() {
                 </TableCell>
               </TableRow>
             ))}
+          {grandTotals !== {} ? (
+            <TableRow
+            // className={index % 2 === 1 ? 'highlighted' : null}
+            >
+              <TableCell
+                style={gtCellStyle}
+                align='left'
+                padding='none'
+                component='th'
+                scope='row'
+              >
+                Grand Total
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='right'>
+                {grandTotals.salesLW}
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='right'>
+                {grandTotals.storesLW}
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='right'>
+                {grandTotals.velocityLW.toFixed(1)}
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='right'>
+                {grandTotals.velocity4W.toFixed(1)}
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='right'>
+                {grandTotals.velocity12W.toFixed(1)}
+              </TableCell>
+              <TableCell style={gtCellStyle} padding='none' align='right'>
+                {grandTotals.velocity52W.toFixed(1)}
+              </TableCell>
+            </TableRow>
+          ) : null}
         </TableBody>
       </Table>
     </TableContainer>
