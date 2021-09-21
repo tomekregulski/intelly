@@ -69,7 +69,7 @@ export function APIContextProvider({ children }) {
             monthly.push(`${allBrandTimeframes[i + 4]}_04_weeks`);
           }
           if (allBrandTimeframes[i + 8]) {
-            monthly.push(`${allBrandTimeframes[i + 4]}_04_weeks`);
+            monthly.push(`${allBrandTimeframes[i + 8]}_04_weeks`);
           }
         }
       }
@@ -227,6 +227,8 @@ export function APIContextProvider({ children }) {
         category
       );
 
+      console.log(monthlyProducts);
+
       if (stores.length) {
         setTimeframeStoreData(stores);
       }
@@ -255,6 +257,8 @@ export function APIContextProvider({ children }) {
     setCategory,
     category,
     weeklyTimeframes,
+    monthlyRawData,
+    setMonthlyRawData,
   ]);
 
   return (
