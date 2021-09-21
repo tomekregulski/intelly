@@ -18,12 +18,49 @@ const useStyles = makeStyles({
 
 function SalesRecap() {
   const [data, setData] = useState([]);
+  const [grandTotals, setGrandTotals] = useState({});
   const { timeframeProductData } = useAPI();
   const classes = useStyles();
 
   useEffect(() => {
     if (timeframeProductData) {
       setData(timeframeProductData);
+      let totalSalesLW = 0;
+      let totalRevenueLW = 0;
+      let totalSales4W = 0;
+      let totalRevenue4W = 0;
+      let totalSales12W = 0;
+      let totalRevenue12W = 0;
+      let totalSales52W = 0;
+      let totalRevenue52W = 0;
+      for (let i = 0; i < timeframeProductData.length; i++) {
+        totalSalesLW =
+          totalSalesLW + parseInt(timeframeProductData[i].unitSalesLW);
+        totalRevenueLW =
+          totalRevenueLW + parseInt(timeframeProductData[i].netSalesLW);
+        totalSales4W =
+          totalSales4W + parseInt(timeframeProductData[i].unitSales4W);
+        totalRevenue4W =
+          totalRevenue4W + parseInt(timeframeProductData[i].netSales4W);
+        totalSales12W =
+          totalSales12W + parseInt(timeframeProductData[i].unitSales12W);
+        totalRevenue12W =
+          totalRevenue12W + parseInt(timeframeProductData[i].netSales12W);
+        totalSales52W =
+          totalSales52W + parseInt(timeframeProductData[i].unitSales52W);
+        totalRevenue52W =
+          totalRevenue52W + parseInt(timeframeProductData[i].netSales52W);
+      }
+      setGrandTotals({
+        salesLW: totalSalesLW,
+        revenueLW: totalRevenueLW,
+        sales4W: totalSales4W,
+        revenue4W: totalRevenue4W,
+        sales12W: totalSales12W,
+        revenue12W: totalRevenue12W,
+        sales52W: totalSales52W,
+        revenue52W: totalRevenue52W,
+      });
     }
   }, [timeframeProductData]);
 
@@ -214,6 +251,45 @@ function SalesRecap() {
                   </TableCell>
                 </TableRow>
               ))}
+            {grandTotals !== {} ? (
+              <TableRow
+              // className={index % 2 === 1 ? 'highlighted' : null}
+              >
+                <TableCell
+                  style={cellStyle}
+                  align='left'
+                  padding='none'
+                  component='th'
+                  scope='row'
+                >
+                  Grand Total
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='right'>
+                  {grandTotals.salesLW}
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='right'>
+                  ${grandTotals.revenueLW}
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='right'>
+                  {grandTotals.sales4W}
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='right'>
+                  ${grandTotals.revenue4W}
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='right'>
+                  {grandTotals.sales12W}
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='right'>
+                  ${grandTotals.revenue12W}
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='right'>
+                  {grandTotals.sales52W}
+                </TableCell>
+                <TableCell style={cellStyle} padding='none' align='right'>
+                  ${grandTotals.revenue52W}
+                </TableCell>
+              </TableRow>
+            ) : null}
           </TableBody>
         </Table>
       </TableContainer>
