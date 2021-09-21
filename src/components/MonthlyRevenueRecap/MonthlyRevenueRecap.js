@@ -190,29 +190,37 @@ function MonthlyRevenueRecap() {
                   Grand Total
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='center'>
-                  ${grandTotals.totalSalesM1.toFixed(2)}
+                  $
+                  {grandTotals.totalSalesM1 &&
+                    grandTotals.totalSalesM1.toFixed(2)}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='center'>
-                  {(
-                    ((grandTotals.totalSalesM1 - grandTotals.totalSalesM2) /
-                      grandTotals.totalSalesM2) *
-                    100
-                  ).toFixed(1)}
+                  {grandTotals.totalSalesM2 &&
+                    (
+                      ((grandTotals.totalSalesM1 - grandTotals.totalSalesM2) /
+                        grandTotals.totalSalesM2) *
+                      100
+                    ).toFixed(1)}
                   %
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='center'>
-                  ${grandTotals.totalSalesM2.toFixed(2)}
+                  $
+                  {grandTotals.totalSalesM2 &&
+                    grandTotals.totalSalesM2.toFixed(2)}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='center'>
-                  {(
-                    ((grandTotals.totalSalesM2 - grandTotals.totalSalesM3) /
-                      grandTotals.totalSalesM3) *
-                    100
-                  ).toFixed(1)}
+                  {grandTotals.totalSalesM3 &&
+                    (
+                      ((grandTotals.totalSalesM2 - grandTotals.totalSalesM3) /
+                        grandTotals.totalSalesM3) *
+                      100
+                    ).toFixed(1)}
                   %
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='center'>
-                  ${grandTotals.totalSalesM3.toFixed(2)}
+                  $
+                  {grandTotals.totalSalesM3 &&
+                    grandTotals.totalSalesM3.toFixed(2)}
                 </TableCell>
               </TableRow>
             ) : null}
