@@ -28,6 +28,7 @@ function DataMenu(props) {
     region,
     allBrandTimeframes,
     setCurrentTimeframe,
+    currentTimeframe,
   } = useAPI();
 
   const handleClick = (event) => {
@@ -130,7 +131,7 @@ function DataMenu(props) {
               style={{ width: '130px' }}
               labelId='timeframeSelect'
               id='timeframeSelect'
-              value={''}
+              value={currentTimeframe || ''}
               onChange={handleChangeTimeframe}
             >
               {allBrandTimeframes.length
