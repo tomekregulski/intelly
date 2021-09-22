@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAPI } from '../../context/apiContext';
+
 import SalesRecap from '../../components/SalesRecap/SalesRecap';
-import './weeklyView.css';
 import ChartTabsTotalSalesMediumView from '../../components/ChartTabs/ChartTabsTotalSalesMediumView';
 import ChartTabsSkuSalesMediumView from '../../components/ChartTabs/ChartTabsSkuSalesMediumView';
 import TotalSalesByStoreTable from '../../components/TotalSalesStores/TotalSalesByStoreTable';
@@ -9,7 +9,9 @@ import WeeklyChangeByStore from '../../components/WeeklyChangeByStore/WeeklyChan
 import UnitsSoldPerStorePerWeek from '../../components/UnitsSoldPerStorePerWeek/UnitsSoldPerStorePerWeek';
 import WeeklyTable from '../../components/WeeklyTable/WeeklyTable';
 
-function Dashboard() {
+import './weeklyView.css';
+
+function WeeklyView() {
   const [width, setWidth] = React.useState(window.innerWidth);
   const { region, timeframeStoreData } = useAPI();
 
@@ -63,4 +65,4 @@ function Dashboard() {
   }
 }
 
-export default Dashboard;
+export default WeeklyView;
