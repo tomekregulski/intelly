@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react';
-import { AuthContext } from '../../context/authContext';
-import { Grid, TextField, Paper, Button } from '@material-ui/core';
+import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-import axios from 'axios';
+import { AuthContext } from '../../context/authContext';
+
+import { Grid, TextField, Paper, Button } from '@material-ui/core';
+import image from '../../images/intelly_logo.png';
 
 // import AuthService from '../../../services/auth.service';
 const Login = () => {
@@ -52,40 +54,47 @@ const Login = () => {
   };
 
   return (
-    <div style={{ padding: 30 }}>
-      <Paper>
-        <h1 style={{ textAlign: 'center', padding: '40px 0' }}>
-          Please Log In
-        </h1>
-        <Grid
-          container
-          spacing={3}
-          direction={'column'}
-          justify={'center'}
-          alignItems={'center'}
-        >
-          <Grid item xs={12}>
-            <TextField
-              label='Email'
-              onChange={(e) => setEmail(e.target.value)}
-            ></TextField>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              label='Password'
-              type={'password'}
-              onChange={(e) => setPassword(e.target.value)}
-            ></TextField>
-          </Grid>
-          <Grid item xs={12}></Grid>
-          <Grid item xs={12}>
-            <Button fullWidth onClick={(e) => handleSubmit(e)}>
-              Login
-            </Button>
-          </Grid>
+    <>
+      <div>
+        <img
+          style={{
+            display: 'block',
+            width: '200px',
+            margin: '0 auto 50px',
+            paddingTop: '160px',
+          }}
+          src={image}
+          alt='Intelly'
+        />
+      </div>
+      <Grid
+        container
+        spacing={3}
+        direction={'column'}
+        justify={'center'}
+        alignItems={'center'}
+      >
+        <Grid item xs={12}>
+          <TextField
+            label='Email'
+            onChange={(e) => setEmail(e.target.value)}
+          ></TextField>
         </Grid>
-      </Paper>
-    </div>
+        <Grid item xs={12}>
+          <TextField
+            label='Password'
+            type={'password'}
+            onChange={(e) => setPassword(e.target.value)}
+          ></TextField>
+        </Grid>
+        <Grid item xs={12}></Grid>
+        <Grid item xs={12}>
+          <Button variant='outlined' fullWidth onClick={(e) => handleSubmit(e)}>
+            Login
+          </Button>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 

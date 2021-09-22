@@ -21,7 +21,8 @@ function NavbarSwitch() {
   if (currentUser.hasOwnProperty('first_name')) {
     return <Navbar handleLogout={handleLogout} />;
   } else {
-    return <NavbarLoggedOut />;
+    return <> </>;
+    // <NavbarLoggedOut />;
   }
 }
 
