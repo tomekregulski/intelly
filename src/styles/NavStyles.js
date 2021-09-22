@@ -15,6 +15,7 @@ export default {
   navLinks: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'flex-end',
   },
   navLinkItem: {
     textDecoration: 'none',

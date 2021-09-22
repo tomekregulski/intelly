@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../../context/authContext';
 import { Link } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
 
 import Box from '@mui/material/Box';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
@@ -16,6 +17,13 @@ import Button from '@mui/material/Button';
 
 import styles from '../../styles/NavStyles';
 import { withStyles } from '@material-ui/styles';
+
+const UserButton = styled(Button)({
+  color: 'rgba(0, 180, 249, 0.872)',
+  borderColor: 'rgba(0, 180, 249, 0.872)',
+  backgroundColor: 'none',
+  // padding: '10px 20px',
+});
 
 function UserMenu(props) {
   const [authState, setAuthState] = useContext(AuthContext);
@@ -49,13 +57,9 @@ function UserMenu(props) {
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title='Account settings'>
           {width > breakpoint ? (
-            <Button
-              style={{ color: 'black' }}
-              variant='outlined'
-              onClick={handleClick}
-            >
+            <UserButton variant='outlined' onClick={handleClick}>
               {authState.first_name} {authState.last_name}
-            </Button>
+            </UserButton>
           ) : (
             <IconButton onClick={handleClick} size='small' sx={{ ml: 2 }}>
               <MenuIcon />
