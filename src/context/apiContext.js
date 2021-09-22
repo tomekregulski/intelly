@@ -38,6 +38,8 @@ export function APIContextProvider({ children }) {
 
   // Once user is logged in and brand is set to their brands[0], query DB for a complete list of their WFM data entry dates (timeframes) and default the current selection to the most recent entry
   useEffect(() => {
+    setAllBrandTimeframes([]);
+    setCurrentTimeframe([]);
     async function fetchData() {
       const apiResponse = await axios.get(
         `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/timeframes`,
@@ -227,8 +229,6 @@ export function APIContextProvider({ children }) {
         category
       );
 
-      console.log(monthlyProducts);
-
       if (stores.length) {
         setTimeframeStoreData(stores);
       }
@@ -283,6 +283,7 @@ export function APIContextProvider({ children }) {
         monthlyRawData,
         monthlyProductData,
         allBrandTimeframes,
+        brand,
       }}
     >
       {children}

@@ -185,14 +185,9 @@ export const fetchTimeframeStoreData = (
     }
   }
   stores.sort((a, b) => (a.totalSalesWeek1 > b.totalSalesWeek1 ? -1 : 1));
-  // console.log(stores);
 
   return stores;
 };
-
-// new productData
-// retrieve week 1 of 4 timeframes
-//
 
 export const fetchWeeklyProductData = (
   data,
@@ -321,23 +316,5 @@ export const fetchMonthlyProducts = (
       }
     }
   }
-
-  // for (var i = 0; i < filteredData.length; i++) {
-  //   for (var j = 0; j < timeframes.length; j++) {
-  //     for (var k = 0; k < skus.length; k++) {
-  //       if (
-  //         filteredData[i].sku_name === skus[k].name &&
-  //         filteredData[i].timeframe === timeframes[j]
-  //       ) {
-  //         skus[k].stores4W = skus[k].stores4W + 1;
-  //         skus[k].netSales4W =
-  //           skus[k].netSales4W + parseInt(filteredData[i].net_sales);
-  //         skus[k].unitSales4W =
-  //           skus[k].unitSales4W + parseInt(filteredData[i].unit_sales);
-  //       }
-  //     }
-  //   }
-  // }
-  console.log(skus);
   return skus;
 };
