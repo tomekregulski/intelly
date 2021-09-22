@@ -29,6 +29,9 @@ const Contact = (props) => {
 
   return (
     <div className={classes.background}>
+      <div
+        style={{ height: '48px', backgroundColor: 'rgba(0, 180, 249, 0.872)' }}
+      ></div>
       <div className={classes.heading}>
         <h2 className={classes.title}>Get in touch!</h2>
         <p className={classes.prompt}>
