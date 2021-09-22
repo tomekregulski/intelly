@@ -1,35 +1,22 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import BubbleChartIcon from '@mui/icons-material/BubbleChart';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
-import { useAPI } from '../../context/apiContext';
+import BrandSelect from './BrandSelect';
+import RegionSelect from './RegionSelect';
+import TimeframeSelect from './TimeframeSelect';
 
 import styles from '../../styles/NavStyles';
 import { withStyles } from '@material-ui/styles';
 
 function DataMenu(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState(null);
 
-  const {
-    userBrands,
-    brand,
-    setBrand,
-    setRegion,
-    currentBrandRegions,
-    region,
-    allBrandTimeframes,
-    setCurrentTimeframe,
-    currentTimeframe,
-  } = useAPI();
+  const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -39,27 +26,12 @@ function DataMenu(props) {
     setAnchorEl(null);
   };
 
-  const handleChangeRegion = (event) => {
-    event.preventDefault();
-    setRegion(event.target.value);
-  };
-
-  const handleChangeBrand = (event) => {
-    event.preventDefault();
-    setBrand(event.target.value);
-  };
-
-  const handleChangeTimeframe = (event) => {
-    event.preventDefault();
-    setCurrentTimeframe(event.target.value);
-  };
-
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title='Account settings'>
           <IconButton onClick={handleClick} size='small' sx={{ ml: 2 }}>
-            <BubbleChartIcon />
+            <BarChartIcon />
           </IconButton>
         </Tooltip>
       </Box>
@@ -98,75 +70,13 @@ function DataMenu(props) {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
         <MenuItem>
-          <FormControl
-            id='brandMenu'
-            // className={classes.formControl}
-          >
-            <InputLabel>Select a Brand</InputLabel>
-            <Select
-              style={{ width: '130px' }}
-              labelId='brandLabel'
-              id='brandSelect'
-              value={brand || ''}
-              onChange={handleChangeBrand}
-            >
-              {userBrands.length
-                ? userBrands.map((brand, index) => (
-                    <MenuItem key={index} value={brand}>
-                      {brand.charAt(0).toUpperCase() +
-                        brand.slice(1).toLowerCase()}
-                    </MenuItem>
-                  ))
-                : null}
-            </Select>
-          </FormControl>
+          <BrandSelect />
         </MenuItem>
         <MenuItem>
-          <FormControl
-            id='timeframeMenu'
-            // className={classes.formControl}
-          >
-            <InputLabel>Select a Timeframe</InputLabel>
-            <Select
-              style={{ width: '130px' }}
-              labelId='timeframeSelect'
-              id='timeframeSelect'
-              value={currentTimeframe || ''}
-              onChange={handleChangeTimeframe}
-            >
-              {allBrandTimeframes.length
-                ? allBrandTimeframes.map((timeframe, index) => (
-                    <MenuItem key={index} value={timeframe}>
-                      {timeframe}
-                    </MenuItem>
-                  ))
-                : null}
-            </Select>
-          </FormControl>
+          <TimeframeSelect />
         </MenuItem>
         <MenuItem>
-          <FormControl
-            id='regionSelect'
-            // className={classes.formControl}
-          >
-            <InputLabel>Select a Region</InputLabel>
-            <Select
-              style={{ width: '130px' }}
-              labelId='regionLabel'
-              id='regionSelect'
-              value={region || ''}
-              onChange={handleChangeRegion}
-            >
-              <MenuItem value={'all regions'}>All Regions</MenuItem>
-              {currentBrandRegions.length
-                ? currentBrandRegions.map((reg, index) => (
-                    <MenuItem key={index} value={reg}>
-                      {reg}
-                    </MenuItem>
-                  ))
-                : null}
-            </Select>
-          </FormControl>
+          <RegionSelect />
         </MenuItem>
       </Menu>
     </React.Fragment>

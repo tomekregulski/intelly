@@ -1,4 +1,7 @@
-import * as React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
+import { Link } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -9,16 +12,29 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
-import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
 
 import styles from '../../styles/NavStyles';
 import { withStyles } from '@material-ui/styles';
 
 function UserMenu(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [authState, setAuthState] = useContext(AuthContext);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [width, setWidth] = React.useState(window.innerWidth);
+
   const open = Boolean(anchorEl);
 
   const { classes, handleLogout } = props;
+
+  const breakpoint = 650;
+
+  useEffect(() => {
+    const handleResizeWindow = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResizeWindow);
+    return () => {
+      window.removeEventListener('resize', handleResizeWindow);
+    };
+  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -32,10 +48,19 @@ function UserMenu(props) {
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title='Account settings'>
-          <IconButton onClick={handleClick} size='small' sx={{ ml: 2 }}>
-            {/* <Avatar sx={{ width: 32, height: 32 }}>M</Avatar> */}
-            <MenuIcon />
-          </IconButton>
+          {width > breakpoint ? (
+            <Button
+              style={{ color: 'black' }}
+              variant='outlined'
+              onClick={handleClick}
+            >
+              {authState.first_name} {authState.last_name}
+            </Button>
+          ) : (
+            <IconButton onClick={handleClick} size='small' sx={{ ml: 2 }}>
+              <MenuIcon />
+            </IconButton>
+          )}
         </Tooltip>
       </Box>
       <Menu

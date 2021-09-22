@@ -4,6 +4,9 @@ export default {
     marginTop: '1rem',
     marginBottom: '.2rem',
   },
+  desktopNavContainer: {
+    display: 'flex',
+  },
   logo: {
     width: '130px',
     margin: '0 auto 10px',
@@ -13,7 +16,6 @@ export default {
     display: 'flex',
     justifyContent: 'space-between',
   },
-
   navLinkItem: {
     textDecoration: 'none',
     color: 'black',
@@ -37,15 +39,12 @@ export default {
     },
   },
   '@media screen and (min-width: 768px)': {},
-  '@media screen and (min-width: 1366px)': {
-    navLinks: {
-      justifyContent: 'space-between',
-    },
-  },
-  '@media screen and (min-width: 1550px)': {
+  '@media screen and (min-width: 1200px)': {
     nav: {
-      maxWidth: '1550px',
+      maxWidth: 'none',
+      padding: '10px 20px',
     },
   },
+  '@media screen and (min-width: 1550px)': {},
   '@media screen and (min-width: 1920px)': {},
 };
