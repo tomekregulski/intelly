@@ -50,11 +50,12 @@ export default function UnitsSoldPerStorePerWeek() {
           parseInt(timeframeProductData[i].unitSales12W) /
             parseInt(timeframeProductData[i].stores12W) /
             12;
-        velocity52W =
-          velocity52W +
-          parseInt(timeframeProductData[i].unitSales52W) /
-            parseInt(timeframeProductData[i].stores52W) /
-            52;
+        velocity52W = timeframeProductData[i].unitSales52W
+          ? velocity52W +
+            parseInt(timeframeProductData[i].unitSales52W) /
+              parseInt(timeframeProductData[i].stores52W) /
+              52
+          : velocity52W + 0;
       }
       setGrandTotals({
         salesLW: totalSalesLW,
@@ -209,9 +210,11 @@ export default function UnitsSoldPerStorePerWeek() {
                   )}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='right'>
-                  {parseFloat(item.unitSales52W / item.stores52W / 52).toFixed(
-                    1
-                  )}
+                  {item.unitSales52W && item.stores52W
+                    ? parseFloat(
+                        item.unitSales52W / item.stores52W / 52
+                      ).toFixed(1)
+                    : 'N/A'}
                 </TableCell>
               </TableRow>
             ))}

@@ -191,7 +191,7 @@ export default function WeeklyChangeByStore() {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(15);
   const [data, setData] = useState([]);
   const [width, setWidth] = React.useState(window.innerWidth);
 
@@ -211,6 +211,10 @@ export default function WeeklyChangeByStore() {
 
   const cellStyle = {
     padding: '3px',
+  };
+
+  const percentChange = (val1, val2) => {
+    return (((val1 - val2) / val2) * 100).toFixed(1);
   };
 
   const handleRequestSort = (event, property) => {
@@ -279,12 +283,11 @@ export default function WeeklyChangeByStore() {
                         {item.totalSalesWeek1 ? item.totalSalesWeek1 : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right' style={cellStyle}>
-                        {item.totalSalesWeek1 - item.totalSalesWeek2
-                          ? (
-                              ((item.totalSalesWeek1 - item.totalSalesWeek2) /
-                                item.totalSalesWeek2) *
-                              100
-                            ).toFixed(1) + '%'
+                        {item.totalSalesWeek1 && item.totalSalesWeek2
+                          ? percentChange(
+                              item.totalSalesWeek1,
+                              item.totalSalesWeek2
+                            ) + '%'
                           : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right' style={cellStyle}>
@@ -292,11 +295,10 @@ export default function WeeklyChangeByStore() {
                       </TableCell>
                       <TableCell padding='none' align='right' style={cellStyle}>
                         {item.totalSalesWeek3 && item.totalSalesWeek2
-                          ? (
-                              ((item.totalSalesWeek2 - item.totalSalesWeek3) /
-                                item.totalSalesWeek3) *
-                              100
-                            ).toFixed(1) + '%'
+                          ? percentChange(
+                              item.totalSalesWeek2,
+                              item.totalSalesWeek3
+                            ) + '%'
                           : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right' style={cellStyle}>
@@ -304,11 +306,10 @@ export default function WeeklyChangeByStore() {
                       </TableCell>
                       <TableCell padding='none' align='right' style={cellStyle}>
                         {item.totalSalesWeek4 && item.totalSalesWeek3
-                          ? (
-                              ((item.totalSalesWeek3 - item.totalSalesWeek4) /
-                                item.totalSalesWeek4) *
-                              100
-                            ).toFixed(1) + '%'
+                          ? percentChange(
+                              item.totalSalesWeek3,
+                              item.totalSalesWeek4
+                            ) + '%'
                           : 'N/A'}
                       </TableCell>
                       <TableCell padding='none' align='right' style={cellStyle}>
@@ -326,7 +327,7 @@ export default function WeeklyChangeByStore() {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 10, 15, 20, 25]}
           component='div'
           count={data.length}
           rowsPerPage={rowsPerPage}

@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-// import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Switch from '@mui/material/Switch';
+
 import WeeklyView from '../WeeklyView/WeeklyView';
+import WeeklyViewB from '../WeeklyView/WeeklyViewB';
 import Welcome from '../Welcome/Welcome';
 import MonthlyView from '../MonthlyView/MonthlyView';
 import AuthService from '../../Services/auth-service';
@@ -87,6 +90,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const [checked, setChecked] = React.useState(true);
+
+  const handleToggleChange = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -113,8 +121,6 @@ export default function Dashboard() {
 
   const handleCategoryChange = (value) => {
     if (categoryList) {
-      // console.log(categoryList);
-      // console.log(value);
       setCategory(value);
     }
   };
@@ -158,7 +164,13 @@ export default function Dashboard() {
             <Welcome />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <WeeklyView />
+            <Switch
+              checked={checked}
+              onChange={handleToggleChange}
+              inputProps={{ 'aria-label': 'controlled' }}
+            />{' '}
+            Toggle View
+            {checked ? <WeeklyViewB /> : <WeeklyView />}
           </TabPanel>
           <TabPanel value={value} index={2}>
             <MonthlyView />

@@ -47,9 +47,13 @@ function SalesRecap() {
         totalRevenue12W =
           totalRevenue12W + parseInt(timeframeProductData[i].netSales12W);
         totalSales52W =
-          totalSales52W + parseInt(timeframeProductData[i].unitSales52W);
+          totalSales52W + timeframeProductData[i].unitSales52W
+            ? parseInt(timeframeProductData[i].unitSales52W)
+            : 0;
         totalRevenue52W =
-          totalRevenue52W + parseInt(timeframeProductData[i].netSales52W);
+          totalRevenue52W + timeframeProductData[i].netSales52W
+            ? parseInt(timeframeProductData[i].netSales52W)
+            : 0;
       }
       setGrandTotals({
         salesLW: totalSalesLW,
@@ -249,10 +253,14 @@ function SalesRecap() {
                     ${parseFloat(item.netSales12W).toFixed(2)}
                   </TableCell>
                   <TableCell style={cellStyle} padding='none' align='right'>
-                    {parseFloat(item.unitSales52W).toFixed(0)}
+                    {item.unitSales52W
+                      ? '$' + parseFloat(item.unitSales52W).toFixed(0)
+                      : 'N/A'}
                   </TableCell>
                   <TableCell style={cellStyle} padding='none' align='right'>
-                    ${parseFloat(item.netSales52W).toFixed(2)}
+                    {item.netSales52W
+                      ? '$' + parseFloat(item.netSales52W).toFixed(2)
+                      : 'N/A'}
                   </TableCell>
                 </TableRow>
               ))}
