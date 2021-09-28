@@ -37,6 +37,7 @@ export function APIContextProvider({ children }) {
   const [category, setCategory] = useState('');
 
   // Once user is logged in and brand is set to their brands[0], query DB for a complete list of their WFM data entry dates (timeframes) and default the current selection to the most recent entry
+  // POSSIBLY SET UP SEPARATE BRAND TABLE THAT LISTS ALL TIMEFRAMES FOR EACH BRAND
   useEffect(() => {
     setAllBrandTimeframes([]);
     setCurrentTimeframe([]);

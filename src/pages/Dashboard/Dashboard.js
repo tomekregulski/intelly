@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -13,7 +13,9 @@ import WeeklyView from '../WeeklyView/WeeklyView';
 import WeeklyViewB from '../WeeklyView/WeeklyViewB';
 import Welcome from '../Welcome/Welcome';
 import MonthlyView from '../MonthlyView/MonthlyView';
-import AuthService from '../../Services/auth-service';
+// import AuthService from '../../Services/auth-service';
+
+import { AuthContext } from '../../context/authContext';
 
 import { useAPI } from '../../context/apiContext';
 function TabPanel(props) {
@@ -92,6 +94,8 @@ export default function Dashboard() {
   const [value, setValue] = React.useState(0);
   const [checked, setChecked] = React.useState(true);
 
+  const [authState, setAuthState] = useContext(AuthContext);
+
   const handleToggleChange = (event) => {
     setChecked(event.target.checked);
   };
@@ -111,13 +115,13 @@ export default function Dashboard() {
   // Pulls current user from localStorage to get list of brands and setBrand to first brand on list
   // Planned to change to a method where user data is not stored openly in localStorage
   useEffect(() => {
-    const user = AuthService.getCurrentUser();
+    const user = authState;
     if (user) {
       const brands = user.brands.split(', ');
       setUserBrands(brands);
       setBrand(brands[0]);
     }
-  }, [setBrand, setUserBrands]);
+  }, [authState, setBrand, setUserBrands]);
 
   const handleCategoryChange = (value) => {
     if (categoryList) {
@@ -168,7 +172,7 @@ export default function Dashboard() {
               checked={checked}
               onChange={handleToggleChange}
               inputProps={{ 'aria-label': 'controlled' }}
-            />{' '}
+            />
             Toggle View
             {checked ? <WeeklyViewB /> : <WeeklyView />}
           </TabPanel>

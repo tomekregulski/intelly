@@ -1,4 +1,5 @@
 import React, { useState, createContext, useEffect } from 'react';
+import axios from 'axios';
 export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
@@ -14,10 +15,15 @@ export const AuthProvider = (props) => {
 
   useEffect(() => {
     if (authState.token !== '') {
-      // console.log('intelly login');
-      localStorage.setItem('intellyUser', JSON.stringify(authState));
+      async function fetchData() {
+        const apiResponse = await axios.get(
+          `https://intelly-auth-service.herokuapp.com/api/users/currentUser`
+        );
+        console.log(apiResponse);
+      }
+      fetchData();
     }
-  }, [authState, setAuthState]);
+  }, []);
 
   return (
     <AuthContext.Provider value={[authState, setAuthState]}>
