@@ -7,7 +7,6 @@ import { AuthContext } from '../../context/authContext';
 import { Grid, TextField, Paper, Button } from '@material-ui/core';
 import image from '../../images/intelly_logo.png';
 
-// import AuthService from '../../../services/auth.service';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,23 +16,22 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log('submit');
     if (email.length && password.length) {
-      // props.showError(null);
       const payload = {
         email: email,
         password: password,
       };
 
-      // console.log(payload);
+      console.log(payload);
 
       axios
         .post(
-          `https://intelly-server.herokuapp.com/api/users/login`,
+          `https://intelly-auth-service.herokuapp.com/api/users/login`,
           // 'http://localhost:5000/api/users/login',
           payload
         )
         .then((response) => {
+          console.log(response.data);
           if (response.data.accessToken) {
             console.log(response.data);
             setAuthState({
@@ -47,7 +45,8 @@ const Login = () => {
             });
             console.log('logged in successfully');
             history.push('/');
-            window.location.reload();
+            // this seems to break the login process
+            // window.location.reload();
           }
         });
     }

@@ -17,7 +17,7 @@ function App() {
           <Switch>
             <Route exact path='/login' component={Login} />
             <ProtectedRoute exact path='/' component={Dashboard} />
-            <Route exact path='/contact' component={Contact} />
+            <ProtectedRoute exact path='/contact' component={Contact} />
           </Switch>
         </APIContextProvider>
       </AuthProvider>

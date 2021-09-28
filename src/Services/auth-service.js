@@ -13,15 +13,12 @@ class AuthService {
   //       if (response.data.accessToken) {
   //         localStorage.setItem('user', JSON.stringify(response.data));
   //       }
-
   //       return response.data;
   //     });
   // }
-
-  logout() {
-    localStorage.removeItem('intellyUser');
-  }
-
+  // logout() {
+  //   localStorage.removeItem('intellyUser');
+  // }
   //   register(first_name, last_name, email, password) {
   //     return axios.post(API_URL + "signup", {
   //       first_name,
@@ -30,10 +27,9 @@ class AuthService {
   //       password
   //     });
   //   }
-
-  getCurrentUser() {
-    return JSON.parse(localStorage.getItem('intellyUser'));
-  }
+  // getCurrentUser() {
+  //   return JSON.parse(localStorage.getItem('intellyUser'));
+  // }
 }
 
 export default new AuthService();
