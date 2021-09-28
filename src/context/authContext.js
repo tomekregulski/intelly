@@ -13,17 +13,19 @@ export const AuthProvider = (props) => {
     token: '',
   });
 
-  useEffect(() => {
-    if (authState.token !== '') {
-      async function fetchData() {
-        const apiResponse = await axios.get(
-          `https://intelly-auth-service.herokuapp.com/api/users/currentUser`
-        );
-        console.log(apiResponse);
-      }
-      fetchData();
-    }
-  }, []);
+  // useEffect(() => {
+  //   console.log('auth effect');
+  //   if (authState.token === '') {
+  //     async function fetchData() {
+  //       const apiResponse = await axios.get(
+  //         `https://intelly-auth-service.herokuapp.com/api/users/current-user`
+  //       );
+  //       console.log(apiResponse);
+  //       // setAuthState(apiResponse);
+  //     }
+  //     fetchData();
+  //   }
+  // }, []);
 
   return (
     <AuthContext.Provider value={[authState, setAuthState]}>
