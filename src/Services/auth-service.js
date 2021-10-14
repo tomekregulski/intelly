@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 
 // const API_URL = '/api/users/';
 
@@ -16,9 +16,9 @@ class AuthService {
   //       return response.data;
   //     });
   // }
-  // logout() {
-  //   localStorage.removeItem('intellyUser');
-  // }
+  logout() {
+    axios.get('http://localhost:5000/api/users/logout');
+  }
   //   register(first_name, last_name, email, password) {
   //     return axios.post(API_URL + "signup", {
   //       first_name,

@@ -13,7 +13,6 @@ import WeeklyView from '../WeeklyView/WeeklyView';
 import WeeklyViewB from '../WeeklyView/WeeklyViewB';
 import Welcome from '../Welcome/Welcome';
 import MonthlyView from '../MonthlyView/MonthlyView';
-// import AuthService from '../../Services/auth-service';
 
 import { AuthContext } from '../../context/authContext';
 
@@ -94,7 +93,8 @@ export default function Dashboard() {
   const [value, setValue] = React.useState(0);
   const [checked, setChecked] = React.useState(true);
 
-  const [authState, setAuthState] = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const [userData, setUserData] = user;
 
   const handleToggleChange = (event) => {
     setChecked(event.target.checked);
@@ -115,13 +115,14 @@ export default function Dashboard() {
   // Pulls current user from localStorage to get list of brands and setBrand to first brand on list
   // Planned to change to a method where user data is not stored openly in localStorage
   useEffect(() => {
-    const user = authState;
+    const user = userData;
     if (user) {
-      const brands = user.brands.split(', ');
+      // const brands = user.brands.split(', ');
+      const brands = ['Simmer', 'SaSo'];
       setUserBrands(brands);
       setBrand(brands[0]);
     }
-  }, [authState, setBrand, setUserBrands]);
+  }, [userData, setBrand, setUserBrands]);
 
   const handleCategoryChange = (value) => {
     if (categoryList) {

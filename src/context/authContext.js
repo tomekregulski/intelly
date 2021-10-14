@@ -1,34 +1,35 @@
 import React, { useState, createContext, useEffect } from 'react';
-import axios from 'axios';
+
 export const AuthContext = createContext();
 
 export const AuthProvider = (props) => {
-  const [authState, setAuthState] = useState({
-    id: '',
-    email: '',
-    first_name: '',
-    last_name: '',
-    role: '',
-    brands: '',
-    token: '',
-  });
+  const [isAuth, setIsAuth] = useState(false);
+  const [userData, setUserData] = useState({});
 
-  // useEffect(() => {
-  //   console.log('auth effect');
-  //   if (authState.token === '') {
-  //     async function fetchData() {
-  //       const apiResponse = await axios.get(
-  //         `https://intelly-auth-service.herokuapp.com/api/users/current-user`
-  //       );
-  //       console.log(apiResponse);
-  //       // setAuthState(apiResponse);
-  //     }
-  //     fetchData();
-  //   }
-  // }, []);
+  useEffect(() => {
+    console.log('auth effect');
+    if (JSON.parse(localStorage.getItem('user'))) {
+      console.log('IS AUTH');
+      setIsAuth(true);
+
+      const user = JSON.parse(localStorage.getItem('user'));
+
+      setUserData({
+        id: user.id,
+        email: user.email,
+        first_name: user.first_name,
+        last_name: user.last_name,
+        role: user.roles,
+        brands: user.brands,
+        token: user.accessToken,
+      });
+    }
+  }, []);
 
   return (
-    <AuthContext.Provider value={[authState, setAuthState]}>
+    <AuthContext.Provider
+      value={{ auth: [isAuth, setIsAuth], user: [userData, setUserData] }}
+    >
       {props.children}
     </AuthContext.Provider>
   );
