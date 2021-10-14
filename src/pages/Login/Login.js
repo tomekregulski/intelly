@@ -4,13 +4,17 @@ import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../../context/authContext';
 
-import { Grid, TextField, Paper, Button } from '@material-ui/core';
+import { Grid, TextField, Button } from '@material-ui/core';
 import image from '../../images/intelly_logo.png';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [authState, setAuthState] = useContext(AuthContext);
+  const { auth, user } = useContext(AuthContext);
+  // eslint-disable-next-line no-unused-vars
+  const [isAuth, setIsAuth] = auth;
+  // eslint-disable-next-line no-unused-vars
+  const [userData, setUserData] = user;
 
   const history = useHistory();
 
@@ -31,23 +35,27 @@ const Login = () => {
           payload
         )
         .then((response) => {
-          console.log(response.data);
           if (response.data.accessToken) {
-            console.log(response.data);
-            setAuthState({
-              id: response.data.id,
-              email: response.data.email,
-              first_name: response.data.first_name,
-              last_name: response.data.last_name,
-              role: response.data.roles,
-              brands: response.data.brands,
-              token: response.data.accessToken,
-            });
-            console.log('logged in successfully');
-            history.push('/');
-            // this seems to break the login process
-            // window.location.reload();
+            localStorage.setItem('user', JSON.stringify(response.data));
           }
+
+          setIsAuth(true);
+
+          setUserData({
+            id: response.data.id,
+            email: response.data.email,
+            first_name: response.data.first_name,
+            last_name: response.data.last_name,
+            role: response.data.roles,
+            brands: response.data.brands,
+            token: response.data.accessToken,
+          });
+
+          console.log('logged in successfully');
+          history.push('/');
+          // this seems to break the login process
+          // window.location.reload();
+          // }
         });
     }
   };

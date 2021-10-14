@@ -3,6 +3,8 @@ import { AuthContext } from '../../context/authContext';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 
+import axios from 'axios';
+
 import Box from '@mui/material/Box';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -22,11 +24,12 @@ const UserButton = styled(Button)({
   color: 'rgba(0, 180, 249, 0.872)',
   borderColor: 'rgba(0, 180, 249, 0.872)',
   backgroundColor: 'none',
-  // padding: '10px 20px',
 });
 
 function UserMenu(props) {
-  const [authState, setAuthState] = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
+  const [userData, setUserData] = user;
+
   const [anchorEl, setAnchorEl] = useState(null);
   const [width, setWidth] = React.useState(window.innerWidth);
 
@@ -52,14 +55,32 @@ function UserMenu(props) {
     setAnchorEl(null);
   };
 
+  const handleLoginStatus = () => {
+    async function fetchData() {
+      const apiResponse = await axios.get(
+        `https://intelly-auth-service.herokuapp.com/api/users/current-user`,
+        // 'http://localhost:5000/api/users/current-user',
+        { withCredentials: true }
+      );
+      console.log(apiResponse);
+      //  setAuthState(apiResponse);
+    }
+    fetchData();
+  };
+
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title='Account settings'>
           {width > breakpoint ? (
-            <UserButton variant='outlined' onClick={handleClick}>
-              {authState.first_name} {authState.last_name}
-            </UserButton>
+            <>
+              {/* <UserButton variant='outlined' onClick={handleLoginStatus}>
+                check login
+              </UserButton> */}
+              <UserButton variant='outlined' onClick={handleClick}>
+                {userData.first_name} {userData.last_name}
+              </UserButton>
+            </>
           ) : (
             <IconButton onClick={handleClick} size='small' sx={{ ml: 2 }}>
               <MenuIcon />
