@@ -15,7 +15,6 @@ const Login = () => {
   const [isAuth, setIsAuth] = auth;
   // eslint-disable-next-line no-unused-vars
   const [userData, setUserData] = user;
-
   const history = useHistory();
 
   const handleSubmit = async (e) => {
@@ -28,34 +27,30 @@ const Login = () => {
 
       console.log(payload);
 
-      axios
-        .post(
-          `https://intelly-auth-service.herokuapp.com/api/users/login`,
-          // 'http://localhost:5000/api/users/login',
-          payload
-        )
+      return axios
+        .post('https://intelly-auth-service.herokuapp.com/api/users/login', {
+          payload,
+        })
         .then((response) => {
-          if (response.data.accessToken) {
+          if (response.data.token) {
             localStorage.setItem('user', JSON.stringify(response.data));
           }
 
           setIsAuth(true);
+          console.log(response.data);
 
           setUserData({
             id: response.data.id,
             email: response.data.email,
+            password: response.data.password,
             first_name: response.data.first_name,
             last_name: response.data.last_name,
-            role: response.data.roles,
+            roles: response.data.roles,
+            access: response.data.access,
             brands: response.data.brands,
-            token: response.data.accessToken,
           });
 
-          console.log('logged in successfully');
           history.push('/');
-          // this seems to break the login process
-          // window.location.reload();
-          // }
         });
     }
   };
@@ -68,7 +63,7 @@ const Login = () => {
             display: 'block',
             width: '200px',
             margin: '0 auto 50px',
-            paddingTop: '160px',
+            paddingTop: '120px',
           }}
           src={image}
           alt='Intelly'
