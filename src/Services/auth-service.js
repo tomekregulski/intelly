@@ -16,9 +16,9 @@ class AuthService {
   //       return response.data;
   //     });
   // }
-  logout() {
-    axios.get('http://localhost:5000/api/users/logout');
-  }
+  // logout() {
+  //   axios.get('http://localhost:5000/api/users/logout');
+  // }
   //   register(first_name, last_name, email, password) {
   //     return axios.post(API_URL + "signup", {
   //       first_name,

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { AuthContext } from '../../context/authContext';
 
 import UserMenu from '../UserMenu/UserMenu';
 import DataMenu from '../DataMenu/DataMenu';
@@ -10,9 +10,24 @@ import styles from '../../styles/NavStyles';
 import image from '../../images/intelly_logo.png';
 
 function Navbar(props) {
+  const { user } = useContext(AuthContext);
+  // eslint-disable-next-line no-unused-vars
+  const [userData, setUserData] = user;
+
+  const [query, setQuery] = useState({});
+
   const [width, setWidth] = useState(window.innerWidth);
 
   const { classes, handleLogout } = props;
+
+  useEffect(() => {
+    if (Object.keys(userData).length) {
+      setQuery({
+        email: userData.email,
+        password: userData.password,
+      });
+    }
+  }, [userData]);
 
   const breakpoint = 1200;
 
@@ -29,9 +44,11 @@ function Navbar(props) {
       <div className={classes.navLinks}>
         {width > breakpoint ? <DesktopNavLoggedIn /> : <DataMenu />}
         {width < breakpoint && (
-          <Link to='/'>
+          <a
+            href={`https://gallant-wing-415919.netlify.app/?${query.email}&${query.password}`}
+          >
             <img className={classes.logo} src={image} alt='Intelly' />
-          </Link>
+          </a>
         )}
         <UserMenu handleLogout={handleLogout} />
       </div>

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+
+import { AuthContext } from '../../context/authContext';
 
 import BrandSelect from '../DataMenu/BrandSelect';
 import RegionSelect from '../DataMenu/RegionSelect';
@@ -10,13 +11,35 @@ import styles from '../../styles/NavStyles';
 import image from '../../images/intelly_logo.png';
 
 function DesktopNavLoggedIn(props) {
+  const { user } = useContext(AuthContext);
+  // eslint-disable-next-line no-unused-vars
+  const [userData, setUserData] = user;
+
+  const [query, setQuery] = useState({});
+
   const { classes } = props;
+
+  useEffect(() => {
+    if (Object.keys(userData).length) {
+      setQuery({
+        email: userData.email,
+        password: userData.password,
+      });
+    }
+  }, [userData]);
 
   return (
     <div className={classes.desktopNavContainer}>
-      <Link style={{ marginRight: '30px' }} to='/'>
-        <img className={classes.logo} src={image} alt='Intelly' />
-      </Link>
+      <a
+        href={`https://gallant-wing-415919.netlify.app/?${query.email}&${query.password}`}
+      >
+        <img
+          className={classes.logo}
+          style={{ marginRight: '30px' }}
+          src={image}
+          alt='Intelly'
+        />
+      </a>
       <BrandSelect />
       <RegionSelect />
       <TimeframeSelect />
