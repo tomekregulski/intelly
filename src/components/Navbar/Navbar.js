@@ -23,8 +23,7 @@ function Navbar(props) {
   useEffect(() => {
     if (Object.keys(userData).length) {
       setQuery({
-        email: userData.email,
-        password: userData.password,
+        token: userData.token,
       });
     }
   }, [userData]);
@@ -44,9 +43,7 @@ function Navbar(props) {
       <div className={classes.navLinks}>
         {width > breakpoint ? <DesktopNavLoggedIn /> : <DataMenu />}
         {width < breakpoint && (
-          <a
-            href={`https://gallant-wing-415919.netlify.app/?${query.email}&${query.password}`}
-          >
+          <a href={`https://gallant-wing-415919.netlify.app/?${query.token}`}>
             <img className={classes.logo} src={image} alt='Intelly' />
           </a>
         )}
