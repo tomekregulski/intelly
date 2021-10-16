@@ -22,17 +22,14 @@ function DesktopNavLoggedIn(props) {
   useEffect(() => {
     if (Object.keys(userData).length) {
       setQuery({
-        email: userData.email,
-        password: userData.password,
+        token: userData.token,
       });
     }
   }, [userData]);
 
   return (
     <div className={classes.desktopNavContainer}>
-      <a
-        href={`https://gallant-wing-415919.netlify.app/?${query.email}&${query.password}`}
-      >
+      <a href={`https://gallant-wing-415919.netlify.app/?${query.token}`}>
         <img
           className={classes.logo}
           style={{ marginRight: '30px' }}
