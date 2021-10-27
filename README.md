@@ -42,12 +42,12 @@ At this time, I am not inviting individual contribution, unless there has been a
 
 The following is a list of all related projects that have entered some stage of development. It will be updated as work begins on new services.
 
-Authorization - Front End: https://github.com/tomekregulski/intelly-auth-client - Deployed as part of the Public Demo
-Authorization - Back End: https://github.com/tomekregulski/intelly-auth-service - Deployed as part of the Public Demo
-Retail Data Dashboard - Front End: https://github.com/tomekregulski/intelly - Deployed as part of the Public Demo
-Retail Data Dashboard - Back End: https://github.com/tomekregulski/intelly-server - Deployed as part of the Public Demo
-Field Reporting - Front End: https://github.com/tomekregulski/fieldist-rep-web-client - Deployed as part of the Public Demo
-Field Events - Back End: https://github.com/tomekregulski/fieldist-back-end - Deployed as part of the Public Demo
-Field Events Administration - Front End: https://github.com/tomekregulski/fieldist-admin-web-client - Deployed as part of the Public Demo
-Administrative Tasks - Front End: https://github.com/tomekregulski/intelly-admin-tasks-client - Deployed as part of the Public Demo
-Administrative Tasks - Back End: https://github.com/tomekregulski/intelly-admin-task-server - Deployed as part of the Public Demo
+Authorization - Front End: https://github.com/tomekregulski/intelly-auth-client - Deployed as part of the Public Demo  
+Authorization - Back End: https://github.com/tomekregulski/intelly-auth-service - Deployed as part of the Public Demo  
+Retail Data Dashboard - Front End: https://github.com/tomekregulski/intelly - Deployed as part of the Public Demo  
+Retail Data Dashboard - Back End: https://github.com/tomekregulski/intelly-server - Deployed as part of the Public Demo  
+Field Reporting - Front End: https://github.com/tomekregulski/fieldist-rep-web-client - Deployed as part of the Public Demo  
+Field Events - Back End: https://github.com/tomekregulski/fieldist-back-end - Deployed as part of the Public Demo  
+Field Events Administration - Front End: https://github.com/tomekregulski/fieldist-admin-web-client - Deployed as part of the Public Demo  
+Administrative Tasks - Front End: https://github.com/tomekregulski/intelly-admin-tasks-client - Deployed as part of the Public Demo  
+Administrative Tasks - Back End: https://github.com/tomekregulski/intelly-admin-task-server - Deployed as part of the Public Demo  
