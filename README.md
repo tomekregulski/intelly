@@ -46,7 +46,7 @@ The following is a list of all related projects that have entered some stage of 
 <a href="https://github.com/tomekregulski/intelly-auth-service">Authorization - Back End</a> - Deployed as part of the Public Demo  
 <a href="https://github.com/tomekregulski/intelly">Retail Data Dashboard - Front End</a> - Deployed as part of the Public Demo  
 <a href="https://github.com/tomekregulski/intelly-server">Retail Data Dashboard - Back End</a> - Deployed as part of the Public Demo  
-<a href="https://github.com/tomekregulski/fieldist-rep-web-client">Field Reporting - Front End</a> - Deployed as part of the Public Demo
+<a href="https://github.com/tomekregulski/fieldist-rep-web-client">Field Reporting - Front End</a> - Deployed as part of the Public Demo  
 <a href="https://github.com/tomekregulski/fieldist-rep-react-native">Field Reporting - React Native Front End</a> - Early Stage, Not Deployed for Public Demo  
 <a href="https://github.com/tomekregulski/fieldist-back-end">Field Events - Back End</a> - Deployed as part of the Public Demo  
 <a href="https://github.com/tomekregulski/fieldist-admin-web-client">Field Events Administration - Front End</a> - Deployed as part of the Public Demo  
