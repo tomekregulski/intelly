@@ -42,7 +42,7 @@ At this time, I am not inviting individual contribution, unless there has been a
 
 The following is a list of all related projects that have entered some stage of development. It will be updated as work begins on new services.
 
-Authorization - Front End: https://github.com/tomekregulski/intelly-auth-client - Deployed as part of the Public Demo  
+Authorization - <a href="https://github.com/tomekregulski/intelly-auth-client">Front End</a> - Deployed as part of the Public Demo  
 Authorization - Back End: https://github.com/tomekregulski/intelly-auth-service - Deployed as part of the Public Demo  
 Retail Data Dashboard - Front End: https://github.com/tomekregulski/intelly - Deployed as part of the Public Demo  
 Retail Data Dashboard - Back End: https://github.com/tomekregulski/intelly-server - Deployed as part of the Public Demo  
