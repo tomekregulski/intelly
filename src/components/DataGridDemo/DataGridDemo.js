@@ -68,7 +68,7 @@ export default function DataGridDemo() {
 
   useEffect(() => {
     if (timeframeProductData) {
-      const rowsData = timeframeProductData.map((item, index) => ({
+      const rowsData = timeframeProductData.forEach((item, index) => ({
         id: index,
         product: item.name,
         sales1w: item.unitSalesLW,

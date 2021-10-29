@@ -45,21 +45,21 @@ const TotalSalesStoresByProduct = (props) => {
       let salesData = [];
       let currentSkus = [];
 
-      for (let i = 0; i < timeframeProductData.length; i++) {
-        currentSkus.push(timeframeProductData[i].name);
-      }
+      timeframeProductData.forEach((entry) => {
+        currentSkus.push(entry.name);
+      });
 
-      for (let i = 0; i < currentSkus.length; i++) {
+      currentSkus.forEach((sku, index) => {
         salesData.push({
-          label: currentSkus[i],
+          label: sku,
           data: [],
-          backgroundColor: colors[i],
+          backgroundColor: colors[index],
         });
-      }
+      });
 
-      for (let i = 0; i < data.length; i++) {
-        stores.push(data[i].name);
-        let salesObj = data[i].sales;
+      data.forEach((entry) => {
+        stores.push(entry.name);
+        let salesObj = entry.sales;
         for (const property in salesObj) {
           const index = salesData.find((x) => x.label === property);
           if (salesObj[property]['week1']) {
@@ -68,7 +68,7 @@ const TotalSalesStoresByProduct = (props) => {
             index.data.push(0);
           }
         }
-      }
+      });
 
       setDataChart({
         labels: stores,

@@ -38,14 +38,11 @@ function MonthlyRevenueRecap() {
       let totalSalesM1 = 0;
       let totalSalesM2 = 0;
       let totalSalesM3 = 0;
-      for (let i = 0; i < monthlyProductData.length; i++) {
-        totalSalesM1 =
-          totalSalesM1 + parseInt(monthlyProductData[i].netSales4W);
-        totalSalesM2 =
-          totalSalesM2 + parseInt(monthlyProductData[i].netSales8W);
-        totalSalesM3 =
-          totalSalesM3 + parseInt(monthlyProductData[i].netSales12W);
-      }
+      monthlyProductData.forEach((entry) => {
+        totalSalesM1 = totalSalesM1 + parseInt(entry.netSales4W);
+        totalSalesM2 = totalSalesM2 + parseInt(entry.netSales8W);
+        totalSalesM3 = totalSalesM3 + parseInt(entry.netSales12W);
+      });
       setGrandTotals({
         totalSalesM1: totalSalesM1,
         totalSalesM2: totalSalesM2,

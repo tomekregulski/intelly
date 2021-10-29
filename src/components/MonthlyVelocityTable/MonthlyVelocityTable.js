@@ -27,20 +27,14 @@ export default function MonthlyVelocityTable() {
       let velocityM1 = 0;
       let velocityM2 = 0;
       let velocityM3 = 0;
-      for (let i = 0; i < monthlyProductData.length; i++) {
+      monthlyProductData.forEach((entry) => {
         velocityM1 =
-          velocityM1 +
-          parseInt(monthlyProductData[i].unitSales4W) /
-            parseInt(monthlyProductData[i].stores4W);
+          velocityM1 + parseInt(entry.unitSales4W) / parseInt(entry.stores4W);
         velocityM2 =
-          velocityM2 +
-          parseInt(monthlyProductData[i].unitSales8W) /
-            parseInt(monthlyProductData[i].stores8W);
+          velocityM2 + parseInt(entry.unitSales8W) / parseInt(entry.stores8W);
         velocityM3 =
-          velocityM3 +
-          parseInt(monthlyProductData[i].unitSales12W) /
-            parseInt(monthlyProductData[i].stores12W);
-      }
+          velocityM3 + parseInt(entry.unitSales12W) / parseInt(entry.stores12W);
+      });
       setGrandTotals({
         velocityM1: velocityM1,
         velocityM2: velocityM2,

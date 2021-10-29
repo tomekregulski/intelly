@@ -38,14 +38,12 @@ function MonthlySalesRecap() {
       let totalSalesM1 = 0;
       let totalSalesM2 = 0;
       let totalSalesM3 = 0;
-      for (let i = 0; i < monthlyProductData.length; i++) {
-        totalSalesM1 =
-          totalSalesM1 + parseInt(monthlyProductData[i].unitSales4W);
-        totalSalesM2 =
-          totalSalesM2 + parseInt(monthlyProductData[i].unitSales8W);
-        totalSalesM3 =
-          totalSalesM3 + parseInt(monthlyProductData[i].unitSales12W);
-      }
+      monthlyProductData.forEach((entry) => {
+        totalSalesM1 = totalSalesM1 + parseInt(entry.unitSales4W);
+        totalSalesM2 = totalSalesM2 + parseInt(entry.unitSales8W);
+        totalSalesM3 = totalSalesM3 + parseInt(entry.unitSales12W);
+      });
+
       setGrandTotals({
         totalSalesM1: totalSalesM1,
         totalSalesM2: totalSalesM2,
@@ -57,12 +55,7 @@ function MonthlySalesRecap() {
   return (
     <>
       <TableContainer id='monthlySalesRecap' component={Paper}>
-        <Table
-          className={classes.table}
-          // className='tableBody'
-          size='small'
-          aria-label='simple table'
-        >
+        <Table className={classes.table} size='small' aria-label='simple table'>
           <TableHead>
             <TableRow>
               <TableCell
@@ -176,9 +169,7 @@ function MonthlySalesRecap() {
                 </TableRow>
               ))}
             {grandTotals !== {} ? (
-              <TableRow
-              // className={index % 2 === 1 ? 'highlighted' : null}
-              >
+              <TableRow>
                 <TableCell
                   style={gtCellStyle}
                   align='left'

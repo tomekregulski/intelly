@@ -51,9 +51,10 @@ export function APIContextProvider({ children }) {
       );
 
       let tf = [];
-      for (let i = 0; i < apiResponse.data.length; i++) {
-        tf.push(apiResponse.data[i]['timeframe']);
-      }
+
+      apiResponse.data.forEach((entry) => {
+        tf.push(entry['timeframe']);
+      });
       setAllBrandTimeframes(tf);
       setCurrentTimeframe(tf[0]);
     }
@@ -137,19 +138,19 @@ export function APIContextProvider({ children }) {
       let skuList = [];
       let categoryList = [];
 
-      for (let i = 0; i < weeklyRawData.length; i++) {
-        if (!regionList.includes(weeklyRawData[i].region)) {
-          regionList.push(weeklyRawData[i].region);
+      weeklyRawData.forEach((entry) => {
+        if (!regionList.includes(entry.region)) {
+          regionList.push(entry.region);
         }
 
-        if (!skuList.includes(weeklyRawData[i].sku_name)) {
-          skuList.push(weeklyRawData[i].sku_name);
+        if (!skuList.includes(entry.sku_name)) {
+          skuList.push(entry.sku_name);
         }
 
-        if (!categoryList.includes(weeklyRawData[i].category)) {
-          categoryList.push(weeklyRawData[i].category);
+        if (!categoryList.includes(entry.category)) {
+          categoryList.push(entry.category);
         }
-      }
+      });
 
       setCurrentBrandRegions(regionList);
       setCurrentBrandSkus(skuList);

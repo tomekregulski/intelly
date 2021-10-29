@@ -46,20 +46,20 @@ export default function TablTest() {
 
   useEffect(() => {
     if (timeframeProductData) {
-      const rowsData = timeframeProductData.map((item, index) => ({
-        product: item.name,
-        sales1w: item.unitSalesLW,
-        revenue1w: item.netSalesLW,
-        sales4w: item.unitSales4W,
-        revenue4w: item.netSales4W,
-        sales12w: item.unitSales12W,
-        revenue12w: item.netSales12W,
-        sales52w: item.unitSales52W,
-        revenue52w: item.netSales52W,
+      const rowsData = timeframeProductData.forEach((entry) => ({
+        product: entry.name,
+        sales1w: entry.unitSalesLW,
+        revenue1w: entry.netSalesLW,
+        sales4w: entry.unitSales4W,
+        revenue4w: entry.netSales4W,
+        sales12w: entry.unitSales12W,
+        revenue12w: entry.netSales12W,
+        sales52w: entry.unitSales52W,
+        revenue52w: entry.netSales52W,
       }));
-      for (var i = 0; i < rowsData.length; i++) {
-        createData(rowsData[i]);
-      }
+      rowsData.forEach((row) => {
+        createData(row);
+      });
       setRows(rowsData);
     }
   }, [timeframeProductData]);

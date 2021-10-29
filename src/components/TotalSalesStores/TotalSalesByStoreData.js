@@ -13,13 +13,13 @@ const TotalSalesByStoresData = () => {
       let totalSalesByStore = [];
 
       let totalChunked = [];
-      for (let i = 0; i < timeframeStoreData.length; i++) {
+      timeframeStoreData.forEach((entry) => {
         let storeTotal = 0;
-        let storeName = timeframeStoreData[i].name;
-        for (const sku in timeframeStoreData[i].sales) {
+        let storeName = entry.name;
+        for (const sku in entry.sales) {
           let number = 0;
-          if (timeframeStoreData[i].sales[sku].week1) {
-            number = timeframeStoreData[i].sales[sku].week1;
+          if (entry.sales[sku].week1) {
+            number = entry.sales[sku].week1;
           }
           storeTotal = storeTotal + number;
         }
@@ -27,7 +27,7 @@ const TotalSalesByStoresData = () => {
         obj['name'] = storeName;
         obj['sales'] = storeTotal;
         totalSalesByStore.push(obj);
-      }
+      });
 
       totalSalesByStore.sort((a, b) => (a.sales > b.sales ? -1 : 1));
 

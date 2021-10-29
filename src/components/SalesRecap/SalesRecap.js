@@ -33,28 +33,19 @@ function SalesRecap() {
       let totalRevenue12W = 0;
       let totalSales52W = 0;
       let totalRevenue52W = 0;
-      for (let i = 0; i < timeframeProductData.length; i++) {
-        totalSalesLW =
-          totalSalesLW + parseInt(timeframeProductData[i].unitSalesLW);
-        totalRevenueLW =
-          totalRevenueLW + parseInt(timeframeProductData[i].netSalesLW);
-        totalSales4W =
-          totalSales4W + parseInt(timeframeProductData[i].unitSales4W);
-        totalRevenue4W =
-          totalRevenue4W + parseInt(timeframeProductData[i].netSales4W);
-        totalSales12W =
-          totalSales12W + parseInt(timeframeProductData[i].unitSales12W);
-        totalRevenue12W =
-          totalRevenue12W + parseInt(timeframeProductData[i].netSales12W);
+      timeframeProductData.forEach((entry) => {
+        totalSalesLW = totalSalesLW + parseInt(entry.unitSalesLW);
+        totalRevenueLW = totalRevenueLW + parseInt(entry.netSalesLW);
+        totalSales4W = totalSales4W + parseInt(entry.unitSales4W);
+        totalRevenue4W = totalRevenue4W + parseInt(entry.netSales4W);
+        totalSales12W = totalSales12W + parseInt(entry.unitSales12W);
+        totalRevenue12W = totalRevenue12W + parseInt(entry.netSales12W);
         totalSales52W =
-          totalSales52W + timeframeProductData[i].unitSales52W
-            ? parseInt(timeframeProductData[i].unitSales52W)
-            : 0;
+          totalSales52W + entry.unitSales52W ? parseInt(entry.unitSales52W) : 0;
         totalRevenue52W =
-          totalRevenue52W + timeframeProductData[i].netSales52W
-            ? parseInt(timeframeProductData[i].netSales52W)
-            : 0;
-      }
+          totalRevenue52W + entry.netSales52W ? parseInt(entry.netSales52W) : 0;
+      });
+
       setGrandTotals({
         salesLW: totalSalesLW,
         revenueLW: totalRevenueLW,
@@ -80,12 +71,7 @@ function SalesRecap() {
   return (
     <>
       <TableContainer id='salesRecap' component={Paper}>
-        <Table
-          className={classes.table}
-          // className='tableBody'
-          size='small'
-          aria-label='simple table'
-        >
+        <Table className={classes.table} size='small' aria-label='simple table'>
           <TableHead>
             <TableRow>
               <TableCell
@@ -265,9 +251,7 @@ function SalesRecap() {
                 </TableRow>
               ))}
             {grandTotals !== {} ? (
-              <TableRow
-              // className={index % 2 === 1 ? 'highlighted' : null}
-              >
+              <TableRow>
                 <TableCell
                   style={gtCellStyle}
                   align='left'

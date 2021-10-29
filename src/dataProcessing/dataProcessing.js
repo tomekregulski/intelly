@@ -14,7 +14,7 @@ export const fetchTimeframeProductData = (
   }
 
   if (filteredData.length) {
-    filteredData.map((item) => {
+    filteredData.forEach((item) => {
       if (!skus.find((o) => o.name === item.sku_name)) {
         skus.push({
           name: item.sku_name,
@@ -38,71 +38,48 @@ export const fetchTimeframeProductData = (
     });
   }
 
-  for (var i = 0; i < filteredData.length; i++) {
-    for (var j = 0; j < skus.length; j++) {
-      if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === currentTimeframe
-      ) {
-        skus[j].storesLW = skus[j].storesLW + 1;
-        skus[j].netSalesLW =
-          skus[j].netSalesLW + parseInt(filteredData[i].net_sales);
-        skus[j].unitSalesLW =
-          skus[j].unitSalesLW + parseInt(filteredData[i].unit_sales);
+  filteredData.forEach((entry) => {
+    skus.forEach((sku) => {
+      if (entry.sku_name === sku.name && entry.timeframe === currentTimeframe) {
+        sku.storesLW = sku.storesLW + 1;
+        sku.netSalesLW = sku.netSalesLW + parseInt(entry.net_sales);
+        sku.unitSalesLW = sku.unitSalesLW + parseInt(entry.unit_sales);
       }
       if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === `${currentTimeframe}_04_weeks`
+        entry.sku_name === sku.name &&
+        entry.timeframe === `${currentTimeframe}_04_weeks`
       ) {
-        skus[j].stores4W = skus[j].stores4W + 1;
-        skus[j].netSales4W =
-          skus[j].netSales4W + parseInt(filteredData[i].net_sales);
-        skus[j].unitSales4W =
-          skus[j].unitSales4W + parseInt(filteredData[i].unit_sales);
+        sku.stores4W = sku.stores4W + 1;
+        sku.netSales4W = sku.netSales4W + parseInt(entry.net_sales);
+        sku.unitSales4W = sku.unitSales4W + parseInt(entry.unit_sales);
       }
       if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === `${currentTimeframe}_12_weeks`
+        entry.sku_name === sku.name &&
+        entry.timeframe === `${currentTimeframe}_12_weeks`
       ) {
-        skus[j].stores12W = skus[j].stores12W + 1;
-        skus[j].netSales12W =
-          skus[j].netSales12W + parseInt(filteredData[i].net_sales);
-        skus[j].unitSales12W =
-          skus[j].unitSales12W + parseInt(filteredData[i].unit_sales);
+        sku.stores12W = sku.stores12W + 1;
+        sku.netSales12W = sku.netSales12W + parseInt(entry.net_sales);
+        sku.unitSales12W = sku.unitSales12W + parseInt(entry.unit_sales);
       }
       if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === `${currentTimeframe}_52_weeks`
+        entry.sku_name === sku.name &&
+        entry.timeframe === `${currentTimeframe}_52_weeks`
       ) {
-        skus[j].stores52W = skus[j].stores52W + 1;
-        skus[j].netSales52W =
-          skus[j].netSales52W + parseInt(filteredData[i].net_sales);
-        skus[j].unitSales52W =
-          skus[j].unitSales52W + parseInt(filteredData[i].unit_sales);
+        sku.stores52W = sku.stores52W + 1;
+        sku.netSales52W = sku.netSales52W + parseInt(entry.net_sales);
+        sku.unitSales52W = sku.unitSales52W + parseInt(entry.unit_sales);
       }
-      if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === timeframes[1]
-      ) {
-        skus[j].unitSalesWeek2 =
-          skus[j].unitSalesWeek2 + parseInt(filteredData[i].unit_sales);
+      if (entry.sku_name === sku.name && entry.timeframe === timeframes[1]) {
+        sku.unitSalesWeek2 = sku.unitSalesWeek2 + parseInt(entry.unit_sales);
       }
-      if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === timeframes[2]
-      ) {
-        skus[j].unitSalesWeek3 =
-          skus[j].unitSalesWeek3 + parseInt(filteredData[i].unit_sales);
+      if (entry.sku_name === sku.name && entry.timeframe === timeframes[2]) {
+        sku.unitSalesWeek3 = sku.unitSalesWeek3 + parseInt(entry.unit_sales);
       }
-      if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === timeframes[3]
-      ) {
-        skus[j].unitSalesWeek4 =
-          skus[j].unitSalesWeek4 + parseInt(filteredData[i].unit_sales);
+      if (entry.sku_name === sku.name && entry.timeframe === timeframes[3]) {
+        sku.unitSalesWeek4 = sku.unitSalesWeek4 + parseInt(entry.unit_sales);
       }
-    }
-  }
+    });
+  });
   return skus;
 };
 
@@ -121,23 +98,8 @@ export const fetchTimeframeStoreData = (
     filteredData = data;
   }
 
-  // TO be integrated at a future stage, replacing the sales object below
-  // let skuArr = [];
-
-  // for (var i = 0; i < skuList.length; i++) {
-  //   let obj = {
-  //     [skuList[i]]: {
-  //       week1: 0,
-  //       week2: 0,
-  //       week3: 0,
-  //       week4: 0,
-  //     }
-  //   }
-  //   skuArr.push(obj)
-  // }
-
   if (filteredData.length) {
-    filteredData.map((item) => {
+    filteredData.forEach((item) => {
       if (!stores.find((o) => o.name === item.store_name)) {
         stores.push({
           name: item.store_name,
@@ -151,39 +113,36 @@ export const fetchTimeframeStoreData = (
     });
   }
 
-  for (var i = 0; i < filteredData.length; i++) {
-    for (var j = 0; j < stores.length; j++) {
-      if (
-        filteredData[i].store_name === stores[j].name &&
-        filteredData[i].timeframe.length === 8
-      ) {
-        let sku = filteredData[i].sku_name;
-        if (!(sku in stores[j].sales)) {
-          stores[j].sales[sku] = {};
+  filteredData.forEach((entry) => {
+    stores.forEach((store) => {
+      if (entry.store_name === store.name && entry.timeframe.length === 8) {
+        let sku = entry.sku_name;
+        if (!(sku in store.sales)) {
+          store.sales[sku] = {};
         }
-        if (filteredData[i].timeframe === timeframes[0]) {
-          stores[j].sales[sku]['week1'] = parseInt(filteredData[i].unit_sales);
-          stores[j].totalSalesWeek1 =
-            stores[j].totalSalesWeek1 + parseInt(filteredData[i].unit_sales);
+        if (entry.timeframe === timeframes[0]) {
+          store.sales[sku]['week1'] = parseInt(entry.unit_sales);
+          store.totalSalesWeek1 =
+            store.totalSalesWeek1 + parseInt(entry.unit_sales);
         }
-        if (filteredData[i].timeframe === timeframes[1]) {
-          stores[j].sales[sku]['week2'] = parseInt(filteredData[i].unit_sales);
-          stores[j].totalSalesWeek2 =
-            stores[j].totalSalesWeek2 + parseInt(filteredData[i].unit_sales);
+        if (entry.timeframe === timeframes[1]) {
+          store.sales[sku]['week2'] = parseInt(entry.unit_sales);
+          store.totalSalesWeek2 =
+            store.totalSalesWeek2 + parseInt(entry.unit_sales);
         }
-        if (filteredData[i].timeframe === timeframes[2]) {
-          stores[j].sales[sku]['week3'] = parseInt(filteredData[i].unit_sales);
-          stores[j].totalSalesWeek3 =
-            stores[j].totalSalesWeek3 + parseInt(filteredData[i].unit_sales);
+        if (entry.timeframe === timeframes[2]) {
+          store.sales[sku]['week3'] = parseInt(entry.unit_sales);
+          store.totalSalesWeek3 =
+            store.totalSalesWeek3 + parseInt(entry.unit_sales);
         }
-        if (filteredData[i].timeframe === timeframes[3]) {
-          stores[j].sales[sku]['week4'] = parseInt(filteredData[i].unit_sales);
-          stores[j].totalSalesWeek4 =
-            stores[j].totalSalesWeek4 + parseInt(filteredData[i].unit_sales);
+        if (entry.timeframe === timeframes[3]) {
+          store.sales[sku]['week4'] = parseInt(entry.unit_sales);
+          store.totalSalesWeek4 =
+            store.totalSalesWeek4 + parseInt(entry.unit_sales);
         }
       }
-    }
-  }
+    });
+  });
   stores.sort((a, b) => (a.totalSalesWeek1 > b.totalSalesWeek1 ? -1 : 1));
 
   return stores;
@@ -205,7 +164,7 @@ export const fetchWeeklyProductData = (
   }
 
   if (filteredData.length) {
-    filteredData.map((item) => {
+    filteredData.forEach((item) => {
       if (!skus.find((o) => o.name === item.sku_name)) {
         skus.push({
           name: item.sku_name,
@@ -218,38 +177,22 @@ export const fetchWeeklyProductData = (
     });
   }
 
-  for (var i = 0; i < filteredData.length; i++) {
-    for (var j = 0; j < skus.length; j++) {
-      if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === currentTimeframe
-      ) {
-        skus[j].unitSalesLW =
-          skus[j].unitSalesLW + parseInt(filteredData[i].unit_sales);
+  filteredData.forEach((entry) => {
+    skus.forEach((sku) => {
+      if (entry.sku_name === sku.name && entry.timeframe === currentTimeframe) {
+        sku.unitSalesLW = sku.unitSalesLW + parseInt(entry.unit_sales);
       }
-      if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === timeframes[1]
-      ) {
-        skus[j].unitSalesWeek2 =
-          skus[j].unitSalesWeek2 + parseInt(filteredData[i].unit_sales);
+      if (entry.sku_name === sku.name && entry.timeframe === timeframes[1]) {
+        sku.unitSalesWeek2 = sku.unitSalesWeek2 + parseInt(entry.unit_sales);
       }
-      if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === timeframes[2]
-      ) {
-        skus[j].unitSalesWeek3 =
-          skus[j].unitSalesWeek3 + parseInt(filteredData[i].unit_sales);
+      if (entry.sku_name === sku.name && entry.timeframe === timeframes[2]) {
+        sku.unitSalesWeek3 = sku.unitSalesWeek3 + parseInt(entry.unit_sales);
       }
-      if (
-        filteredData[i].sku_name === skus[j].name &&
-        filteredData[i].timeframe === timeframes[3]
-      ) {
-        skus[j].unitSalesWeek4 =
-          skus[j].unitSalesWeek4 + parseInt(filteredData[i].unit_sales);
+      if (entry.sku_name === sku.name && entry.timeframe === timeframes[3]) {
+        sku.unitSalesWeek4 = sku.unitSalesWeek4 + parseInt(entry.unit_sales);
       }
-    }
-  }
+    });
+  });
   return skus;
 };
 
@@ -269,7 +212,7 @@ export const fetchMonthlyProducts = (
   }
 
   if (filteredData.length) {
-    filteredData.map((item) => {
+    filteredData.forEach((item) => {
       if (!skus.find((o) => o.name === item.sku_name)) {
         skus.push({
           name: item.sku_name,
@@ -278,18 +221,18 @@ export const fetchMonthlyProducts = (
     });
   }
 
-  for (let i = 0; i < skus.length; i++) {
+  skus.forEach((sku) => {
     for (let j = 0; j < timeframes.length; j++) {
       const storesKey = `stores${(j + 1) * 4}W`;
       const netSalesKey = `netSales${(j + 1) * 4}W`;
       const unitSalesKey = `unitSales${(j + 1) * 4}W`;
-      skus[i][storesKey] = 0;
-      skus[i][netSalesKey] = 0;
-      skus[i][unitSalesKey] = 0;
+      sku[storesKey] = 0;
+      sku[netSalesKey] = 0;
+      sku[unitSalesKey] = 0;
     }
-  }
+  });
 
-  for (var i = 0; i < filteredData.length; i++) {
+  filteredData.forEach((data) => {
     for (let j = 0; j < timeframes.length; j++) {
       let storeKey;
       let unitSalesKey;
@@ -298,23 +241,23 @@ export const fetchMonthlyProducts = (
       let sku;
       let netSales;
       let unitSales;
-      if (timeframes[j] === filteredData[i].timeframe) {
+      if (timeframes[j] === data.timeframe) {
         week = (j + 1) * 4;
         storeKey = `stores${week}W`;
         unitSalesKey = `unitSales${week}W`;
         netSalesKey = `netSales${week}W`;
-        sku = filteredData[i].sku_name;
-        netSales = filteredData[i].net_sales;
-        unitSales = filteredData[i].unit_sales;
+        sku = data.sku_name;
+        netSales = data.net_sales;
+        unitSales = data.unit_sales;
       }
-      for (let k = 0; k < skus.length; k++) {
-        if (skus[k].name === sku) {
-          skus[k][storeKey] = skus[k][storeKey] + 1;
-          skus[k][unitSalesKey] = skus[k][unitSalesKey] + parseInt(unitSales);
-          skus[k][netSalesKey] = skus[k][netSalesKey] + parseInt(netSales);
+      skus.forEach((item) => {
+        if (item.name === sku) {
+          item[storeKey] = item[storeKey] + 1;
+          item[unitSalesKey] = item[unitSalesKey] + parseInt(unitSales);
+          item[netSalesKey] = item[netSalesKey] + parseInt(netSales);
         }
-      }
+      });
     }
-  }
+  });
   return skus;
 };

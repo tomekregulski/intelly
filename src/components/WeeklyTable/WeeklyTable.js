@@ -40,16 +40,13 @@ function DenseTable() {
       let totalSalesW2 = 0;
       let totalSalesW3 = 0;
       let totalSalesW4 = 0;
-      for (let i = 0; i < weeklyProductData.length; i++) {
-        totalSalesW1 =
-          totalSalesW1 + parseInt(weeklyProductData[i].unitSalesLW);
-        totalSalesW2 =
-          totalSalesW2 + parseInt(weeklyProductData[i].unitSalesWeek2);
-        totalSalesW3 =
-          totalSalesW3 + parseInt(weeklyProductData[i].unitSalesWeek3);
-        totalSalesW4 =
-          totalSalesW4 + parseInt(weeklyProductData[i].unitSalesWeek4);
-      }
+      weeklyProductData.forEach((entry) => {
+        totalSalesW1 = totalSalesW1 + parseInt(entry.unitSalesLW);
+        totalSalesW2 = totalSalesW2 + parseInt(entry.unitSalesWeek2);
+        totalSalesW3 = totalSalesW3 + parseInt(entry.unitSalesWeek3);
+        totalSalesW4 = totalSalesW4 + parseInt(entry.unitSalesWeek4);
+      });
+
       setGrandTotals({
         totalSalesW1: totalSalesW1,
         totalSalesW2: totalSalesW2,
@@ -63,10 +60,7 @@ function DenseTable() {
     <>
       <TableContainer id='weeklyProduct' component={Paper}>
         <Table
-          // fixedHeader={false}
-          // style={{ width: 'auto', tableLayout: 'auto' }}
           className={classes.table}
-          // className='tableBody'
           size='small'
           aria-label='a dense table'
         >
@@ -201,9 +195,7 @@ function DenseTable() {
               </TableRow>
             ))}
             {grandTotals !== {} ? (
-              <TableRow
-              // className={index % 2 === 1 ? 'highlighted' : null}
-              >
+              <TableRow>
                 <TableCell
                   style={gtCellStyle}
                   align='left'
