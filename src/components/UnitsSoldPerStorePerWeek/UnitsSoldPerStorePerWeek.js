@@ -31,32 +31,23 @@ export default function UnitsSoldPerStorePerWeek() {
       let velocity4W = 0;
       let velocity12W = 0;
       let velocity52W = 0;
-      for (let i = 0; i < timeframeProductData.length; i++) {
-        totalSalesLW =
-          totalSalesLW + parseInt(timeframeProductData[i].unitSalesLW);
-        totalStoresLW =
-          totalStoresLW + parseInt(timeframeProductData[i].storesLW);
+      timeframeProductData.forEach((entry) => {
+        totalSalesLW = totalSalesLW + parseInt(entry.unitSalesLW);
+        totalStoresLW = totalStoresLW + parseInt(entry.storesLW);
         velocityLW =
-          velocityLW +
-          parseInt(timeframeProductData[i].unitSalesLW) /
-            parseInt(timeframeProductData[i].storesLW);
+          velocityLW + parseInt(entry.unitSalesLW) / parseInt(entry.storesLW);
         velocity4W =
           velocity4W +
-          parseInt(timeframeProductData[i].unitSales4W) /
-            parseInt(timeframeProductData[i].stores4W) /
-            4;
+          parseInt(entry.unitSales4W) / parseInt(entry.stores4W) / 4;
         velocity12W =
           velocity12W +
-          parseInt(timeframeProductData[i].unitSales12W) /
-            parseInt(timeframeProductData[i].stores12W) /
-            12;
-        velocity52W = timeframeProductData[i].unitSales52W
+          parseInt(entry.unitSales12W) / parseInt(entry.stores12W) / 12;
+        velocity52W = entry.unitSales52W
           ? velocity52W +
-            parseInt(timeframeProductData[i].unitSales52W) /
-              parseInt(timeframeProductData[i].stores52W) /
-              52
+            parseInt(entry.unitSales52W) / parseInt(entry.stores52W) / 52
           : velocity52W + 0;
-      }
+      });
+
       setGrandTotals({
         salesLW: totalSalesLW,
         storesLW: totalStoresLW,

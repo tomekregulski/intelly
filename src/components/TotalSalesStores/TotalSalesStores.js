@@ -39,10 +39,10 @@ const TotalSalesStores = (props) => {
       let stores = [];
       let sales = [];
 
-      for (let i = 0; i < props.data.length; i++) {
-        stores.push(props.data[i].name);
-        sales.push(props.data[i].totalSalesWeek1);
-      }
+      props.data.forEach((prop) => {
+        stores.push(prop.name);
+        sales.push(prop.totalSalesWeek1);
+      });
 
       setDataChart({
         labels: stores,

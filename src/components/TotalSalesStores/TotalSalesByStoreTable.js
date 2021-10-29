@@ -91,7 +91,7 @@ function EnhancedTableHead(props) {
       },
     ];
     if (timeframeProductData.length) {
-      timeframeProductData.map((item) => {
+      timeframeProductData.forEach((item) => {
         tempHead.push({
           id: `${item.name}`,
           numeric: true,
@@ -195,14 +195,14 @@ export default function TotalSalesByStoreTable() {
     if (timeframeStoreData && currentBrandSkus) {
       let newStoresList = [];
 
-      for (let i = 0; i < timeframeStoreData.length; i++) {
+      timeframeStoreData.forEach((entry) => {
         let totalSales = 0;
         let storeName = '';
         let salesArray = [];
-        let salesObj = timeframeStoreData[i].sales;
+        let salesObj = entry.sales;
         for (const property in salesObj) {
           if (storeName === '') {
-            storeName = timeframeStoreData[i].name;
+            storeName = entry.name;
           }
           if (salesObj[property]['week1']) {
             totalSales = totalSales + salesObj[property]['week1'];
@@ -223,7 +223,7 @@ export default function TotalSalesByStoreTable() {
           totalSales: totalSales,
           skuSales: salesArray,
         });
-      }
+      });
 
       const sortedStoreList = newStoresList.sort((a, b) =>
         a.totalSales > b.totalSales ? -1 : 1

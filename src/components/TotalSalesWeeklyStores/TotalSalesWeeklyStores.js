@@ -17,17 +17,17 @@ const TotalSalesWeeklyStores = () => {
     if (timeframeStoreData) {
       const weeklySalesByStore = [];
 
-      for (let i = 0; i < timeframeStoreData.length; i++) {
+      timeframeStoreData.forEach((entry) => {
         let week1 = 0;
         let week2 = 0;
         let week3 = 0;
         let week4 = 0;
-        let storeName = timeframeStoreData[i].name;
-        for (const sku in timeframeStoreData[i].sales) {
-          week1 = week1 + timeframeStoreData[i].sales[sku].week1;
-          week2 = week2 + timeframeStoreData[i].sales[sku].week2;
-          week3 = week3 + timeframeStoreData[i].sales[sku].week3;
-          week4 = week4 + timeframeStoreData[i].sales[sku].week4;
+        let storeName = entry.name;
+        for (const sku in entry.sales) {
+          week1 = week1 + entry.sales[sku].week1;
+          week2 = week2 + entry.sales[sku].week2;
+          week3 = week3 + entry.sales[sku].week3;
+          week4 = week4 + entry.sales[sku].week4;
         }
         let obj = {};
         obj['name'] = storeName;
@@ -36,7 +36,7 @@ const TotalSalesWeeklyStores = () => {
         obj['week3'] = week3;
         obj['week4'] = week4;
         weeklySalesByStore.push(obj);
-      }
+      });
       setData(weeklySalesByStore);
     }
   }, [timeframeStoreData]);
