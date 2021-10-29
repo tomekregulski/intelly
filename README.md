@@ -1,6 +1,6 @@
 # Intelly - General Overview and Current State
 
-Intelly is a platform being built to help small-to-medium-sized food and beverage brands manage various aspects of their business. The project is divided into separate repos to allow indeoendent development. Below, you can find a list of the specific fton and back ends that make up this project, links to their individual repos, as well as whether or not they have been deployed for public demo.
+Intelly is a platform being built to help small-to-medium-sized food and beverage brands manage various aspects of their business. The project is divided into separate repos to allow independent development. Below, you can find a list of the specific front and back ends that make up this project, links to their individual repos, as well as whether or not they have been deployed for public demo.
 
 The public demos should be accessed thought this link: https://gallant-wing-415919.netlify.app/
 This will bring you to a login page, which you can enter with the following credentials:
@@ -42,12 +42,13 @@ At this time, I am not inviting individual contribution, unless there has been a
 
 The following is a list of all related projects that have entered some stage of development. It will be updated as work begins on new services.
 
-Authorization - Front End: https://github.com/tomekregulski/intelly-auth-client - Deployed as part of the Public Demo <br />
-Authorization - Back End: https://github.com/tomekregulski/intelly-auth-service - Deployed as part of the Public Demo <br />
-Retail Data Dashboard - Front End: https://github.com/tomekregulski/intelly - Deployed as part of the Public Demo <br />
-Retail Data Dashboard - Back End: https://github.com/tomekregulski/intelly-server - Deployed as part of the Public Demo <br />
-Field Reporting - Front End: https://github.com/tomekregulski/fieldist-rep-web-client - Deployed as part of the Public Demo <br />
-Field Events - Back End: https://github.com/tomekregulski/fieldist-back-end - Deployed as part of the Public Demo <br />
-Field Events Administration - Front End: https://github.com/tomekregulski/fieldist-admin-web-client - Deployed as part of the Public Demo <br />
-Administrative Tasks - Front End: https://github.com/tomekregulski/intelly-admin-tasks-client - Deployed as part of the Public Demo <br />
-Administrative Tasks - Back End: https://github.com/tomekregulski/intelly-admin-task-server - Deployed as part of the Public Demo <br />
+<a href="https://github.com/tomekregulski/intelly-auth-client">Authorization - Front End</a> - Deployed as part of the Public Demo  
+<a href="https://github.com/tomekregulski/intelly-auth-service">Authorization - Back End</a> - Deployed as part of the Public Demo  
+<a href="https://github.com/tomekregulski/intelly">Retail Data Dashboard - Front End</a> - Deployed as part of the Public Demo  
+<a href="https://github.com/tomekregulski/intelly-server">Retail Data Dashboard - Back End</a> - Deployed as part of the Public Demo  
+<a href="https://github.com/tomekregulski/fieldist-rep-web-client">Field Reporting - Front End</a> - Deployed as part of the Public Demo  
+<a href="https://github.com/tomekregulski/fieldist-rep-react-native">Field Reporting - React Native Front End</a> - Early Stage, Not Deployed for Public Demo  
+<a href="https://github.com/tomekregulski/fieldist-back-end">Field Events - Back End</a> - Deployed as part of the Public Demo  
+<a href="https://github.com/tomekregulski/fieldist-admin-web-client">Field Events Administration - Front End</a> - Deployed as part of the Public Demo  
+<a href="https://github.com/tomekregulski/intelly-admin-tasks-client">Administrative Tasks - Front End</a> - Deployed as part of the Public Demo  
+<a href="https://github.com/tomekregulski/intelly-admin-task-server">Administrative Tasks - Back End</a> - Deployed as part of the Public Demo  
