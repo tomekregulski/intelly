@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/authContext';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 
-import axios from 'axios';
+// import axios from 'axios';
 
 import Box from '@mui/material/Box';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
@@ -55,18 +55,18 @@ function UserMenu(props) {
     setAnchorEl(null);
   };
 
-  const handleLoginStatus = () => {
-    async function fetchData() {
-      const apiResponse = await axios.get(
-        `https://intelly-auth-service.herokuapp.com/api/users/current-user`,
-        // 'http://localhost:5000/api/users/current-user',
-        { withCredentials: true }
-      );
-      console.log(apiResponse);
-      //  setAuthState(apiResponse);
-    }
-    fetchData();
-  };
+  // const handleLoginStatus = () => {
+  //   async function fetchData() {
+  //     const apiResponse = await axios.get(
+  //       `https://intelly-auth-service.herokuapp.com/api/users/current-user`,
+  //       // 'http://localhost:5000/api/users/current-user',
+  //       { withCredentials: true }
+  //     );
+  //     console.log(apiResponse);
+  //     //  setAuthState(apiResponse);
+  //   }
+  //   fetchData();
+  // };
 
   return (
     <React.Fragment>
