@@ -4,7 +4,7 @@ import WelcomeTable from '../../components/WelcomeTable/WelcomeTable';
 const Welcome = () => {
   return (
     <div style={{ textAlign: 'center', margin: '40px auto 0', width: '90%' }}>
-      <h1>Retail Data Dashboard</h1>
+      <p style={{ fontSize: '24px' }}>Retail Data Dashboard</p>
       <p style={{ marginTop: '15px' }}>
         The table on this page displays a handful of top-level metrics for your
         brand and region.

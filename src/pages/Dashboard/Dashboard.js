@@ -117,8 +117,7 @@ export default function Dashboard() {
   useEffect(() => {
     const user = userData;
     if (user) {
-      // const brands = user.brands.split(', ');
-      const brands = ['Simmer', 'SaSo'];
+      const brands = user.brands.split(', ');
       setUserBrands(brands);
       setBrand(brands[0]);
     }
