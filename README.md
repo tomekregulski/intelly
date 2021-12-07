@@ -56,4 +56,4 @@ The following is a list of all related projects that have entered some stage of 
 <a href="https://github.com/tomekregulski/intelly-payments-server">Payments - Back End</a> - Early Stage, Not Deployed for Public Demo <br>
 <a href="https://github.com/tomekregulski/intelly-form-builder-client">Form Builder - Front End</a> - Early Stage, Not Deployed for Public Demo <br>
 <a href="https://github.com/tomekregulski/intelly-form-builder-server">Form Builder - Back End</a> - Early Stage, Not Deployed for Public Demo <br>
-<a href="https://github.com/tomekregulski/intelly-schedule-client">Schedule - Client</a> - Early Stage, Not Deployed for Public Demo <br>
+<a href="https://github.com/tomekregulski/intelly-schedule-client">Schedule - Front End</a> - Early Stage, Not Deployed for Public Demo <br>
