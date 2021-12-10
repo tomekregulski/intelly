@@ -22,6 +22,12 @@ One more level of control available to the client is that, if they have more tha
 
 Finally, it is worth mentioning that right now this is built around the format of data from Whole Foods Market. As the project grows, we will add models and functionality that is able to accept other data sources.Given the often lack of similarities between data sources, and the usual need for brands to analyze each source separately - priority will be given to developing separate views for each source, and thus the ability for the client to toggle between whichever data sources they have in our system.
 
+# Code Links
+
+<a href="https://github.com/tomekregulski/intelly/tree/main/src/components">React Components</a><br>
+<a href="https://github.com/tomekregulski/intelly/tree/main/src/context">React Contexts</a><br>
+<a href="https://github.com/tomekregulski/intelly/blob/main/src/dataProcessing/dataProcessing.js">Code for Processing Incoming Sales Data</a><br>
+
 # Additional Goals for Development
 
 While much progress has been made with the Retail Data Dashboard, there is a long way to go. The top goals that will shape the next stage of development include:
