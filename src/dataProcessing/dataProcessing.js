@@ -7,15 +7,13 @@ export const fetchTimeframeProductData = (
 ) => {
   let skus = [];
   let filteredData;
-  if (region !== 'all regions') {
-    filteredData = data.filter((item) => item.region === region);
-  } else {
-    filteredData = data;
-  }
+  region !== 'all regions'
+    ? (filteredData = data.filter((item) => item.region === region))
+    : (filteredData = data);
 
-  if (filteredData.length) {
+  filteredData.length &&
     filteredData.forEach((item) => {
-      if (!skus.find((o) => o.name === item.sku_name)) {
+      !skus.find((o) => o.name === item.sku_name) &&
         skus.push({
           name: item.sku_name,
           storesLW: 0,
@@ -34,9 +32,7 @@ export const fetchTimeframeProductData = (
           unitSales12W: 0,
           unitSales52W: 0,
         });
-      }
     });
-  }
 
   filteredData.forEach((entry) => {
     skus.forEach((sku) => {
@@ -80,6 +76,7 @@ export const fetchTimeframeProductData = (
       }
     });
   });
+
   return skus;
 };
 
@@ -92,15 +89,13 @@ export const fetchTimeframeStoreData = (
 ) => {
   let stores = [];
   let filteredData;
-  if (region !== 'all regions') {
-    filteredData = data.filter((item) => item.region === region);
-  } else {
-    filteredData = data;
-  }
+  region !== 'all regions'
+    ? (filteredData = data.filter((item) => item.region === region))
+    : (filteredData = data);
 
-  if (filteredData.length) {
+  filteredData.length &&
     filteredData.forEach((item) => {
-      if (!stores.find((o) => o.name === item.store_name)) {
+      !stores.find((o) => o.name === item.store_name) &&
         stores.push({
           name: item.store_name,
           totalSalesWeek1: 0,
@@ -109,9 +104,7 @@ export const fetchTimeframeStoreData = (
           totalSalesWeek4: 0,
           sales: {},
         });
-      }
     });
-  }
 
   filteredData.forEach((entry) => {
     stores.forEach((store) => {
@@ -157,15 +150,13 @@ export const fetchWeeklyProductData = (
 ) => {
   let skus = [];
   let filteredData;
-  if (region !== 'all regions') {
-    filteredData = data.filter((item) => item.region === region);
-  } else {
-    filteredData = data;
-  }
+  region !== 'all regions'
+    ? (filteredData = data.filter((item) => item.region === region))
+    : (filteredData = data);
 
-  if (filteredData.length) {
+  filteredData.length &&
     filteredData.forEach((item) => {
-      if (!skus.find((o) => o.name === item.sku_name)) {
+      !skus.find((o) => o.name === item.sku_name) &&
         skus.push({
           name: item.sku_name,
           unitSalesLW: 0,
@@ -173,9 +164,7 @@ export const fetchWeeklyProductData = (
           unitSalesWeek3: 0,
           unitSalesWeek4: 0,
         });
-      }
     });
-  }
 
   filteredData.forEach((entry) => {
     skus.forEach((sku) => {
@@ -193,6 +182,7 @@ export const fetchWeeklyProductData = (
       }
     });
   });
+
   return skus;
 };
 
@@ -205,21 +195,17 @@ export const fetchMonthlyProducts = (
 ) => {
   let skus = [];
   let filteredData;
-  if (region !== 'all regions') {
-    filteredData = data.filter((item) => item.region === region);
-  } else {
-    filteredData = data;
-  }
+  region !== 'all regions'
+    ? (filteredData = data.filter((item) => item.region === region))
+    : (filteredData = data);
 
-  if (filteredData.length) {
+  filteredData.length &&
     filteredData.forEach((item) => {
-      if (!skus.find((o) => o.name === item.sku_name)) {
+      !skus.find((o) => o.name === item.sku_name) &&
         skus.push({
           name: item.sku_name,
         });
-      }
     });
-  }
 
   skus.forEach((sku) => {
     for (let j = 0; j < timeframes.length; j++) {
@@ -259,5 +245,6 @@ export const fetchMonthlyProducts = (
       });
     }
   });
+
   return skus;
 };

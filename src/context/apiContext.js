@@ -10,11 +10,13 @@ import axios from 'axios';
 const APIContext = createContext();
 
 export function APIContextProvider({ children }) {
+  const [roles, setRoles] = useState('');
+  const [access, setAccess] = useState('');
   const [userBrands, setUserBrands] = useState([]);
   const [brand, setBrand] = useState('');
 
   const [allBrandTimeframes, setAllBrandTimeframes] = useState([]);
-  const [currentTimeframe, setCurrentTimeframe] = useState([]);
+  const [currentTimeframe, setCurrentTimeframe] = useState('');
   const [weeklyTimeframes, setWeeklyTimeframes] = useState([]);
   const [monthlyTimeframes, setMonthlyTimeframes] = useState([]);
 
@@ -36,30 +38,36 @@ export function APIContextProvider({ children }) {
   const [region, setRegion] = useState('');
   const [category, setCategory] = useState('');
 
-  // Once user is logged in and brand is set to their brands[0], query DB for a complete list of their WFM data entry dates (timeframes) and default the current selection to the most recent entry
-  // POSSIBLY SET UP SEPARATE BRAND TABLE THAT LISTS ALL TIMEFRAMES FOR EACH BRAND
   useEffect(() => {
-    setAllBrandTimeframes([]);
-    setCurrentTimeframe([]);
-    async function fetchData() {
-      const apiResponse = await axios.get(
-        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/timeframes`,
-        // 'http://localhost:5000/api/whole-foods-timeframe-data/timeframes',
-        {
-          headers: { brand: brand },
-        }
-      );
+    const user = JSON.parse(localStorage.getItem('user'));
+    setRoles(user.roles);
+    setAccess(user.access.split(','));
+  }, []);
 
-      let tf = [];
+  // Once user is logged in and brand is set to their brands[0], query DB for a complete list of their WFM data entry dates (timeframes) and default the current selection to the most recent entry
+  useEffect(() => {
+    if (roles !== '' && access !== '') {
+      setAllBrandTimeframes([]);
+      setCurrentTimeframe('');
+      async function fetchData() {
+        const apiResponse = await axios.get(
+          `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/timeframes`,
+          {
+            headers: { brand: brand, roles: roles, access: access },
+          }
+        );
 
-      apiResponse.data.forEach((entry) => {
-        tf.push(entry['timeframe']);
-      });
-      setAllBrandTimeframes(tf);
-      setCurrentTimeframe(tf[0]);
+        let tf = [];
+
+        apiResponse.data.forEach((entry) => {
+          tf.push(entry['timeframe']);
+        });
+        setAllBrandTimeframes(tf);
+        setCurrentTimeframe(tf[0]);
+      }
+      fetchData();
     }
-    fetchData();
-  }, [brand, setBrand]);
+  }, [access, brand, roles, setBrand]);
 
   // When the currentTimeframe is set, create a list of 4 consecutive timeframes based on the currentTimeframe to use for the Weekly Data view. Additionally, create a list of timeframes that are each 4 weeks apart for the 4-week "Monthly" Data view.
   useEffect(() => {
@@ -88,48 +96,66 @@ export function APIContextProvider({ children }) {
 
   // When currentTimeframe is updated, query the DB for a full record (52 weeks) of data based on that timeframe
   useEffect(() => {
-    async function fetchData() {
-      const apiResponse = await axios.get(
-        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
-        // 'http://localhost:5000/api/whole-foods-timeframe-data',
-        {
-          headers: { brand: brand, timeframe: currentTimeframe },
-        }
-      );
-      setCurrentTimeframeRawData(apiResponse.data);
+    if (currentTimeframe !== '') {
+      async function fetchData() {
+        const apiResponse = await axios.get(
+          `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data`,
+          {
+            headers: {
+              brand: brand,
+              timeframe: currentTimeframe,
+              roles: roles,
+              access: access,
+            },
+          }
+        );
+        setCurrentTimeframeRawData(apiResponse.data);
+      }
+      fetchData();
     }
-    fetchData();
-  }, [setCurrentTimeframe, currentTimeframe]);
+  }, [setCurrentTimeframe, currentTimeframe, brand, roles, access]);
 
   // When currentTimeframe is updated, query the DB for the "Last Week" data of the last four timeframes to use for the Weekly Data view
   useEffect(() => {
-    async function fetchData() {
-      const apiResponse = await axios.get(
-        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/weekly`,
-        // 'http://localhost:5000/api/whole-foods-timeframe-data/weekly',
-        {
-          headers: { brand: brand, timeframes: weeklyTimeframes },
-        }
-      );
-      setWeeklyRawData(apiResponse.data);
+    if (weeklyTimeframes.length) {
+      async function fetchData() {
+        const apiResponse = await axios.get(
+          `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/weekly`,
+          {
+            headers: {
+              brand: brand,
+              roles: roles,
+              access: access,
+              timeframes: weeklyTimeframes,
+            },
+          }
+        );
+        setWeeklyRawData(apiResponse.data);
+      }
+      fetchData();
     }
-    fetchData();
-  }, [setWeeklyTimeframes, weeklyTimeframes]);
+  }, [access, brand, roles, setWeeklyTimeframes, weeklyTimeframes]);
 
   // When currentTimeframe is updated, query the DB for the "Four Weeks" data of the specified timeframes to use for the Monthly Data view
   useEffect(() => {
-    async function fetchData() {
-      const apiResponse = await axios.get(
-        `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/monthly`,
-        // 'http://localhost:5000/api/whole-foods-timeframe-data/monthly',
-        {
-          headers: { brand: brand, timeframes: monthlyTimeframes },
-        }
-      );
-      setMonthlyRawData(apiResponse.data);
+    if (monthlyTimeframes.length) {
+      async function fetchData() {
+        const apiResponse = await axios.get(
+          `https://intelly-server.herokuapp.com/api/whole-foods-timeframe-data/monthly`,
+          {
+            headers: {
+              brand: brand,
+              roles: roles,
+              access: access,
+              timeframes: monthlyTimeframes,
+            },
+          }
+        );
+        setMonthlyRawData(apiResponse.data);
+      }
+      fetchData();
     }
-    fetchData();
-  }, [monthlyTimeframes, setMonthlyTimeframes]);
+  }, [access, brand, monthlyTimeframes, roles, setMonthlyTimeframes]);
 
   // Once the weekly data is set, iterate through it to set states for currentBrandRegions, currentBrandSkus, categoryList, and region
   useEffect(() => {
@@ -231,11 +257,12 @@ export function APIContextProvider({ children }) {
         category
       );
 
-      if (stores.length) {
-        setTimeframeStoreData(stores);
-      }
       if (products.length) {
         setTimeframeProductData(products);
+      }
+
+      if (stores.length) {
+        setTimeframeStoreData(stores);
       }
 
       if (weeklyStores.length) {
@@ -261,6 +288,9 @@ export function APIContextProvider({ children }) {
     weeklyTimeframes,
     monthlyRawData,
     setMonthlyRawData,
+    currentTimeframeRawData,
+    weeklyRawData,
+    monthlyTimeframes,
   ]);
 
   return (

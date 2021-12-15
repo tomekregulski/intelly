@@ -88,7 +88,7 @@ function DenseTable() {
                 style={cellStyle}
                 padding='none'
                 className='tableHeaders'
-                align='center'
+                align='left'
               >
                 Last Week
               </TableCell>
@@ -96,7 +96,7 @@ function DenseTable() {
                 style={cellStyle}
                 padding='none'
                 className='tableHeaders'
-                align='center'
+                align='right'
               >
                 % Change
               </TableCell>
@@ -104,7 +104,7 @@ function DenseTable() {
                 style={cellStyle}
                 padding='none'
                 className='tableHeaders'
-                align='center'
+                align='right'
               >
                 Week 2
               </TableCell>
@@ -112,7 +112,7 @@ function DenseTable() {
                 style={cellStyle}
                 padding='none'
                 className='tableHeaders'
-                align='center'
+                align='right'
               >
                 % Change
               </TableCell>
@@ -120,7 +120,7 @@ function DenseTable() {
                 style={cellStyle}
                 padding='none'
                 className='tableHeaders'
-                align='center'
+                align='right'
               >
                 Week 3
               </TableCell>
@@ -128,7 +128,7 @@ function DenseTable() {
                 style={cellStyle}
                 padding='none'
                 className='tableHeaders'
-                align='center'
+                align='right'
               >
                 % Change
               </TableCell>
@@ -136,7 +136,7 @@ function DenseTable() {
                 style={cellStyle}
                 padding='none'
                 className='tableHeaders'
-                align='center'
+                align='right'
               >
                 Week 4
               </TableCell>
@@ -154,7 +154,7 @@ function DenseTable() {
                   {item.name}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='right'>
-                  {parseFloat(item.unitSalesLW).toFixed(1)}
+                  {item.unitSalesLW && parseFloat(item.unitSalesLW).toFixed(1)}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='right'>
                   {item.unitSalesLW && item.unitSalesWeek2
@@ -166,7 +166,8 @@ function DenseTable() {
                     : 'N/A'}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='right'>
-                  {parseFloat(item.unitSalesWeek2).toFixed(1)}
+                  {item.unitSalesWeek2 &&
+                    parseFloat(item.unitSalesWeek2).toFixed(1)}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='right'>
                   {item.unitSalesWeek2 && item.unitSalesWeek3
@@ -178,7 +179,8 @@ function DenseTable() {
                     : 'N/A'}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='right'>
-                  {parseFloat(item.unitSalesWeek3).toFixed(1)}
+                  {item.unitSalesWeek3 &&
+                    parseFloat(item.unitSalesWeek3).toFixed(1)}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='right'>
                   {item.unitSalesWeek3 && item.unitSalesWeek4
@@ -190,7 +192,8 @@ function DenseTable() {
                     : 'N/A'}
                 </TableCell>
                 <TableCell style={cellStyle} padding='none' align='right'>
-                  {parseFloat(item.unitSalesWeek4).toFixed(1)}
+                  {item.unitSalesWeek4 &&
+                    parseFloat(item.unitSalesWeek4).toFixed(1)}
                 </TableCell>
               </TableRow>
             ))}
@@ -206,7 +209,11 @@ function DenseTable() {
                   Grand Total
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
-                  {grandTotals.totalSalesW1}
+                  {grandTotals.totalSalesW1
+                    ? grandTotals.totalSalesW1 === 0
+                      ? 0.0
+                      : grandTotals.totalSalesW1.toFixed(1)
+                    : null}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
                   {(
@@ -217,7 +224,11 @@ function DenseTable() {
                   %
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
-                  {grandTotals.totalSalesW2}
+                  {grandTotals.totalSalesW2
+                    ? grandTotals.totalSalesW2 === 0
+                      ? 0.0
+                      : grandTotals.totalSalesW2.toFixed(1)
+                    : null}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
                   {(
@@ -228,7 +239,11 @@ function DenseTable() {
                   %
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
-                  {grandTotals.totalSalesW3}
+                  {grandTotals.totalSalesW3
+                    ? grandTotals.totalSalesW3 === 0
+                      ? 0.0
+                      : grandTotals.totalSalesW3.toFixed(1)
+                    : null}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
                   {(
@@ -239,7 +254,11 @@ function DenseTable() {
                   %
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
-                  {grandTotals.totalSalesW4}
+                  {grandTotals.totalSalesW4
+                    ? grandTotals.totalSalesW4 === 0
+                      ? 0.0
+                      : grandTotals.totalSalesW4.toFixed(1)
+                    : null}
                 </TableCell>
               </TableRow>
             ) : null}
