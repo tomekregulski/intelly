@@ -30,7 +30,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <Typography component={'div'}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -94,6 +94,7 @@ export default function Dashboard() {
   const [checked, setChecked] = React.useState(true);
 
   const { user } = useContext(AuthContext);
+  // eslint-disable-next-line no-unused-vars
   const [userData, setUserData] = user;
 
   const handleToggleChange = (event) => {

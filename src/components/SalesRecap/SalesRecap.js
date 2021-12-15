@@ -240,7 +240,7 @@ function SalesRecap() {
                   </TableCell>
                   <TableCell style={cellStyle} padding='none' align='right'>
                     {item.unitSales52W
-                      ? '$' + parseFloat(item.unitSales52W).toFixed(0)
+                      ? parseFloat(item.unitSales52W).toFixed(0)
                       : 'N/A'}
                   </TableCell>
                   <TableCell style={cellStyle} padding='none' align='right'>
@@ -265,25 +265,25 @@ function SalesRecap() {
                   {grandTotals.salesLW}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
-                  ${grandTotals.revenueLW}
+                  ${grandTotals.revenueLW && grandTotals.revenueLW.toFixed(2)}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
                   {grandTotals.sales4W}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
-                  ${grandTotals.revenue4W}
+                  ${grandTotals.revenue4W && grandTotals.revenue4W.toFixed(2)}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
                   {grandTotals.sales12W}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
-                  ${grandTotals.revenue12W}
+                  ${grandTotals.revenue12W && grandTotals.revenue12W.toFixed(2)}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
                   {grandTotals.sales52W}
                 </TableCell>
                 <TableCell style={gtCellStyle} padding='none' align='right'>
-                  ${grandTotals.revenue52W}
+                  ${grandTotals.revenue52W && grandTotals.revenue52W.toFixed(2)}
                 </TableCell>
               </TableRow>
             ) : null}

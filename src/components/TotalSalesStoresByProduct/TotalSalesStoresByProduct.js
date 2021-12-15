@@ -75,7 +75,7 @@ const TotalSalesStoresByProduct = (props) => {
         datasets: salesData,
       });
     }
-  }, [data, setData]);
+  }, [data, setData, timeframeProductData]);
 
   return (
     <div id='salesByStoreByProduct'>

@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 function NavbarSwitch() {
   const { auth, user } = useContext(AuthContext);
   const [isAuth, setIsAuth] = auth;
+  // eslint-disable-next-line no-unused-vars
   const [userData, setUserData] = user;
 
   const history = useHistory();
