@@ -57,9 +57,13 @@ const TotalSalesStores = (props) => {
     }
   }, [props]);
 
+  console.log(dataChart);
+
   return (
     <div id='salesByStore'>
-      <Bar data={dataChart} options={options} />
+      {/* {Object.keys(dataChart).length > 0 ? (
+        <Bar data={dataChart} options={options} />
+      ) : null} */}
     </div>
   );
 };

@@ -43,10 +43,10 @@ const TotalSalesByStoresData = () => {
 
   return (
     <div id='salesByStoreContainer'>
-      {array.length &&
+      {/* {array.length &&
         array.map((item, index) => (
           <TotalSalesStores key={index} data={item} />
-        ))}
+        ))} */}
     </div>
   );
 };
