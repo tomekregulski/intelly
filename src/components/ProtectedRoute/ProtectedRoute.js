@@ -15,14 +15,6 @@ const ProtectedRoute = (props) => {
   const [credentials, setCredentials] = useState([]);
 
   useEffect(() => {
-    //   if (window.location.href.includes('?')) {
-    //     const query = window.location.href.split('?');
-    //     console.log(query[1].split('&'));
-    //     const querySplit = query[1].split('&');
-    //     setCredentials({
-    //       email: querySplit[0],
-    //       password: querySplit[1],
-    //     });
     if (window.location.href.includes('?')) {
       const query = window.location.href.split('?');
       console.log(query[1].split('&'));
@@ -43,7 +35,6 @@ const ProtectedRoute = (props) => {
       return axios
         .post(
           'https://intelly-auth-service.herokuapp.com/api/users/login-link',
-          // 'http://localhost:5000/api/users/login-link',
           {
             payload,
           }
@@ -72,7 +63,11 @@ const ProtectedRoute = (props) => {
   }, [credentials.token, credentials, setCredentials, setIsAuth, setUserData]);
 
   if (isLoading === true) {
-    return <h1>Loading</h1>;
+    return (
+      <div style={{ textAlign: 'center', marginTop: '50px' }}>
+        <h1>Loading</h1>
+      </div>
+    );
   }
 
   if ((isLoading === false && isAuth) === true) {
