@@ -113,8 +113,6 @@ export default function Dashboard() {
     setCategory,
   } = useAPI();
 
-  // Pulls current user from localStorage to get list of brands and setBrand to first brand on list
-  // Planned to change to a method where user data is not stored openly in localStorage
   useEffect(() => {
     const user = userData;
     if (user) {
