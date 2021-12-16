@@ -13,7 +13,7 @@ export const fetchTimeframeProductData = (
 
   filteredData.length &&
     filteredData.forEach((item) => {
-      !skus.find((o) => o.name === item.sku_name) &&
+      !skus.find((sku) => sku.name === item.sku_name) &&
         skus.push({
           name: item.sku_name,
           storesLW: 0,
@@ -95,7 +95,7 @@ export const fetchTimeframeStoreData = (
 
   filteredData.length &&
     filteredData.forEach((item) => {
-      !stores.find((o) => o.name === item.store_name) &&
+      !stores.find((sku) => sku.name === item.store_name) &&
         stores.push({
           name: item.store_name,
           totalSalesWeek1: 0,
@@ -156,7 +156,7 @@ export const fetchWeeklyProductData = (
 
   filteredData.length &&
     filteredData.forEach((item) => {
-      !skus.find((o) => o.name === item.sku_name) &&
+      !skus.find((sku) => sku.name === item.sku_name) &&
         skus.push({
           name: item.sku_name,
           unitSalesLW: 0,
@@ -182,7 +182,6 @@ export const fetchWeeklyProductData = (
       }
     });
   });
-
   return skus;
 };
 
@@ -201,7 +200,7 @@ export const fetchMonthlyProducts = (
 
   filteredData.length &&
     filteredData.forEach((item) => {
-      !skus.find((o) => o.name === item.sku_name) &&
+      !skus.find((sku) => sku.name === item.sku_name) &&
         skus.push({
           name: item.sku_name,
         });
