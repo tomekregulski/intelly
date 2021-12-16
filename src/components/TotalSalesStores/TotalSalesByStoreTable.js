@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import clsx from 'clsx';
 import {
-  // lighten,
   makeStyles,
 } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -16,28 +14,6 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 import { useAPI } from '../../context/apiContext';
 import './totalSalesByStoreTable.css';
-
-// function createData(
-//   name,
-//   salesWk1,
-//   changeWk1,
-//   salesWk2,
-//   changeWk2,
-//   salesWk3,
-//   changeWk3,
-//   salesWk4
-// ) {
-//   return {
-//     name,
-//     salesWk1,
-//     changeWk1,
-//     salesWk2,
-//     changeWk2,
-//     salesWk3,
-//     changeWk3,
-//     salesWk4,
-//   };
-// }
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {

@@ -56,28 +56,12 @@ function UserMenu(props) {
     setAnchorEl(null);
   };
 
-  // const handleLoginStatus = () => {
-  //   async function fetchData() {
-  //     const apiResponse = await axios.get(
-  //       `https://intelly-auth-service.herokuapp.com/api/users/current-user`,
-  //       // 'http://localhost:5000/api/users/current-user',
-  //       { withCredentials: true }
-  //     );
-  //     console.log(apiResponse);
-  //     //  setAuthState(apiResponse);
-  //   }
-  //   fetchData();
-  // };
-
   return (
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title='Account settings'>
           {width > breakpoint ? (
             <>
-              {/* <UserButton variant='outlined' onClick={handleLoginStatus}>
-                check login
-              </UserButton> */}
               <UserButton variant='outlined' onClick={handleClick}>
                 {userData.first_name} {userData.last_name}
               </UserButton>
