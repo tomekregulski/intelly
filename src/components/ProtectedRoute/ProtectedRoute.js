@@ -65,7 +65,7 @@ const ProtectedRoute = (props) => {
   if (isLoading === true) {
     return (
       <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <h1>Loading</h1>
+        <h1>Loading...</h1>
       </div>
     );
   }
