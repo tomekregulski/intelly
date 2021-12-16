@@ -48,7 +48,7 @@ function WeeklyView() {
           <div id='charts'>
             {width > breakpoint ? (
               <>
-                <ChartTabsTotalSalesMediumView />
+                {/* <ChartTabsTotalSalesMediumView /> */}
                 <div style={{ height: '30px' }}></div>
                 <ChartTabsSkuSalesMediumView />
               </>

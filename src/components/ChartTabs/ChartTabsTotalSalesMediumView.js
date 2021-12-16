@@ -104,9 +104,9 @@ export default function ChartTabsTotalSalesMediumView() {
       {data.length &&
         data.map((item, index) => (
           <>
-            <TabPanel key={index} value={value} index={index}>
+            {/* <TabPanel key={index} value={value} index={index}>
               <TotalSalesStores key={index} data={item} />
-            </TabPanel>
+            </TabPanel> */}
           </>
         ))}
     </div>
