@@ -39,9 +39,11 @@ export function APIContextProvider({ children }) {
   const [category, setCategory] = useState('');
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    setRoles(user.roles);
-    setAccess(user.access.split(','));
+    if (JSON.parse(localStorage.getItem('user'))) {
+      const user = JSON.parse(localStorage.getItem('user'));
+      setRoles(user.roles);
+      setAccess(user.access.split(','));
+    }
   }, []);
 
   // Once user is logged in and brand is set to their brands[0], query DB for a complete list of their WFM data entry dates (timeframes) and default the current selection to the most recent entry
